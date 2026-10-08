@@ -139,6 +139,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-08**: Art hand-off guide ("Sending new art" in SPRITES.md), a walk-cycle template on the game grid (`art-source/templates/walk-template.png`), and the converter can now drop in ready-made rows pixel for pixel.
 - **2026-10-08**: Faster walk cycles for Ulrick and Rolfing (70 ms per frame, was 100–110) so their feet don't look like they slide. Their painted walk frames still have too little leg movement and need a redo (see to-do).
 - **2026-10-08**: Upgraded the engine from Phaser 3.80.1 to **Phaser 4.2.1**. Code changes: the white hit-flash and rogue afterimage use Phaser 4's new tint API, and `roundPixels` is switched back on (v4 defaults it off). Tested every screen, all three acts, every hero's spell and a boss.
 - **2026-10-08**: New Rolfing sprite (`art-source/rolfing-sheet.png`): staff jab, spinning sweep and ground-slam combo, Entangle vines, and a glowing staff for Goodberry. The sheet converter now handles any hero (`tools/sprite-from-concept/make_sheet.py`).

@@ -16,6 +16,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 # lying   -> frames where the hero lies on the ground; anchored by the feet so they fall backward
 #            (lying_off = how far in from the right edge the feet are, in source pixels)
 # trapped_checker -> also clear checkerboard trapped inside a figure (e.g. between staff and body)
+# ready   -> optional {tag: 'art-source/<file>.png'}: a strip painted on the game grid (160x128 cells, transparent,
+#            feet on y 116, centred on x 80). Used as-is, replacing that animation. Timing = first value in `tags`.
 # tags    -> game animation name -> list of (frame, milliseconds). Only the rhythm matters for attacks/spells;
 #            the game stretches them to the move's length. The hit lands ~40% through an attack.
 HEROES = {
@@ -135,6 +137,16 @@ def build(hero):
 
     cells = {f: cell(f) for f in frames}
     seq = [(tag, f, ms) for tag, fs in cfg['tags'].items() for f, ms in fs]
+    # ready-made strips replace whole animations, pixel for pixel
+    for tag, path in cfg.get('ready', {}).items():
+        strip = Image.open(os.path.join(ROOT, path)).convert('RGBA')
+        assert strip.height == FH and strip.width % FW == 0, f'{path} must be {FH}px tall and a multiple of {FW}px wide'
+        ms = cfg['tags'][tag][0][1]; new = []
+        for j in range(strip.width // FW):
+            c = strip.crop((j * FW, 0, (j + 1) * FW, FH))
+            if c.getbbox(): cells[f'{tag}#{j}'] = c; new.append((tag, f'{tag}#{j}', ms))   # skip empty cells
+        at = next(i for i, x in enumerate(seq) if x[0] == tag)
+        seq = seq[:at] + new + [x for x in seq[at:] if x[0] != tag]
     COLS = 8; rows = (len(seq) + COLS - 1) // COLS
     sheet = Image.new('RGBA', (FW * COLS, FH * rows)); meta, tags = [], []
     for i, (tag, f, ms) in enumerate(seq):

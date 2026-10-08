@@ -26,3 +26,7 @@ Previews aren't committed.
 5. `tags` decides which frames make each game animation, and their timing.
 
 To add another hero, copy an entry in `HEROES`, adjust it, and run the script with that hero's name.
+
+## Ready-made rows
+A strip painted on the game grid (see `art-source/templates/walk-template.png`) can replace one animation
+without any processing: add e.g. `ready={'walk': 'art-source/ulrick-walk.png'}` to that hero's entry and run the script.
