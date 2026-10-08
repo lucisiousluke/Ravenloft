@@ -1,0 +1,668 @@
+{
+ "frames": [
+  {
+   "filename": "owlbear 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 180
+  },
+  {
+   "filename": "owlbear 1",
+   "frame": {
+    "x": 280,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 180
+  },
+  {
+   "filename": "owlbear 2",
+   "frame": {
+    "x": 560,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 180
+  },
+  {
+   "filename": "owlbear 3",
+   "frame": {
+    "x": 840,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 180
+  },
+  {
+   "filename": "owlbear 4",
+   "frame": {
+    "x": 1120,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 90
+  },
+  {
+   "filename": "owlbear 5",
+   "frame": {
+    "x": 1400,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 90
+  },
+  {
+   "filename": "owlbear 6",
+   "frame": {
+    "x": 1680,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 90
+  },
+  {
+   "filename": "owlbear 7",
+   "frame": {
+    "x": 1960,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 90
+  },
+  {
+   "filename": "owlbear 8",
+   "frame": {
+    "x": 0,
+    "y": 224,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 90
+  },
+  {
+   "filename": "owlbear 9",
+   "frame": {
+    "x": 280,
+    "y": 224,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 90
+  },
+  {
+   "filename": "owlbear 10",
+   "frame": {
+    "x": 560,
+    "y": 224,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 90
+  },
+  {
+   "filename": "owlbear 11",
+   "frame": {
+    "x": 840,
+    "y": 224,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 90
+  },
+  {
+   "filename": "owlbear 12",
+   "frame": {
+    "x": 1120,
+    "y": 224,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 80
+  },
+  {
+   "filename": "owlbear 13",
+   "frame": {
+    "x": 1400,
+    "y": 224,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 80
+  },
+  {
+   "filename": "owlbear 14",
+   "frame": {
+    "x": 1680,
+    "y": 224,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 80
+  },
+  {
+   "filename": "owlbear 15",
+   "frame": {
+    "x": 1960,
+    "y": 224,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 70
+  },
+  {
+   "filename": "owlbear 16",
+   "frame": {
+    "x": 0,
+    "y": 448,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 70
+  },
+  {
+   "filename": "owlbear 17",
+   "frame": {
+    "x": 280,
+    "y": 448,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 70
+  },
+  {
+   "filename": "owlbear 18",
+   "frame": {
+    "x": 560,
+    "y": 448,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 70
+  },
+  {
+   "filename": "owlbear 19",
+   "frame": {
+    "x": 840,
+    "y": 448,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 70
+  },
+  {
+   "filename": "owlbear 20",
+   "frame": {
+    "x": 1120,
+    "y": 448,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 120
+  },
+  {
+   "filename": "owlbear 21",
+   "frame": {
+    "x": 1400,
+    "y": 448,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 120
+  },
+  {
+   "filename": "owlbear 22",
+   "frame": {
+    "x": 1680,
+    "y": 448,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 100
+  },
+  {
+   "filename": "owlbear 23",
+   "frame": {
+    "x": 1960,
+    "y": 448,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 100
+  },
+  {
+   "filename": "owlbear 24",
+   "frame": {
+    "x": 0,
+    "y": 672,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 100
+  },
+  {
+   "filename": "owlbear 25",
+   "frame": {
+    "x": 280,
+    "y": 672,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 100
+  },
+  {
+   "filename": "owlbear 26",
+   "frame": {
+    "x": 560,
+    "y": 672,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 100
+  },
+  {
+   "filename": "owlbear 27",
+   "frame": {
+    "x": 840,
+    "y": 672,
+    "w": 280,
+    "h": 224
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 280,
+    "h": 224
+   },
+   "sourceSize": {
+    "w": 280,
+    "h": 224
+   },
+   "duration": 100
+  }
+ ],
+ "meta": {
+  "app": "Ravenmoor placeholder generator",
+  "image": "owlbear.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 2240,
+   "h": 896
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "idle",
+    "from": 0,
+    "to": 3,
+    "direction": "forward"
+   },
+   {
+    "name": "walk",
+    "from": 4,
+    "to": 11,
+    "direction": "forward"
+   },
+   {
+    "name": "windup",
+    "from": 12,
+    "to": 14,
+    "direction": "forward"
+   },
+   {
+    "name": "attack",
+    "from": 15,
+    "to": 19,
+    "direction": "forward"
+   },
+   {
+    "name": "hurt",
+    "from": 20,
+    "to": 21,
+    "direction": "forward"
+   },
+   {
+    "name": "death",
+    "from": 22,
+    "to": 27,
+    "direction": "forward"
+   }
+  ]
+ }
+}

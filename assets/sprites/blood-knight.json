@@ -1,0 +1,668 @@
+{
+ "frames": [
+  {
+   "filename": "blood-knight 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 180
+  },
+  {
+   "filename": "blood-knight 1",
+   "frame": {
+    "x": 184,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 180
+  },
+  {
+   "filename": "blood-knight 2",
+   "frame": {
+    "x": 368,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 180
+  },
+  {
+   "filename": "blood-knight 3",
+   "frame": {
+    "x": 552,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 180
+  },
+  {
+   "filename": "blood-knight 4",
+   "frame": {
+    "x": 736,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 90
+  },
+  {
+   "filename": "blood-knight 5",
+   "frame": {
+    "x": 920,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 90
+  },
+  {
+   "filename": "blood-knight 6",
+   "frame": {
+    "x": 1104,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 90
+  },
+  {
+   "filename": "blood-knight 7",
+   "frame": {
+    "x": 1288,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 90
+  },
+  {
+   "filename": "blood-knight 8",
+   "frame": {
+    "x": 0,
+    "y": 144,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 90
+  },
+  {
+   "filename": "blood-knight 9",
+   "frame": {
+    "x": 184,
+    "y": 144,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 90
+  },
+  {
+   "filename": "blood-knight 10",
+   "frame": {
+    "x": 368,
+    "y": 144,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 90
+  },
+  {
+   "filename": "blood-knight 11",
+   "frame": {
+    "x": 552,
+    "y": 144,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 90
+  },
+  {
+   "filename": "blood-knight 12",
+   "frame": {
+    "x": 736,
+    "y": 144,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 80
+  },
+  {
+   "filename": "blood-knight 13",
+   "frame": {
+    "x": 920,
+    "y": 144,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 80
+  },
+  {
+   "filename": "blood-knight 14",
+   "frame": {
+    "x": 1104,
+    "y": 144,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 80
+  },
+  {
+   "filename": "blood-knight 15",
+   "frame": {
+    "x": 1288,
+    "y": 144,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 70
+  },
+  {
+   "filename": "blood-knight 16",
+   "frame": {
+    "x": 0,
+    "y": 288,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 70
+  },
+  {
+   "filename": "blood-knight 17",
+   "frame": {
+    "x": 184,
+    "y": 288,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 70
+  },
+  {
+   "filename": "blood-knight 18",
+   "frame": {
+    "x": 368,
+    "y": 288,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 70
+  },
+  {
+   "filename": "blood-knight 19",
+   "frame": {
+    "x": 552,
+    "y": 288,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 70
+  },
+  {
+   "filename": "blood-knight 20",
+   "frame": {
+    "x": 736,
+    "y": 288,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 120
+  },
+  {
+   "filename": "blood-knight 21",
+   "frame": {
+    "x": 920,
+    "y": 288,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 120
+  },
+  {
+   "filename": "blood-knight 22",
+   "frame": {
+    "x": 1104,
+    "y": 288,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 100
+  },
+  {
+   "filename": "blood-knight 23",
+   "frame": {
+    "x": 1288,
+    "y": 288,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 100
+  },
+  {
+   "filename": "blood-knight 24",
+   "frame": {
+    "x": 0,
+    "y": 432,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 100
+  },
+  {
+   "filename": "blood-knight 25",
+   "frame": {
+    "x": 184,
+    "y": 432,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 100
+  },
+  {
+   "filename": "blood-knight 26",
+   "frame": {
+    "x": 368,
+    "y": 432,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 100
+  },
+  {
+   "filename": "blood-knight 27",
+   "frame": {
+    "x": 552,
+    "y": 432,
+    "w": 184,
+    "h": 144
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 184,
+    "h": 144
+   },
+   "sourceSize": {
+    "w": 184,
+    "h": 144
+   },
+   "duration": 100
+  }
+ ],
+ "meta": {
+  "app": "Ravenmoor placeholder generator",
+  "image": "blood-knight.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1472,
+   "h": 576
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "idle",
+    "from": 0,
+    "to": 3,
+    "direction": "forward"
+   },
+   {
+    "name": "walk",
+    "from": 4,
+    "to": 11,
+    "direction": "forward"
+   },
+   {
+    "name": "windup",
+    "from": 12,
+    "to": 14,
+    "direction": "forward"
+   },
+   {
+    "name": "attack",
+    "from": 15,
+    "to": 19,
+    "direction": "forward"
+   },
+   {
+    "name": "hurt",
+    "from": 20,
+    "to": 21,
+    "direction": "forward"
+   },
+   {
+    "name": "death",
+    "from": 22,
+    "to": 27,
+    "direction": "forward"
+   }
+  ]
+ }
+}

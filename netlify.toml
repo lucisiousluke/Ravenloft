@@ -1,0 +1,14 @@
+# Netlify settings. There is no build step: the folder is published as-is.
+[build]
+  publish = "."
+  command = ""
+
+# Let browsers cache art and code briefly so friends always get updates within a few minutes.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
+[[headers]]
+  for = "/src/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

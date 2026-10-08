@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>Ravenmoor</title>
+  <meta name="description" content="A Dungeons & Dragons side-scrolling brawler in three acts.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Alegreya+Sans:ital,wght@0,400;0,800;1,400&display=swap">
+  <style>
+    html, body { margin: 0; height: 100%; background: #0f0c14; overflow: hidden; touch-action: none; -webkit-user-select: none; user-select: none; }
+    #game { position: fixed; inset: 0; }
+    #rotate { display: none; position: fixed; inset: 0; z-index: 10; place-items: center; text-align: center; padding: 24px;
+      background: #0f0c14; color: #eadfc6; font: 400 20px "Alegreya Sans", sans-serif; }
+    #rotate b { display: block; font: 400 40px "Pirata One", Georgia, serif; color: #dcae4c; margin-bottom: 8px; }
+    @media (orientation: portrait) and (pointer: coarse) { #rotate { display: grid; } }
+  </style>
+</head>
+<body>
+  <div id="game"></div>
+  <div id="rotate"><div><b>Ravenmoor</b>Turn your phone sideways to play.</div></div>
+  <script src="vendor/phaser.min.js"></script>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
