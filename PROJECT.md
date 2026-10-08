@@ -33,7 +33,7 @@ It plays on desktop (keyboard) and phones (on-screen controls, held sideways).
 ## 3. How it's built
 
 ### The tools
-- **Phaser 3.80.1**, a free game engine for the browser. It's included as one file (`vendor/phaser.min.js`),
+- **Phaser 4.2.1**, a free game engine for the browser. It's included as one file (`vendor/phaser.min.js`),
   so nothing has to be installed.
 - **Plain JavaScript files.** There is no "build step" and no npm packages: what's in the folder is
   exactly what runs, both on your computer and on Netlify. This keeps it simple and hard to break.
@@ -123,7 +123,8 @@ Write down any choice we'd otherwise forget the reason for.
 
 | Decision | Why |
 |---|---|
-| No build step, no npm | Easy for a designer to run and edit; nothing to install or break |
+| No build step, no npm | Easy for a designer to run and edit; nothing to install or break. Vite is on the wish list but on hold until there's a concrete need |
+| Phaser 4 (Oct 2026) | Current engine with a faster, more modern renderer. When reading tutorials, make sure they're for v4: some v3 calls (like `setTintFill`) no longer exist |
 | Tuning lives in `src/data/` | Balance and content changes don't require reading game code |
 | Fixed 60-tick game loop | Same feel on every device; timings are easy to reason about |
 | Heal is once per act, not a cooldown | Makes it a big tactical choice ("save it for the boss?") instead of a button to spam |
@@ -138,6 +139,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-08**: Upgraded the engine from Phaser 3.80.1 to **Phaser 4.2.1**. Code changes: the white hit-flash and rogue afterimage use Phaser 4's new tint API, and `roundPixels` is switched back on (v4 defaults it off). Tested every screen, all three acts, every hero's spell and a boss.
 - **2026-10-08**: New Rolfing sprite (`art-source/rolfing-sheet.png`): staff jab, spinning sweep and ground-slam combo, Entangle vines, and a glowing staff for Goodberry. The sheet converter now handles any hero (`tools/sprite-from-concept/make_sheet.py`).
 - **2026-10-08**: Ulrick redesigned as a plumed knight with a shield (`art-source/ulrick-sheet.png`). Real art for every animation now, including jump, hurt, death and three different combo swings. The glowing-sword row is used for both Divine Smite and Lay on Hands.
 - **2026-10-08**: Desktop key legend under the hero panel (Move, Strike, Jump, Spell, Heal, Pause, Mute). Keys light up while pressed. Lives in `src/scenes/HudScene.js` (`buildLegend`).

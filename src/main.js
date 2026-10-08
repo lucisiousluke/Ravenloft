@@ -25,6 +25,7 @@ Promise.race([fonts, timeout]).then(() => {
     height: H,
     backgroundColor: C.ink,
     pixelArt: true,
+    roundPixels: true, // Phaser 4 turns this off by default; keeps sprites on whole pixels so they stay crisp
     scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
     input: { activePointers: 4 },
     scene: [BootScene, TitleScene, SelectScene, StoryScene, GameScene, HudScene, PauseScene],
