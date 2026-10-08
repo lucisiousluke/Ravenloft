@@ -130,7 +130,7 @@ Write down any choice we'd otherwise forget the reason for.
 | Heal doesn't fire at full HP | Prevents accidentally wasting it |
 | Each class heals differently | Class flavor: the paladin's is one big instant burst, the druid's trickles in over time, the rogue and bard get a dice roll with a joke attached |
 | Placeholder art uses final file names | Real art can be dropped in without code changes |
-| Concept art is shrunk 3× to fit the game | Painted sheets come in at about 3× game size; shrinking keeps every hero the same scale (~65px tall) |
+| Painted sheets are shrunk to fit the game | Art comes in bigger than game size; shrinking so the idle pose is ~68px tall keeps every hero the same scale |
 
 ---
 
@@ -138,6 +138,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-08**: Ulrick redesigned as a plumed knight with a shield (`art-source/ulrick-sheet.png`). Real art for every animation now, including jump, hurt, death and three different combo swings. The glowing-sword row is used for both Divine Smite and Lay on Hands.
 - **2026-10-08**: Desktop key legend under the hero panel (Move, Strike, Jump, Spell, Heal, Pause, Mute). Keys light up while pressed. Lives in `src/scenes/HudScene.js` (`buildLegend`).
 - **2026-10-08**: New Ulrick sprite made from the painted concept sheet (`art-source/ulrick-concept.png`), with new
   Divine Smite and Lay on Hands animations. Jump, hurt and death are stand-ins built from other poses until they get real art.
@@ -150,7 +151,7 @@ Newest at the top. One line per change is plenty.
 ## 8. Ideas and to-do
 
 - [ ] Replace placeholder sprites with final art (see SPRITES.md). Ulrick is done; Rolfing, Sunday, Fae'ron and the enemies are left
-- [ ] Ulrick: paint real jump, hurt and death poses (right now they reuse other poses)
+- [ ] Ulrick: optional separate Lay on Hands animation (it currently shares the Divine Smite glow row)
 - [ ] Add real sound effects and music per act (`src/data/audio.js`)
 - [ ] Delete the old `Ravenloft/` folder inside the project. It's a leftover local copy, ignored by git
 - [ ] *Add new ideas here*
