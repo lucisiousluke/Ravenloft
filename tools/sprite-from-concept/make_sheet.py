@@ -24,7 +24,7 @@ HEROES = {
     stand_h=68, light=(255, 226, 140), glow=['glow'], lying=['death3', 'death4', 'death5', 'death6'],
     tags={
       'idle':    [('idle1', 400), ('idle2', 300), ('idle3', 400)],
-      'walk':    [(f'walk{i}', 100) for i in range(1, 9)],
+      'walk':    [(f'walk{i}', 70) for i in range(1, 9)],      # fast enough that the feet don't look like they slide
       'attack1': list(zip([f'thrust{i}' for i in range(1, 7)], [60, 90, 70, 70, 70, 80])),   # quick thrust
       'attack2': list(zip([f'slash{i}' for i in range(1, 7)], [60, 60, 60, 120, 80, 140])),  # rising slash
       'attack3': list(zip([f'chop{i}' for i in range(1, 6)], [50, 50, 50, 60, 220])),        # heavy chop finisher
@@ -39,7 +39,7 @@ HEROES = {
     stand_h=58, light=(190, 255, 150), glow=['slam5', 'slam6', 'spin', 'vines'], lying=['death3', 'death4', 'death5', 'death6'], lying_off=55, trapped_checker=True,
     tags={
       'idle':    [(f'idle{i}', 250) for i in range(1, 5)],
-      'walk':    [(f'walk{i}', 110) for i in range(1, 8)],
+      'walk':    [(f'walk{i}', 70) for i in range(1, 8)],
       'attack1': list(zip([f'jab{i}' for i in range(1, 7)], [70, 70, 90, 70, 70, 80])),      # staff jab
       'attack2': [(f'spin{i}', 80) for i in range(1, 7)],                                     # spinning sweep
       'attack3': list(zip([f'slam{i}' for i in range(1, 7)], [40, 40, 40, 40, 150, 130])),   # ground slam finisher

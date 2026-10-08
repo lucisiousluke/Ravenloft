@@ -139,6 +139,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-08**: Faster walk cycles for Ulrick and Rolfing (70 ms per frame, was 100–110) so their feet don't look like they slide. Their painted walk frames still have too little leg movement and need a redo (see to-do).
 - **2026-10-08**: Upgraded the engine from Phaser 3.80.1 to **Phaser 4.2.1**. Code changes: the white hit-flash and rogue afterimage use Phaser 4's new tint API, and `roundPixels` is switched back on (v4 defaults it off). Tested every screen, all three acts, every hero's spell and a boss.
 - **2026-10-08**: New Rolfing sprite (`art-source/rolfing-sheet.png`): staff jab, spinning sweep and ground-slam combo, Entangle vines, and a glowing staff for Goodberry. The sheet converter now handles any hero (`tools/sprite-from-concept/make_sheet.py`).
 - **2026-10-08**: Ulrick redesigned as a plumed knight with a shield (`art-source/ulrick-sheet.png`). Real art for every animation now, including jump, hurt, death and three different combo swings. The glowing-sword row is used for both Divine Smite and Lay on Hands.
@@ -154,6 +155,7 @@ Newest at the top. One line per change is plenty.
 ## 8. Ideas and to-do
 
 - [ ] Replace placeholder sprites with final art (see SPRITES.md). Ulrick and Rolfing are done; Sunday, Fae'ron and the enemies are left
+- [ ] Repaint the walk rows for Ulrick and Rolfing with a clear stride → legs-together → stride cycle (the current frames barely move the legs)
 - [ ] Ulrick: optional separate Lay on Hands animation (it currently shares the Divine Smite glow row)
 - [ ] Add real sound effects and music per act (`src/data/audio.js`)
 - [ ] Delete the old `Ravenloft/` folder inside the project. It's a leftover local copy, ignored by git
