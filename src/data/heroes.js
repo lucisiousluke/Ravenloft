@@ -10,7 +10,7 @@
 //            pulses = optional: heal over time, rolling `dice` this many times, once every half second
 export const HEROES = {
   paladin: {
-    name: 'Ulrick Downcloud', race: 'Human', cls: 'Paladin', sprite: 'ulrick', height: 62, shadow: 17,
+    name: 'Ulrick Downcloud', race: 'Human', cls: 'Paladin', sprite: 'ulrick', height: 68, shadow: 17,
     hp: 140, spd: 2.5, dmg: { n: 1, s: 8, b: 3 }, reach: 74, atkT: 20, critMin: 20, dur: 34,
     spell: 'Divine Smite', spellTxt: 'Radiant blast around you. Heals 20 HP.',
     heal: { name: 'Lay on Hands', txt: 'Heal 50 HP.', dice: { n: 0, s: 0, b: 50 } },

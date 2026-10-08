@@ -35,7 +35,7 @@ and `meta.frameTags` in Aseprite's format.
 ## Animation tags
 
 **Heroes:** `idle` (loops), `walk` (loops), `attack1`, `attack2`, `attack3` (the 3-hit combo),
-`jump`, `hurt`, `death`, `cast` (spell).
+`jump`, `hurt`, `death`, `cast` (spell), and optionally `heal` (the once-per-act heal; heroes without it use `cast`).
 
 **Enemies:** `idle`, `walk`, `windup` (the warning pose before a hit), `attack`, `hurt`, `death`,
 plus `cast` for the Blood Cultist, Barrow Wight and Count Vaszlo.
@@ -49,7 +49,7 @@ Idle and walk play at your exact timing.
 
 | File | Frame size | Feet (x, y) | Tags (frame count) |
 |---|---|---|---|
-| `ulrick` | 160×128 | 80, 116 | idle(4), walk(8), attack1(6), attack2(6), attack3(6), jump(2), hurt(2), death(6), cast(6) |
+| `ulrick` | 160×128 | 80, 116 | idle(2), walk(5), attack1(3), attack2(3), attack3(4), jump(2), hurt(2), death(6), cast(4), heal(4). **Final art**, made from `art-source/ulrick-concept.png` |
 | `rolfing` | 160×128 | 80, 116 | idle(4), walk(8), attack1(6), attack2(6), attack3(6), jump(2), hurt(2), death(6), cast(6) |
 | `sunday` | 160×128 | 80, 116 | idle(4), walk(8), attack1(6), attack2(6), attack3(6), jump(2), hurt(2), death(6), cast(6) |
 | `faeron` | 160×128 | 80, 116 | idle(4), walk(8), attack1(6), attack2(6), attack3(6), jump(2), hurt(2), death(6), cast(6) |

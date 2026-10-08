@@ -26,7 +26,7 @@ It plays on desktop (keyboard) and phones (on-screen controls, held sideways).
 | Playable start to finish | ✅ 3 acts, 3 bosses, win and lose screens |
 | Heroes | ✅ 4 heroes, each with a 3-hit combo, a signature spell and a once-per-act heal |
 | Enemies | ✅ 6 regular foes + 3 bosses with special moves |
-| Art | ⚠️ Placeholder sprites and backgrounds. Final art will replace them using the same file names |
+| Art | 🟡 **Ulrick has final art.** The other heroes, the enemies and the backgrounds are still placeholders that final art will replace using the same file names |
 | Sound | ⚠️ Built-in synth sound effects only. No real audio files or music yet |
 | Hosting | Netlify, deploys automatically when `main` is pushed to GitHub |
 
@@ -129,6 +129,7 @@ Write down any choice we'd otherwise forget the reason for.
 | Heal doesn't fire at full HP | Prevents accidentally wasting it |
 | Each class heals differently | Class flavor: the paladin's is one big instant burst, the druid's trickles in over time, the rogue and bard get a dice roll with a joke attached |
 | Placeholder art uses final file names | Real art can be dropped in without code changes |
+| Concept art is shrunk 3× to fit the game | Painted sheets come in at about 3× game size; shrinking keeps every hero the same scale (~65px tall) |
 
 ---
 
@@ -136,6 +137,9 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-08**: New Ulrick sprite made from the painted concept sheet (`art-source/ulrick-concept.png`), with new
+  Divine Smite and Lay on Hands animations. Jump, hurt and death are stand-ins built from other poses until they get real art.
+  The conversion scripts are in `tools/sprite-from-concept/`.
 - **2026-10-08**: Added a once-per-act class heal for every hero (Lay on Hands, Goodberry, Second Breakfast,
   Song of Rest). New H key, green Heal touch button, HUD heal icon, and the heal shows on the hero select cards.
 - **2026-10-08**: Created this project notebook.
@@ -143,10 +147,10 @@ Newest at the top. One line per change is plenty.
 
 ## 8. Ideas and to-do
 
-- [ ] Replace placeholder sprites with final art (see SPRITES.md)
+- [ ] Replace placeholder sprites with final art (see SPRITES.md). Ulrick is done; Rolfing, Sunday, Fae'ron and the enemies are left
+- [ ] Ulrick: paint real jump, hurt and death poses (right now they reuse other poses)
 - [ ] Add real sound effects and music per act (`src/data/audio.js`)
-- [ ] Make the first git commit. The repo currently has no commits, so nothing is saved in history yet
-- [ ] Decide what the empty `Ravenloft/` folder is for (it has its own git repo inside) and delete it if it isn't needed
+- [ ] Delete the old `Ravenloft/` folder inside the project. It's a leftover local copy, ignored by git
 - [ ] *Add new ideas here*
 
 ---

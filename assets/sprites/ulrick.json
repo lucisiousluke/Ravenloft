@@ -20,7 +20,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 600
   },
   {
    "filename": "ulrick 1",
@@ -42,7 +42,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 600
   },
   {
    "filename": "ulrick 2",
@@ -64,7 +64,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 110
   },
   {
    "filename": "ulrick 3",
@@ -86,7 +86,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 110
   },
   {
    "filename": "ulrick 4",
@@ -108,7 +108,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 110
   },
   {
    "filename": "ulrick 5",
@@ -130,7 +130,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 110
   },
   {
    "filename": "ulrick 6",
@@ -152,7 +152,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 110
   },
   {
    "filename": "ulrick 7",
@@ -174,7 +174,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 100
   },
   {
    "filename": "ulrick 8",
@@ -196,7 +196,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 160
   },
   {
    "filename": "ulrick 9",
@@ -218,7 +218,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 120
   },
   {
    "filename": "ulrick 10",
@@ -240,7 +240,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 80
   },
   {
    "filename": "ulrick 11",
@@ -262,7 +262,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 170
   },
   {
    "filename": "ulrick 12",
@@ -284,7 +284,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 120
   },
   {
    "filename": "ulrick 13",
@@ -306,7 +306,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 110
   },
   {
    "filename": "ulrick 14",
@@ -328,7 +328,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 90
   },
   {
    "filename": "ulrick 15",
@@ -350,7 +350,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 150
   },
   {
    "filename": "ulrick 16",
@@ -372,7 +372,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 120
   },
   {
    "filename": "ulrick 17",
@@ -394,7 +394,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 80
   },
   {
    "filename": "ulrick 18",
@@ -416,7 +416,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 400
   },
   {
    "filename": "ulrick 19",
@@ -438,7 +438,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 90
   },
   {
    "filename": "ulrick 20",
@@ -460,7 +460,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 110
   },
   {
    "filename": "ulrick 21",
@@ -482,7 +482,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 90
   },
   {
    "filename": "ulrick 22",
@@ -504,7 +504,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 80
   },
   {
    "filename": "ulrick 23",
@@ -526,7 +526,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 80
   },
   {
    "filename": "ulrick 24",
@@ -548,7 +548,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 80
   },
   {
    "filename": "ulrick 25",
@@ -570,7 +570,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 120
   },
   {
    "filename": "ulrick 26",
@@ -592,7 +592,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 600
   },
   {
    "filename": "ulrick 27",
@@ -614,7 +614,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 140
   },
   {
    "filename": "ulrick 28",
@@ -636,7 +636,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 180
   },
   {
    "filename": "ulrick 29",
@@ -658,7 +658,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 140
   },
   {
    "filename": "ulrick 30",
@@ -702,7 +702,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 120
+   "duration": 100
   },
   {
    "filename": "ulrick 32",
@@ -746,7 +746,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 120
+   "duration": 220
   },
   {
    "filename": "ulrick 34",
@@ -768,313 +768,77 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
-  },
-  {
-   "filename": "ulrick 35",
-   "frame": {
-    "x": 480,
-    "y": 512,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 100
-  },
-  {
-   "filename": "ulrick 36",
-   "frame": {
-    "x": 640,
-    "y": 512,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 100
-  },
-  {
-   "filename": "ulrick 37",
-   "frame": {
-    "x": 800,
-    "y": 512,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 100
-  },
-  {
-   "filename": "ulrick 38",
-   "frame": {
-    "x": 960,
-    "y": 512,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 100
-  },
-  {
-   "filename": "ulrick 39",
-   "frame": {
-    "x": 1120,
-    "y": 512,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 100
-  },
-  {
-   "filename": "ulrick 40",
-   "frame": {
-    "x": 0,
-    "y": 640,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 80
-  },
-  {
-   "filename": "ulrick 41",
-   "frame": {
-    "x": 160,
-    "y": 640,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 80
-  },
-  {
-   "filename": "ulrick 42",
-   "frame": {
-    "x": 320,
-    "y": 640,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 80
-  },
-  {
-   "filename": "ulrick 43",
-   "frame": {
-    "x": 480,
-    "y": 640,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 80
-  },
-  {
-   "filename": "ulrick 44",
-   "frame": {
-    "x": 640,
-    "y": 640,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 80
-  },
-  {
-   "filename": "ulrick 45",
-   "frame": {
-    "x": 800,
-    "y": 640,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 80
+   "duration": 120
   }
  ],
  "meta": {
-  "app": "Ravenmoor placeholder generator",
+  "app": "ravenmoor tools/ulrick_sheet",
   "image": "ulrick.png",
   "format": "RGBA8888",
   "size": {
    "w": 1280,
-   "h": 768
+   "h": 640
   },
   "scale": "1",
   "frameTags": [
    {
     "name": "idle",
     "from": 0,
-    "to": 3,
+    "to": 1,
     "direction": "forward"
    },
    {
     "name": "walk",
-    "from": 4,
-    "to": 11,
+    "from": 2,
+    "to": 6,
     "direction": "forward"
    },
    {
     "name": "attack1",
-    "from": 12,
-    "to": 17,
+    "from": 7,
+    "to": 9,
     "direction": "forward"
    },
    {
     "name": "attack2",
-    "from": 18,
-    "to": 23,
+    "from": 10,
+    "to": 12,
     "direction": "forward"
    },
    {
     "name": "attack3",
-    "from": 24,
-    "to": 29,
+    "from": 13,
+    "to": 16,
     "direction": "forward"
    },
    {
     "name": "jump",
-    "from": 30,
-    "to": 31,
+    "from": 17,
+    "to": 18,
     "direction": "forward"
    },
    {
     "name": "hurt",
-    "from": 32,
-    "to": 33,
+    "from": 19,
+    "to": 20,
     "direction": "forward"
    },
    {
     "name": "death",
-    "from": 34,
-    "to": 39,
+    "from": 21,
+    "to": 26,
     "direction": "forward"
    },
    {
     "name": "cast",
-    "from": 40,
-    "to": 45,
+    "from": 27,
+    "to": 30,
+    "direction": "forward"
+   },
+   {
+    "name": "heal",
+    "from": 31,
+    "to": 34,
     "direction": "forward"
    }
   ]

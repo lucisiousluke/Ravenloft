@@ -469,7 +469,7 @@ export class GameScene extends Phaser.Scene {
     switch (p.state) {
       case 'attack': return [`${k}:attack${p.combo + 1}`, p.def.atkT];
       case 'spell': return [`${k}:cast`, p.def.dur];
-      case 'heal': return [`${k}:cast`, HEAL_T];
+      case 'heal': return [this.anims.exists(`${k}:heal`) ? `${k}:heal` : `${k}:cast`, HEAL_T];
       case 'hurt': return [`${k}:hurt`];
       case 'dead': return [`${k}:death`];
       default: return [p.z > 0 ? `${k}:jump` : p.moving ? `${k}:walk` : `${k}:idle`];
