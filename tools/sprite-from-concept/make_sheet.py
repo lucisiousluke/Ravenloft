@@ -16,6 +16,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 # lying   -> frames where the hero lies on the ground; anchored by the feet so they fall backward
 #            (lying_off = how far in from the right edge the feet are, in source pixels)
 # trapped_checker -> also clear checkerboard trapped inside a figure (e.g. between staff and body)
+# ready   -> optional {tag: 'art-source/<file>.png'}: a strip painted on the game grid (160x128 cells, transparent,
+#            feet on y 116, centred on x 80). Used as-is, replacing that animation. Timing = first value in `tags`.
 # tags    -> game animation name -> list of (frame, milliseconds). Only the rhythm matters for attacks/spells;
 #            the game stretches them to the move's length. The hit lands ~40% through an attack.
 HEROES = {
@@ -24,7 +26,7 @@ HEROES = {
     stand_h=68, light=(255, 226, 140), glow=['glow'], lying=['death3', 'death4', 'death5', 'death6'],
     tags={
       'idle':    [('idle1', 400), ('idle2', 300), ('idle3', 400)],
-      'walk':    [(f'walk{i}', 100) for i in range(1, 9)],
+      'walk':    [(f'walk{i}', 70) for i in range(1, 9)],      # fast enough that the feet don't look like they slide
       'attack1': list(zip([f'thrust{i}' for i in range(1, 7)], [60, 90, 70, 70, 70, 80])),   # quick thrust
       'attack2': list(zip([f'slash{i}' for i in range(1, 7)], [60, 60, 60, 120, 80, 140])),  # rising slash
       'attack3': list(zip([f'chop{i}' for i in range(1, 6)], [50, 50, 50, 60, 220])),        # heavy chop finisher
@@ -39,7 +41,7 @@ HEROES = {
     stand_h=58, light=(190, 255, 150), glow=['slam5', 'slam6', 'spin', 'vines'], lying=['death3', 'death4', 'death5', 'death6'], lying_off=55, trapped_checker=True,
     tags={
       'idle':    [(f'idle{i}', 250) for i in range(1, 5)],
-      'walk':    [(f'walk{i}', 110) for i in range(1, 8)],
+      'walk':    [(f'walk{i}', 70) for i in range(1, 8)],
       'attack1': list(zip([f'jab{i}' for i in range(1, 7)], [70, 70, 90, 70, 70, 80])),      # staff jab
       'attack2': [(f'spin{i}', 80) for i in range(1, 7)],                                     # spinning sweep
       'attack3': list(zip([f'slam{i}' for i in range(1, 7)], [40, 40, 40, 40, 150, 130])),   # ground slam finisher
@@ -135,6 +137,16 @@ def build(hero):
 
     cells = {f: cell(f) for f in frames}
     seq = [(tag, f, ms) for tag, fs in cfg['tags'].items() for f, ms in fs]
+    # ready-made strips replace whole animations, pixel for pixel
+    for tag, path in cfg.get('ready', {}).items():
+        strip = Image.open(os.path.join(ROOT, path)).convert('RGBA')
+        assert strip.height == FH and strip.width % FW == 0, f'{path} must be {FH}px tall and a multiple of {FW}px wide'
+        ms = cfg['tags'][tag][0][1]; new = []
+        for j in range(strip.width // FW):
+            c = strip.crop((j * FW, 0, (j + 1) * FW, FH))
+            if c.getbbox(): cells[f'{tag}#{j}'] = c; new.append((tag, f'{tag}#{j}', ms))   # skip empty cells
+        at = next(i for i, x in enumerate(seq) if x[0] == tag)
+        seq = seq[:at] + new + [x for x in seq[at:] if x[0] != tag]
     COLS = 8; rows = (len(seq) + COLS - 1) // COLS
     sheet = Image.new('RGBA', (FW * COLS, FH * rows)); meta, tags = [], []
     for i, (tag, f, ms) in enumerate(seq):

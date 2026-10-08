@@ -1,6 +1,6 @@
 # Ravenmoor
 
-A Dungeons & Dragons side-scrolling brawler built with [Phaser 3](https://phaser.io) (v3.80.1, included in `vendor/`).
+A Dungeons & Dragons side-scrolling brawler built with [Phaser 4](https://phaser.io) (v4.2.1, included in `vendor/`).
 There is no build step: the folder runs exactly as it is, locally and on Netlify.
 
 ## Run it on your computer

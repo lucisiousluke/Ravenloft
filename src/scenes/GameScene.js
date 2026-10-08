@@ -374,7 +374,7 @@ export class GameScene extends Phaser.Scene {
   afterimage(p) {
     const s = p.sprite;
     const g = this.add.image(s.x, s.y, s.texture.key, s.frame.name).setOrigin(s.originX, s.originY).setScale(s.scaleX, s.scaleY)
-      .setFlipX(s.flipX).setTintFill(0x7a5aaa).setAlpha(0.55).setDepth(s.depth - 0.5);
+      .setFlipX(s.flipX).setTint(0x7a5aaa).setTintMode(Phaser.TintModes.FILL).setAlpha(0.55).setDepth(s.depth - 0.5);
     this.tweens.add({ targets: g, alpha: 0, duration: 240, onComplete: () => g.destroy() });
   }
 
@@ -512,7 +512,7 @@ export class GameScene extends Phaser.Scene {
     if (e.state === 'dying' && e.t > 40) a *= Math.max(0, 1 - (e.t - 40) / 30);
     if (isHero && e.inv > 0 && e.state !== 'spell' && e.state !== 'heal' && e.state !== 'dead' && this.tick % 8 < 4) a *= 0.45;
     s.setAlpha(a);
-    if (e.flash > 0) s.setTintFill(0xffffff); else s.clearTint();
+    if (e.flash > 0) s.setTint(0xffffff).setTintMode(Phaser.TintModes.FILL); else s.clearTint(); // white hit-flash
   }
 
   render() {

@@ -7,6 +7,31 @@ animation automatically, so you never need to touch code to change frames or tim
 The files in `assets/sprites/` right now are placeholders generated from the original drawings.
 Paint over them, or replace them with your own sheets, using the same file names.
 
+## Sending new art (read this first)
+
+Claude can't watch an animation play: it sees still frames and measures them. So the cleaner the frames,
+the better the result. In order of preference:
+
+1. **Best: paint on the game grid.** Open `art-source/templates/walk-template.png` in Aseprite. It has
+   six 160×128 cells (the game's frame size) with guides:
+   - **Red line:** where the feet touch the ground (y 116). Feet sit on it in every frame.
+   - **Blue line:** the body's center (x 80). Keep the hips roughly over it.
+   - **Gold and green lines:** Ulrick's and Rolfing's height, to keep the size consistent.
+   - **Stick legs:** the six walk poses (stride, down, passing, stride, down, passing). The light and blue
+     legs swap halfway through.
+
+   Paint each frame on a new layer, hide the guide layer, and export a **transparent PNG**
+   (e.g. `art-source/ulrick-walk.png`). It goes into the game pixel for pixel, with no shrinking or guessing.
+2. **Good: a full Aseprite export** following "Exporting from Aseprite" below. The game reads it directly.
+3. **Works, with limits: one big painted or AI sheet** like the current ones. Claude cuts it up and shrinks it,
+   which softens detail and can't add movement that isn't in the frames. If you use this route:
+   - Use real transparency, not a checkerboard picture.
+   - Keep every figure the same size.
+   - Leave space between figures and between weapon and body.
+
+When something looks wrong, say what you see (feet sliding, legs stiff, bouncing, jitter, too slow,
+too fast) and which animation. That points straight at the cause.
+
 ## Exporting from Aseprite
 
 1. Put each animation on the timeline and create a **tag** for it with the exact names below
