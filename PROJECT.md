@@ -111,6 +111,7 @@ To tweak any of this: **`src/data/heroes.js`**.
 | Heal | H | Heal button (green) |
 | Pause / Mute | P or Esc / M | Top-right icons |
 
+On desktop, an in-game key legend sits under the hero panel and lights up the keys you press.
 Keys are mapped in `src/systems/input.js`. The on-screen text is in `src/scenes/TitleScene.js`
 and the touch buttons are in `src/scenes/HudScene.js`.
 
@@ -137,6 +138,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-08**: Desktop key legend under the hero panel (Move, Strike, Jump, Spell, Heal, Pause, Mute). Keys light up while pressed. Lives in `src/scenes/HudScene.js` (`buildLegend`).
 - **2026-10-08**: New Ulrick sprite made from the painted concept sheet (`art-source/ulrick-concept.png`), with new
   Divine Smite and Lay on Hands animations. Jump, hurt and death are stand-ins built from other poses until they get real art.
   The conversion scripts are in `tools/sprite-from-concept/`.

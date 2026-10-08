@@ -32,7 +32,47 @@ export class HudScene extends Phaser.Scene {
     this.input.keyboard.on('keydown-M', () => { toggleMute(); this.drawIcons(); });
     this.drawIcons();
 
-    if (IS_TOUCH) this.buildTouch();
+    if (IS_TOUCH) this.buildTouch(); else this.buildLegend();
+  }
+
+  // Desktop only: a small key legend under the hero panel. Keys light up while held.
+  // `alt` lists other keys that do the same thing (they light the same keycap).
+  buildLegend() {
+    const rows = [
+      [{ keys: ['W', 'A', 'S', 'D'], label: 'Move', alt: { W: ['arrowup'], A: ['arrowleft'], S: ['arrowdown'], D: ['arrowright'] } },
+       { keys: ['J'], label: 'Strike', alt: { J: ['z'] } },
+       { keys: ['K'], label: 'Jump', alt: { K: ['x', ' '] } }],
+      [{ keys: ['L'], label: 'Spell', alt: { L: ['c'] } },
+       { keys: ['H'], label: 'Heal' },
+       { keys: ['P'], label: 'Pause', alt: { P: ['escape'] } },
+       { keys: ['M'], label: 'Mute' }],
+    ];
+    const g = this.add.graphics(), size = 17, x0 = 24, y0 = 110;
+    g.fillStyle(0x0e0b13, 0.6).fillRect(14, 102, 300, 54);
+    this.legendKeys = [];
+    rows.forEach((row, r) => {
+      let x = x0; const y = y0 + r * 23;
+      for (const item of row) {
+        for (const k of item.keys) {
+          this.add.text(x + size / 2, y + size / 2, k, { fontFamily: FONT_BODY, fontStyle: '800', fontSize: '11px', color: C.parchment }).setOrigin(0.5).setDepth(1);
+          this.legendKeys.push({ x, y, held: [k.toLowerCase(), ...(item.alt?.[k] || [])] });
+          x += size + 3;
+        }
+        const t = this.add.text(x + 3, y + 2, item.label, { fontFamily: FONT_BODY, fontStyle: '800', fontSize: '11px', color: C.dim, letterSpacing: 1 });
+        x += t.width + 16;
+      }
+    });
+    this.legendG = this.add.graphics();
+    this.legendSize = size;
+  }
+
+  drawLegend() {
+    const g = this.legendG.clear(), s = this.legendSize;
+    for (const k of this.legendKeys) {
+      const on = k.held.some((h) => Input.held[h]);
+      g.fillStyle(on ? 0xdcae4c : 0x1b1622, on ? 0.55 : 1).fillRect(k.x, k.y, s, s);
+      g.lineStyle(1, on ? 0xdcae4c : 0x5a5068, 1).strokeRect(k.x + 0.5, k.y + 0.5, s - 1, s - 1);
+    }
   }
 
   drawIcons() {
@@ -79,6 +119,7 @@ export class HudScene extends Phaser.Scene {
   update() {
     const G = this.game_, p = G.p;
     if (!p) return;
+    if (this.legendG) this.drawLegend();
     const d = p.def, g = this.g.clear(), tick = G.tick;
     // hero panel
     g.fillStyle(0x0e0b13, 0.78).fillRect(14, 12, 300, 86).lineStyle(1, 0xdcae4c, 0.4).strokeRect(14.5, 12.5, 299, 85);
