@@ -5,3 +5,6 @@ node_modules/
 
 # Old empty local repo, not part of the game
 Ravenloft/
+
+# Sprite converter previews
+tools/sprite-from-concept/*-preview.png

@@ -26,7 +26,7 @@ It plays on desktop (keyboard) and phones (on-screen controls, held sideways).
 | Playable start to finish | ✅ 3 acts, 3 bosses, win and lose screens |
 | Heroes | ✅ 4 heroes, each with a 3-hit combo, a signature spell and a once-per-act heal |
 | Enemies | ✅ 6 regular foes + 3 bosses with special moves |
-| Art | 🟡 **Ulrick has final art.** The other heroes, the enemies and the backgrounds are still placeholders that final art will replace using the same file names |
+| Art | 🟡 **Ulrick and Rolfing have final art.** The other heroes, the enemies and the backgrounds are still placeholders that final art will replace using the same file names |
 | Sound | ⚠️ Built-in synth sound effects only. No real audio files or music yet |
 | Hosting | Netlify, deploys automatically when `main` is pushed to GitHub |
 
@@ -138,6 +138,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-08**: New Rolfing sprite (`art-source/rolfing-sheet.png`): staff jab, spinning sweep and ground-slam combo, Entangle vines, and a glowing staff for Goodberry. The sheet converter now handles any hero (`tools/sprite-from-concept/make_sheet.py`).
 - **2026-10-08**: Ulrick redesigned as a plumed knight with a shield (`art-source/ulrick-sheet.png`). Real art for every animation now, including jump, hurt, death and three different combo swings. The glowing-sword row is used for both Divine Smite and Lay on Hands.
 - **2026-10-08**: Desktop key legend under the hero panel (Move, Strike, Jump, Spell, Heal, Pause, Mute). Keys light up while pressed. Lives in `src/scenes/HudScene.js` (`buildLegend`).
 - **2026-10-08**: New Ulrick sprite made from the painted concept sheet (`art-source/ulrick-concept.png`), with new
@@ -150,7 +151,7 @@ Newest at the top. One line per change is plenty.
 
 ## 8. Ideas and to-do
 
-- [ ] Replace placeholder sprites with final art (see SPRITES.md). Ulrick is done; Rolfing, Sunday, Fae'ron and the enemies are left
+- [ ] Replace placeholder sprites with final art (see SPRITES.md). Ulrick and Rolfing are done; Sunday, Fae'ron and the enemies are left
 - [ ] Ulrick: optional separate Lay on Hands animation (it currently shares the Divine Smite glow row)
 - [ ] Add real sound effects and music per act (`src/data/audio.js`)
 - [ ] Delete the old `Ravenloft/` folder inside the project. It's a leftover local copy, ignored by git

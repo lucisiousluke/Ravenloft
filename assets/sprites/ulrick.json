@@ -1102,7 +1102,7 @@
   }
  ],
  "meta": {
-  "app": "ravenmoor tools/sprite-from-concept/sheet2.py",
+  "app": "ravenmoor tools/sprite-from-concept/make_sheet.py",
   "image": "ulrick.png",
   "format": "RGBA8888",
   "size": {

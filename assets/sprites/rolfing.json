@@ -20,7 +20,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 250
   },
   {
    "filename": "rolfing 1",
@@ -42,7 +42,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 250
   },
   {
    "filename": "rolfing 2",
@@ -64,7 +64,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 250
   },
   {
    "filename": "rolfing 3",
@@ -86,7 +86,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 250
   },
   {
    "filename": "rolfing 4",
@@ -108,7 +108,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 110
   },
   {
    "filename": "rolfing 5",
@@ -130,7 +130,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 110
   },
   {
    "filename": "rolfing 6",
@@ -152,7 +152,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 110
   },
   {
    "filename": "rolfing 7",
@@ -174,7 +174,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 110
   },
   {
    "filename": "rolfing 8",
@@ -196,7 +196,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 110
   },
   {
    "filename": "rolfing 9",
@@ -218,7 +218,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 110
   },
   {
    "filename": "rolfing 10",
@@ -240,7 +240,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 110
   },
   {
    "filename": "rolfing 11",
@@ -262,7 +262,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 70
   },
   {
    "filename": "rolfing 12",
@@ -284,7 +284,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 70
   },
   {
    "filename": "rolfing 13",
@@ -306,7 +306,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 90
   },
   {
    "filename": "rolfing 14",
@@ -328,7 +328,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 70
   },
   {
    "filename": "rolfing 15",
@@ -350,7 +350,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 70
   },
   {
    "filename": "rolfing 16",
@@ -372,7 +372,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 80
   },
   {
    "filename": "rolfing 17",
@@ -394,7 +394,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 80
   },
   {
    "filename": "rolfing 18",
@@ -416,7 +416,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 80
   },
   {
    "filename": "rolfing 19",
@@ -438,7 +438,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 80
   },
   {
    "filename": "rolfing 20",
@@ -460,7 +460,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 80
   },
   {
    "filename": "rolfing 21",
@@ -482,7 +482,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 80
   },
   {
    "filename": "rolfing 22",
@@ -504,7 +504,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 80
   },
   {
    "filename": "rolfing 23",
@@ -526,7 +526,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 40
   },
   {
    "filename": "rolfing 24",
@@ -548,7 +548,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 40
   },
   {
    "filename": "rolfing 25",
@@ -570,7 +570,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 40
   },
   {
    "filename": "rolfing 26",
@@ -592,7 +592,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 40
   },
   {
    "filename": "rolfing 27",
@@ -614,7 +614,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 150
   },
   {
    "filename": "rolfing 28",
@@ -636,7 +636,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 130
   },
   {
    "filename": "rolfing 29",
@@ -658,7 +658,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 120
   },
   {
    "filename": "rolfing 30",
@@ -680,7 +680,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 120
+   "duration": 400
   },
   {
    "filename": "rolfing 31",
@@ -702,7 +702,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 120
+   "duration": 100
   },
   {
    "filename": "rolfing 32",
@@ -746,7 +746,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 120
+   "duration": 90
   },
   {
    "filename": "rolfing 34",
@@ -768,7 +768,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 90
   },
   {
    "filename": "rolfing 35",
@@ -790,7 +790,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 90
   },
   {
    "filename": "rolfing 36",
@@ -834,7 +834,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 120
   },
   {
    "filename": "rolfing 38",
@@ -856,7 +856,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 600
   },
   {
    "filename": "rolfing 39",
@@ -900,7 +900,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 80
+   "duration": 100
   },
   {
    "filename": "rolfing 41",
@@ -922,7 +922,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 80
+   "duration": 100
   },
   {
    "filename": "rolfing 42",
@@ -944,7 +944,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 80
+   "duration": 100
   },
   {
    "filename": "rolfing 43",
@@ -966,7 +966,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 80
+   "duration": 100
   },
   {
    "filename": "rolfing 44",
@@ -988,7 +988,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 80
+   "duration": 100
   },
   {
    "filename": "rolfing 45",
@@ -1010,11 +1010,33 @@
     "w": 160,
     "h": 128
    },
-   "duration": 80
+   "duration": 120
+  },
+  {
+   "filename": "rolfing 46",
+   "frame": {
+    "x": 960,
+    "y": 640,
+    "w": 160,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 128
+   },
+   "duration": 300
   }
  ],
  "meta": {
-  "app": "Ravenmoor placeholder generator",
+  "app": "ravenmoor tools/sprite-from-concept/make_sheet.py",
   "image": "rolfing.png",
   "format": "RGBA8888",
   "size": {
@@ -1032,49 +1054,55 @@
    {
     "name": "walk",
     "from": 4,
-    "to": 11,
+    "to": 10,
     "direction": "forward"
    },
    {
     "name": "attack1",
-    "from": 12,
-    "to": 17,
+    "from": 11,
+    "to": 16,
     "direction": "forward"
    },
    {
     "name": "attack2",
-    "from": 18,
-    "to": 23,
+    "from": 17,
+    "to": 22,
     "direction": "forward"
    },
    {
     "name": "attack3",
-    "from": 24,
-    "to": 29,
+    "from": 23,
+    "to": 28,
     "direction": "forward"
    },
    {
     "name": "jump",
-    "from": 30,
-    "to": 31,
+    "from": 29,
+    "to": 30,
     "direction": "forward"
    },
    {
     "name": "hurt",
-    "from": 32,
-    "to": 33,
+    "from": 31,
+    "to": 32,
     "direction": "forward"
    },
    {
     "name": "death",
-    "from": 34,
-    "to": 39,
+    "from": 33,
+    "to": 38,
     "direction": "forward"
    },
    {
     "name": "cast",
-    "from": 40,
-    "to": 45,
+    "from": 39,
+    "to": 44,
+    "direction": "forward"
+   },
+   {
+    "name": "heal",
+    "from": 45,
+    "to": 46,
     "direction": "forward"
    }
   ]
