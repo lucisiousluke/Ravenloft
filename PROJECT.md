@@ -139,7 +139,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
-- **2026-10-08**: Music volume lowered from 0.45 to 0.3 (`MUSIC_VOLUME` in `src/data/audio.js`).
+- **2026-10-08**: Music volume lowered from 0.45 to 0.15 (`MUSIC_VOLUME` in `src/data/audio.js`).
 - **2026-10-08**: Renamed the game **The Curse of Strahd**. The acts are now The Lands of Barovia, Outside of Ravenloft and Inside Ravenloft, the final boss is Strahd von Zarovich, and the title screen, story text, victory screen and browser tab are updated to match. Internal names (sprite file `count-vaszlo`, the folder and repo names) are unchanged.
 - **2026-10-08**: Background music: `assets/audio/lament-of-home.mp3` plays on the title, select and story screens and in all three acts, and carries on between screens without restarting. It starts on the first click or key press, because browsers block sound until then. Track and volume settings live in `src/data/audio.js`; per-act music in `src/data/levels.js`.
 - **2026-10-08**: Art hand-off guide ("Sending new art" in SPRITES.md), a walk-cycle template on the game grid (`art-source/templates/walk-template.png`), and the converter can now drop in ready-made rows pixel for pixel.

@@ -15,4 +15,4 @@ export const AUDIO = [
 
 // Music for the title, hero select and story screens (null = silence)
 export const TITLE_MUSIC = 'music-lament';
-export const MUSIC_VOLUME = 0.3; // 0 = silent, 1 = full volume (sound effects play at 0.6)
+export const MUSIC_VOLUME = 0.15; // 0 = silent, 1 = full volume (sound effects play at 0.6)
