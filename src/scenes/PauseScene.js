@@ -1,7 +1,6 @@
 import { W, H } from '../config.js';
 import { T, buttonRow, dim } from '../ui/widgets.js';
 import { CONTROLS } from './TitleScene.js';
-import { playMusic } from '../systems/audio.js';
 
 export class PauseScene extends Phaser.Scene {
   constructor() { super('Pause'); }
@@ -14,7 +13,7 @@ export class PauseScene extends Phaser.Scene {
     const resume = () => { this.scene.stop(); this.scene.resume('Game'); };
     buttonRow(this, x, 262, [
       { label: 'Resume', primary: true, action: resume },
-      { label: 'Quit to title', action: () => { playMusic(null); this.scene.stop('Game'); this.scene.start('Title'); } },
+      { label: 'Quit to title', action: () => { this.scene.stop('Game'); this.scene.start('Title'); } },
     ]).forEach((b) => b.setDepth(D));
     this.input.keyboard.once('keydown-ESC', resume);
     this.input.keyboard.once('keydown-P', resume);

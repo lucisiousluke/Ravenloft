@@ -1,5 +1,7 @@
 // Sound effects. If a file named "sfx-<name>" is loaded (see data/audio.js) it plays that;
 // otherwise it falls back to a small synthesizer so the game always has sound.
+import { MUSIC_VOLUME } from '../data/audio.js';
+
 let AC = null, noiseBuf = null, game = null;
 let muted = false;
 try { muted = localStorage.getItem('ravenmoor-muted') === '1'; } catch (e) {}
@@ -61,10 +63,19 @@ export function sfx(name) {
   try { SYNTH[name](); } catch (e) {}
 }
 
-let currentMusic = null;
+// Music: one track at a time. Asking for the track that's already playing does nothing,
+// so music carries on smoothly between menus and levels.
+let currentMusic = null, wantedKey = null;
 export function playMusic(key) {
+  wantedKey = key;
+  if (currentMusic && currentMusic.key === key) return;
   if (currentMusic) { currentMusic.stop(); currentMusic.destroy(); currentMusic = null; }
   if (!key || !game || !game.cache.audio.exists(key)) return;
-  currentMusic = game.sound.add(key, { loop: true, volume: 0.4 });
+  // Browsers block sound until the player clicks, taps or presses a key.
+  if (game.sound.locked) {
+    game.sound.once('unlocked', () => { if (wantedKey === key) playMusic(key); });
+    return;
+  }
+  currentMusic = game.sound.add(key, { loop: true, volume: MUSIC_VOLUME });
   currentMusic.play();
 }

@@ -1,4 +1,6 @@
 import { W, H, C, FONT_DISPLAY, FONT_BODY } from '../config.js';
+import { playMusic } from '../systems/audio.js';
+import { TITLE_MUSIC } from '../data/audio.js';
 import { T, buttonRow, buildLayers, dim, readAloud } from '../ui/widgets.js';
 
 // Generic between-levels card: act intros, level clear, victory, defeat.
@@ -6,6 +8,7 @@ export class StoryScene extends Phaser.Scene {
   constructor() { super('Story'); }
 
   create(data) {
+    playMusic(TITLE_MUSIC);
     const layers = buildLayers(this, data.theme || 'forest', { fixed: true });
     for (const l of layers) if (l.factor) l.obj.tilePositionX = 400 * l.factor;
     dim(this, 0.74);

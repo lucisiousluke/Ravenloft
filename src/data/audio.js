@@ -1,8 +1,18 @@
-// Optional sound files. Until you add any, the game plays built-in synth effects.
-// To replace a sound effect, add an entry whose key is "sfx-" plus the effect name:
+// Sound files. Anything not listed here falls back to the built-in synth effects.
+//
+// Music: add { key: 'music-<name>', url: 'assets/audio/<file>.mp3' } below,
+// then use that key as `music` on a level in data/levels.js (or as TITLE_MUSIC).
+// If two screens in a row use the same track, it keeps playing without restarting.
+//
+// Sound effects: use the key "sfx-" plus the effect name, e.g.
 //   { key: 'sfx-hit', url: 'assets/audio/hit.mp3' }
 // Effect names: swing, hit, crit, miss, hurt, jump, spell, boom, coin, zap, roar, heal, go
-// For level music, add { key: 'music-forest', url: 'assets/audio/forest.mp3' }
-// and set `music: 'music-forest'` on that level in data/levels.js.
+//
+// Tip: use MP3s around 128 kbps. Full-quality WAV files are 15-20x larger and slow down loading.
 export const AUDIO = [
+  { key: 'music-lament', url: 'assets/audio/lament-of-home.mp3' },
 ];
+
+// Music for the title, hero select and story screens (null = silence)
+export const TITLE_MUSIC = 'music-lament';
+export const MUSIC_VOLUME = 0.45;

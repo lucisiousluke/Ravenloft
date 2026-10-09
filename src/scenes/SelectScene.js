@@ -1,5 +1,7 @@
 import { W, H, C, FONT_DISPLAY, FONT_BODY } from '../config.js';
 import { HEROES } from '../data/heroes.js';
+import { playMusic } from '../systems/audio.js';
+import { TITLE_MUSIC } from '../data/audio.js';
 import { T, buttonRow, buildLayers, scrollLayers, dim } from '../ui/widgets.js';
 import { diceLabel } from '../systems/util.js';
 import { newCampaign } from '../flow.js';
@@ -10,6 +12,7 @@ export class SelectScene extends Phaser.Scene {
   constructor() { super('Select'); }
 
   create() {
+    playMusic(TITLE_MUSIC);
     this.layers = buildLayers(this, 'forest', { fixed: true });
     this.cam = 0; this.tick = 0;
     dim(this, 0.78);

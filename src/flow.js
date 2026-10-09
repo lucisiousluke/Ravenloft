@@ -2,7 +2,6 @@
 import { LEVELS } from './data/levels.js';
 import { HEROES } from './data/heroes.js';
 import { ROMAN } from './config.js';
-import { playMusic } from './systems/audio.js';
 
 export function newCampaign(scene, heroKey) {
   scene.registry.set('hero', heroKey);
@@ -29,7 +28,6 @@ export function toClear(scene, lvl, hp, maxHp) {
 }
 
 export function toWin(scene) {
-  playMusic(null);
   const h = HEROES[scene.registry.get('hero')];
   scene.scene.start('Story', {
     theme: 'castle', eyebrow: 'CAMPAIGN COMPLETE', title: 'Dawn over Ravenmoor', readAloud: LEVELS[LEVELS.length - 1].outro,
@@ -42,7 +40,6 @@ export function toWin(scene) {
 }
 
 export function toDead(scene, lvl) {
-  playMusic(null);
   const h = HEROES[scene.registry.get('hero')];
   scene.scene.start('Story', {
     theme: LEVELS[lvl].theme, eyebrow: 'THREE FAILED DEATH SAVES', title: `${h.name} has fallen`,

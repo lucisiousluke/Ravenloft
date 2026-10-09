@@ -27,7 +27,7 @@ It plays on desktop (keyboard) and phones (on-screen controls, held sideways).
 | Heroes | ✅ 4 heroes, each with a 3-hit combo, a signature spell and a once-per-act heal |
 | Enemies | ✅ 6 regular foes + 3 bosses with special moves |
 | Art | 🟡 **Ulrick and Rolfing have final art.** The other heroes, the enemies and the backgrounds are still placeholders that final art will replace using the same file names |
-| Sound | ⚠️ Built-in synth sound effects only. No real audio files or music yet |
+| Sound | 🟡 Background music ("Lament of Home") on every screen. Sound effects are still the built-in synth |
 | Hosting | Netlify, deploys automatically when `main` is pushed to GitHub |
 
 ## 3. How it's built
@@ -139,6 +139,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-08**: Background music: `assets/audio/lament-of-home.mp3` plays on the title, select and story screens and in all three acts, and carries on between screens without restarting. It starts on the first click or key press, because browsers block sound until then. Track and volume settings live in `src/data/audio.js`; per-act music in `src/data/levels.js`.
 - **2026-10-08**: Art hand-off guide ("Sending new art" in SPRITES.md), a walk-cycle template on the game grid (`art-source/templates/walk-template.png`), and the converter can now drop in ready-made rows pixel for pixel.
 - **2026-10-08**: Faster walk cycles for Ulrick and Rolfing (70 ms per frame, was 100–110) so their feet don't look like they slide. Their painted walk frames still have too little leg movement and need a redo (see to-do).
 - **2026-10-08**: Upgraded the engine from Phaser 3.80.1 to **Phaser 4.2.1**. Code changes: the white hit-flash and rogue afterimage use Phaser 4's new tint API, and `roundPixels` is switched back on (v4 defaults it off). Tested every screen, all three acts, every hero's spell and a boss.
@@ -158,7 +159,7 @@ Newest at the top. One line per change is plenty.
 - [ ] Replace placeholder sprites with final art (see SPRITES.md). Ulrick and Rolfing are done; Sunday, Fae'ron and the enemies are left
 - [ ] Repaint the walk rows for Ulrick and Rolfing with a clear stride → legs-together → stride cycle (the current frames barely move the legs)
 - [ ] Ulrick: optional separate Lay on Hands animation (it currently shares the Divine Smite glow row)
-- [ ] Add real sound effects and music per act (`src/data/audio.js`)
+- [ ] Add real sound effects, and optionally a different music track per act (`src/data/audio.js`, `src/data/levels.js`)
 - [ ] Delete the old `Ravenloft/` folder inside the project. It's a leftover local copy, ignored by git
 - [ ] *Add new ideas here*
 

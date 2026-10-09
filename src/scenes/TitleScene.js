@@ -1,4 +1,6 @@
 import { W, H, C, IS_TOUCH } from '../config.js';
+import { playMusic } from '../systems/audio.js';
+import { TITLE_MUSIC } from '../data/audio.js';
 import { T, buttonRow, buildLayers, scrollLayers, dim } from '../ui/widgets.js';
 
 export const CONTROLS = IS_TOUCH
@@ -9,6 +11,7 @@ export class TitleScene extends Phaser.Scene {
   constructor() { super('Title'); }
 
   create() {
+    playMusic(TITLE_MUSIC);
     this.layers = buildLayers(this, 'forest', { fixed: true });
     this.cam = 0; this.tick = 0;
     dim(this, 0.55);
