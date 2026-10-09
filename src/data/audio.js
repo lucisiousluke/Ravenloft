@@ -11,8 +11,9 @@
 // Tip: use MP3s around 128 kbps. Full-quality WAV files are 15-20x larger and slow down loading.
 export const AUDIO = [
   { key: 'music-lament', url: 'assets/audio/lament-of-home.mp3' },
+  { key: 'music-settlements', url: 'assets/audio/moving-through-the-settlements.mp3' },
 ];
 
 // Music for the title, hero select and story screens (null = silence)
-export const TITLE_MUSIC = 'music-lament';
+export const TITLE_MUSIC = 'music-settlements';
 export const MUSIC_VOLUME = 0.15; // 0 = silent, 1 = full volume (sound effects play at 0.6)
