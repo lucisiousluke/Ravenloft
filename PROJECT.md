@@ -27,7 +27,7 @@ It plays on desktop (keyboard) and phones (on-screen controls, held sideways).
 | Playable start to finish | ✅ 7 acts and their bosses, win and lose screens |
 | Heroes | ✅ 4 heroes, each with a 3-hit combo, a signature spell and a once-per-act heal |
 | Enemies | ✅ 6 regular foes + 7 boss fights: Owlbear, 6 Vampire Spawn (Vallaki church), the Abbot, 4 Revenants (Emily, T, Fatama, Kindra), Bray Wyatt, Barrow Wight, Strahd |
-| Art | 🟡 **Ulrick and Rolfing have final art.** The other heroes, the enemies and the backgrounds are still placeholders that final art will replace using the same file names |
+| Art | 🟡 **Ulrick, Rolfing and Fae'ron have final art.** The other heroes, the enemies and the backgrounds are still placeholders that final art will replace using the same file names |
 | Sound | 🟡 Background music ("Lament of Home") on every screen. Sound effects are still the built-in synth |
 | Hosting | Netlify, deploys automatically when `main` is pushed to GitHub |
 
@@ -141,6 +141,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-09**: Fae'ron gets final art (`art-source/faeron-sheet.png`, from ChatGPT): thrust, slash and lunge combo, Thunderwave with sound rings, Song of Rest with music notes. His walk properly alternates legs. The converter learned to read sheets with real transparency (`transparent`, `solid`), keep faint spell glow, and resize rows drawn at the wrong size (`resize`).
 - **2026-10-09**: New 6-frame walk cycle for Rolfing (`art-source/rolfing-walk.png`, from ChatGPT). Its export left a faint checkerboard haze, so the converter's new `solid` option keeps only the near-solid dwarf.
 - **2026-10-09**: New 6-frame walk cycle for Ulrick (`art-source/ulrick-walk.png`, made with ChatGPT from the walk prompt). The legs now clearly pass each other. Added a `strips` option to the sheet converter for separate transparent rows like this.
 - **2026-10-08**: The revenant **T** now says a line every 7–13 seconds in a speech bubble: the user-supplied "Karma" lyric plus Taylor Swift song titles as taunts. Any boss can get lines with `quips: [...]` in `src/data/levels.js`. Avoid adding more song lyrics, since the game is public; titles and original lines are fine.
@@ -165,7 +166,9 @@ Newest at the top. One line per change is plenty.
 
 ## 8. Ideas and to-do
 
-- [ ] Replace placeholder sprites with final art (see SPRITES.md). Ulrick and Rolfing are done; Sunday, Fae'ron and the enemies are left
+- [ ] Replace placeholder sprites with final art (see SPRITES.md). Ulrick, Rolfing and Fae'ron are done; Sunday and the enemies are left
+- [ ] Ulrick and Rolfing walks: frames 4–6 repeat 1–3 (same leg leads). Needs a redo or an Aseprite shading fix
+- [ ] Optional: redo Fae'ron's Thunderwave row (drawn in a squat pose, so he seems to duck while casting)
 - [ ] Bray Wyatt sprite sheet (Luke is making it). It replaces `assets/sprites/bray-wyatt.png/json`
 - [ ] Real names for the four Argynvostholt revenants (placeholders: Emily, T, Fatama, Kindra in `src/data/levels.js`)
 - [ ] Final art for the new backgrounds (town, church, abbey, manor, temple) and bosses (vampire-spawn, the-abbot, revenant)

@@ -16,6 +16,11 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 # lying   -> frames where the hero lies on the ground; anchored by the feet so they fall backward
 #            (lying_off = how far in from the right edge the feet are, in source pixels)
 # trapped_checker -> also clear checkerboard trapped inside a figure (e.g. between staff and body)
+# resize  -> optional {row: factor} for rows drawn at the wrong size, judged by eye against idle
+#            (e.g. 1.2 = draw that row 20% bigger). Automatic measuring proved unreliable (crouches, feathers, notes).
+# transparent -> the sheet has real transparency (no checkerboard). Pixels at least `solid` opaque (0-255) are the
+#            hero; fainter ones are haze and get dropped, except brightly coloured glow in `glow` frames, which is
+#            kept as see-through light (ChatGPT tends to export spell effects almost invisible).
 # ready   -> optional {tag: 'art-source/<file>.png'}: a strip painted on the game grid (160x128 cells, transparent,
 #            feet on y 116, centred on x 80). Used as-is, replacing that animation. Timing = first value in `tags`.
 # strips  -> optional {tag: dict(file=..., height=..., ms=...)}: a separate row of figures on a transparent background,
@@ -59,6 +64,23 @@ HEROES = {
       'cast':    [(f'vines{i}', 100) for i in range(1, 7)],                                   # Entangle
       'heal':    [('vines1', 120), ('vines2', 300)],                                          # Goodberry: staff glows
     }),
+  'faeron': dict(
+    rows=[('idle', 4), ('walk', 6), ('thrust', 6), ('slash', 6), ('lunge', 5), ('jump', 2), ('hurt', 2), ('death', 7), ('wave', 6), ('song', 4)],
+    transparent=True, solid=128, min_fig=800, glow_blue=True,
+    resize={'song': 1.2},   # ChatGPT drew the Song of Rest row ~20% smaller (the Thunderwave row is a crouch, not smaller)
+    stand_h=66, glow=['wave', 'song'], lying=['death4', 'death5', 'death6', 'death7'], lying_off=60,
+    tags={
+      'idle':    [(f'idle{i}', 250) for i in range(1, 5)],
+      'walk':    [(f'walk{i}', 100) for i in range(1, 7)],
+      'attack1': list(zip([f'thrust{i}' for i in range(1, 7)], [60, 60, 90, 80, 70, 80])),   # quick thrust
+      'attack2': list(zip([f'slash{i}' for i in range(1, 7)], [60, 70, 80, 90, 80, 90])),    # slash
+      'attack3': list(zip([f'lunge{i}' for i in range(1, 6)], [70, 60, 120, 80, 120])),      # lunge finisher
+      'jump':    [('jump1', 120), ('jump2', 400)],
+      'hurt':    [('hurt1', 100), ('hurt2', 120)],
+      'death':   list(zip([f'death{i}' for i in range(1, 8)], [90, 90, 90, 90, 100, 120, 600])),
+      'cast':    [(f'wave{i}', 100) for i in range(1, 7)],                                    # Thunderwave
+      'heal':    [('song1', 120), ('song2', 160), ('song3', 160), ('song4', 200)],            # Song of Rest
+    }),
 }
 
 FW, FH, FX, FY = 160, 128, 80, 116   # cell size and where the feet go (matches src/data/sprites.js)
@@ -66,8 +88,11 @@ WHITE = 248.0
 
 def build(hero):
     cfg = HEROES[hero]
-    im = np.array(Image.open(os.path.join(ROOT, 'art-source', f'{hero}-sheet.png')).convert('RGB')).astype(float)
+    rgba = np.array(Image.open(os.path.join(ROOT, 'art-source', f'{hero}-sheet.png')).convert('RGBA')).astype(float)
+    im, src_a = rgba[..., :3], rgba[..., 3]
     br = im.mean(-1); sat = im.max(-1) - im.min(-1)
+    is_glow = lambda n: any(n == g or n.rstrip('0123456789') == g for g in cfg['glow'])
+    if cfg.get('transparent'): return build_transparent(hero, cfg, im, src_a, sat, is_glow)
     # 1. background = light grey checker pixels connected to the image border (so shiny bits inside a figure stay)
     bgl = (br > 205) & (sat < 22)
     lab, _ = ndimage.label(bgl)
@@ -99,7 +124,6 @@ def build(hero):
         if gap(objs[frames[best][0] - 1], y, x) < 40: frames[best].append(i)
 
     edge = fg & ndimage.binary_dilation(bg, iterations=2)
-    is_glow = lambda n: any(n == g or n.rstrip('0123456789') == g for g in cfg['glow'])
     def cut(name):
         ids = frames[name]
         y0 = min(objs[i - 1][0].start for i in ids) - 2; y1 = max(objs[i - 1][0].stop for i in ids) + 2
@@ -121,18 +145,71 @@ def build(hero):
             col = np.where(light[..., None], tint, np.where(body[..., None], c, col))
         return np.dstack([np.clip(col, 0, 255), a * 255]).astype(np.uint8)
     CUT = {f: cut(f) for f in frames}
+    return finish(hero, cfg, CUT, is_glow)
+
+def find_frames(cfg, fg):
+    """Figures = big blobs in `fg`, read row by row (by bottom edge), left to right, named from cfg['rows']."""
+    flab, fn = ndimage.label(fg, structure=np.ones((3, 3)))
+    objs = ndimage.find_objects(flab); sizes = ndimage.sum(fg, flab, range(1, fn + 1))
+    big = sorted([i + 1 for i in range(fn) if sizes[i] > cfg.get('min_fig', 2000)], key=lambda i: objs[i - 1][0].stop)
+    frames, k = {}, 0
+    for name, cnt in cfg['rows']:
+        row = sorted(big[k:k + cnt], key=lambda i: objs[i - 1][1].start); k += cnt
+        for j, i in enumerate(row): frames[f'{name}{j + 1}'] = [i]
+    assert k == len(big), f'found {len(big)} figures but rows add up to {k}'
+    return flab, fn, objs, sizes, big, frames
+
+def gap(o, y, x): return max(0, o[1].start - x, x - o[1].stop) + max(0, o[0].start - y, y - o[0].stop)
+
+def build_transparent(hero, cfg, im, src_a, sat, is_glow):
+    """Sheets with real transparency: keep the near-solid hero, drop faint haze, keep coloured spell glow."""
+    fg = src_a >= cfg.get('solid', 128)
+    flab, fn, objs, sizes, big, frames = find_frames(cfg, fg)
+    for i in range(1, fn + 1):   # small solid bits join the nearest figure
+        if i in big or sizes[i - 1] < 4: continue
+        sl = objs[i - 1]; y, x = (sl[0].start + sl[0].stop) / 2, (sl[1].start + sl[1].stop) / 2
+        best = min(frames, key=lambda f: gap(objs[frames[f][0] - 1], y, x))
+        if gap(objs[frames[best][0] - 1], y, x) < 40: frames[best].append(i)
+    # faint but brightly coloured pixels = spell light (rings, notes); attach them to the nearest glow frame
+    glowpx = (src_a > 0) & ~fg & (sat > 50) & (im.max(-1) > 150)
+    if cfg.get('glow_blue'): glowpx &= im[..., 2] > im[..., 0] + 40   # only blue light (drops reddish fringe)
+    glab, gn = ndimage.label(glowpx, structure=np.ones((3, 3))); gobjs = ndimage.find_objects(glab)
+    glows = {f: [] for f in frames}
+    gnames = [f for f in frames if is_glow(f)]
+    for i in range(1, gn + 1) if gnames else []:
+        sl = gobjs[i - 1]
+        if (sl[0].stop - sl[0].start) * (sl[1].stop - sl[1].start) < 6: continue
+        y, x = (sl[0].start + sl[0].stop) / 2, (sl[1].start + sl[1].stop) / 2
+        best = min(gnames, key=lambda f: gap(objs[frames[f][0] - 1], y, x))
+        if gap(objs[frames[best][0] - 1], y, x) < 60: glows[best].append(i)
+    def cut(name):
+        boxes = [objs[i - 1] for i in frames[name]] + [gobjs[i - 1] for i in glows[name]]
+        y0 = min(b[0].start for b in boxes) - 2; y1 = max(b[0].stop for b in boxes) + 2
+        x0 = max(0, min(b[1].start for b in boxes) - 2); x1 = max(b[1].stop for b in boxes) + 2
+        c = im[y0:y1, x0:x1]; mine = np.isin(flab[y0:y1, x0:x1], frames[name])
+        a = mine.astype(float)
+        if glows[name]:
+            lit = np.isin(glab[y0:y1, x0:x1], glows[name])
+            a = np.where(lit & ~mine, np.clip(c.max(-1) / 255 * 0.85, 0.3, 0.8), a)
+        return np.dstack([np.clip(c, 0, 255), a * 255]).astype(np.uint8)
+    return finish(hero, cfg, {f: cut(f) for f in frames}, is_glow)
+
+def finish(hero, cfg, CUT, is_glow):
     scale = cfg['stand_h'] / CUT['idle1'].shape[0]
 
     def feet(name, a):
-        al = a[..., 3] > 128; bot = np.where(al.any(1))[0].max()
+        # line frames up by the solid figure only (spell glow can reach the floor)
+        al = a[..., 3] > (254 if cfg.get('transparent') else 128); bot = np.where(al.any(1))[0].max()
         if name in cfg['lying']:
             return np.where(al.any(0))[0].max() - cfg.get('lying_off', 22), bot
         xs = np.where(al[bot - 8: bot + 1].any(0))[0]
         return (xs.min() + xs.max()) / 2, bot
 
+    fix = cfg.get('resize', {})
+
     def cell(name):
         a = CUT[name]; fx, fy = feet(name, a)
-        return place(a, fx, fy, scale, is_glow(name))
+        return place(a, fx, fy, scale * fix.get(name.rstrip('0123456789'), 1), is_glow(name))
 
     def place(a, fx, fy, scale, soft=False):
         """Shrink a cut-out figure and put its anchor point (fx, fy, in source pixels) on the cell's feet spot."""
@@ -147,7 +224,7 @@ def build(hero):
         out.paste(img, (FX - round((fx + 0.5) * scale), FY + 1 - round((fy + 1) * scale)), img)
         return out
 
-    cells = {f: cell(f) for f in frames}
+    cells = {f: cell(f) for f in CUT}
     seq = [(tag, f, ms) for tag, fs in cfg['tags'].items() for f, ms in fs]
     # separate transparent strips (e.g. a redone walk): each figure cut out, shrunk, lined up by the torso
     for tag, st in cfg.get('strips', {}).items():
