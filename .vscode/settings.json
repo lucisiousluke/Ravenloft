@@ -1,0 +1,16 @@
+{
+  // Live Server reloads the page (restarting the game) whenever a project file changes.
+  // Ignore files that don't affect the game. (Hidden folders like .git are always ignored.)
+  "liveServer.settings.ignoreFiles": [
+    ".vscode/**",
+    ".git/**",
+    "**/.git/**",
+    "art-source/**",
+    "tools/**",
+    "Ravenloft/**",
+    "**/*.md",
+    "**/*.scss",
+    "**/*.sass",
+    "**/*.ts"
+  ]
+}

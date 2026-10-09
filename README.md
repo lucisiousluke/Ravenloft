@@ -10,7 +10,8 @@ There is no build step: the folder runs exactly as it is, locally and on Netlify
 1. Open this folder in VS Code (**File → Open Folder…**).
 2. Install the **Live Server** extension (by Ritwick Dey).
 3. Click **Go Live** in the bottom-right status bar. The game opens at `http://127.0.0.1:5500`.
-4. Every time you save a file (code or a sprite PNG), the page reloads.
+4. Every time you save a file (code or a sprite PNG), the page reloads. (Files that don't affect the game, like
+   `.git`, the docs and `art-source/`, are ignored: see `.vscode/settings.json`.)
 
 > Opening `index.html` by double-clicking won't work. Browsers block a page from loading
 > the sprite files directly off your disk, so it needs a local server like Live Server.
