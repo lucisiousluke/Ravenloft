@@ -52,7 +52,18 @@ export const LEVELS = [
     ],
     boss: { at: 3050, title: 'The Revenants', add: [],
                         // tint = a colour wash so the four are easy to tell apart (placeholder names for now)
-            bosses: [{ type: 'revenant', name: 'Emily', tint: 0xc8d8ff }, { type: 'revenant', name: 'T', tint: 0xffd0c0 },
+            // quips = lines a boss says now and then in a chat bubble
+            bosses: [{ type: 'revenant', name: 'Emily', tint: 0xc8d8ff },
+                     { type: 'revenant', name: 'T', tint: 0xffd0c0, quips: [
+                       'Karma is a cat, purring in my lap',
+                       'Look what you made me do.',
+                       'Bad Blood, adventurer.',
+                       'Shake it off? I’m already dead.',
+                       'Death by a Thousand Cuts!',
+                       'Is it over now? Not for me.',
+                       'Haunted.',
+                       'This is me trying.',
+                     ] },
                      { type: 'revenant', name: 'Fatama', tint: 0xd0ffd0 }, { type: 'revenant', name: 'Kindra', tint: 0xf0d0ff }] },
   },
   {

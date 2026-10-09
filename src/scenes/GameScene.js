@@ -82,6 +82,7 @@ export class GameScene extends Phaser.Scene {
       hp, maxHp: hp, state: 'enter', t: 0, seq: 0, cd: rnd(30, 70), moving: false, flash: 0, root: 0, yoff: rnd(-40, 40),
       poise: 0, sp: 200, summoned: false, hitDone: false, alpha: 1, mode: 0 };
     this.foes.push(e);
+    if (q.quips) { e.quips = q.quips; e.quipT = rnd(90, 240); }   // first line comes 1.5-4 s after arriving
     if (q.name) e.tag = this.add.text(0, 0, q.name, { fontFamily: FONT_BODY, fontStyle: '800', fontSize: '13px', color: C.parchment, stroke: C.ink, strokeThickness: 4 }).setOrigin(0.5, 1).setDepth(9400);
     if (d.boss && !q.quiet) { this.shake(10); sfx('roar'); }
   }
@@ -271,8 +272,10 @@ export class GameScene extends Phaser.Scene {
   updFoe(e, p) {
     const d = e.def;
     if (e.flash > 0) e.flash--;
+    if (e.bubble) e.bubble.life--;
     if (e.state === 'dying') { e.t++; e.x += e.vx; e.vx *= 0.9; return; }
     if (e.root > 0) e.root--;
+    if (e.quips && --e.quipT <= 0) { this.say(e, e.quips[Math.floor(Math.random() * e.quips.length)]); e.quipT = rnd(420, 780); } // a line every 7-13 s
     if (d.regen && e.hp < e.maxHp && this.tick % 60 === 0) { e.hp = Math.min(e.maxHp, e.hp + d.regen); this.burst(e.x, e.y, d.height * 0.6, C.heal, 2); } // revenants knit back together
     const toP = p.x - e.x, dy = p.y - e.y, adx = Math.abs(toP), pDead = p.state === 'dead';
     switch (e.state) {
@@ -486,7 +489,7 @@ export class GameScene extends Phaser.Scene {
     const p = this.p;
     this.updPlayer(p);
     for (const e of this.foes) this.updFoe(e, p);
-    this.foes = this.foes.filter((e) => { if (e.state === 'dying' && e.t > 70) { e.sprite.destroy(); e.tag?.destroy(); return false; } return true; });
+    this.foes = this.foes.filter((e) => { if (e.state === 'dying' && e.t > 70) { e.sprite.destroy(); e.tag?.destroy(); e.bubble?.box.destroy(); return false; } return true; });
     this.updProj(); this.updMisc(); this.updWaves();
     if (this.bannerT > 0) this.bannerT--;
     Input.tick();
@@ -537,6 +540,17 @@ export class GameScene extends Phaser.Scene {
     e.sprite.anims.timeScale = ticks ? anim.duration / (ticks * TICK) : speed || 1;
   }
 
+  // A speech bubble over an enemy's head for about 3 seconds (used for T's lines)
+  say(e, line) {
+    e.bubble?.box.destroy();
+    const txt = this.add.text(0, 0, line, { fontFamily: FONT_BODY, fontStyle: '800', fontSize: '13px', color: C.ink, align: 'center', wordWrap: { width: 170 } }).setOrigin(0.5, 1);
+    const w = txt.width + 16, h = txt.height + 10, g = this.add.graphics();
+    g.fillStyle(0xeadfc6, 0.96).fillRoundedRect(-w / 2, -h - 8, w, h, 8).lineStyle(2, 0x0f0c14, 1).strokeRoundedRect(-w / 2, -h - 8, w, h, 8);
+    g.fillStyle(0xeadfc6, 0.96).fillTriangle(-6, -9, 6, -9, 0, 0);          // the little tail pointing at the speaker
+    txt.setPosition(0, -13);
+    e.bubble = { box: this.add.container(0, 0, [g, txt]).setDepth(9450), life: 180 };
+  }
+
   drawEnt(e, isHero) {
     const s = e.sprite, g = this.gGround;
     const sh = e.def.shadow * (1 - Math.min(e.z, 80) / 200);
@@ -551,6 +565,11 @@ export class GameScene extends Phaser.Scene {
     else if (e.tint) s.setTint(e.tint).setTintMode(Phaser.TintModes.MULTIPLY); // e.g. each revenant's own colour
     else s.clearTint();
     if (e.tag) e.tag.setPosition(Math.round(e.x), Math.round(e.y - e.z - e.def.height - 6)).setAlpha(a);
+    if (e.bubble) {
+      const b = e.bubble;
+      if (b.life <= 0 || e.state === 'dying') { b.box.destroy(); e.bubble = null; }
+      else b.box.setPosition(Math.round(e.x), Math.round(e.y - e.z - e.def.height - 24)).setAlpha(Math.min(1, b.life / 20));
+    }
   }
 
   render() {
