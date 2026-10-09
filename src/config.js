@@ -16,4 +16,4 @@ export const C = {
 export const hex = (css) => parseInt(css.slice(1), 16);
 
 export const IS_TOUCH = matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
-export const ROMAN = ['I', 'II', 'III', 'IV', 'V'];
+export const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];

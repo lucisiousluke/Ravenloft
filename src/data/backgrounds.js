@@ -30,4 +30,41 @@ export const BACKGROUNDS = {
     { file: 'floor', factor: 1 },
     { file: 'foreground', factor: 1.35, front: true },
   ],
+  // ---- placeholders for the new locations (made by tools/placeholders/backgrounds.py) ----
+  town: [            // Vallaki
+    { file: 'sky', factor: 0 },
+    { file: 'mountains', factor: 0.08 },
+    { file: 'roofs', factor: 0.25 },
+    { file: 'houses', factor: 0.6 },
+    { file: 'ground', factor: 1 },
+    { file: 'fog', factor: 0.9, drift: 0.3 },
+    { file: 'foreground', factor: 1.3, front: true },
+  ],
+  church: [          // inside St. Andral's Church (Vallaki's boss fight)
+    { file: 'wall', factor: 0.5 },
+    { file: 'floor', factor: 1 },
+    { file: 'foreground', factor: 1.35, front: true },
+  ],
+  abbey: [           // Krezk
+    { file: 'sky', factor: 0 },
+    { file: 'mountains', factor: 0.08 },
+    { file: 'abbey', factor: 0.18 },
+    { file: 'walls', factor: 0.55 },
+    { file: 'ground', factor: 1 },
+    { file: 'foreground', factor: 1.3, front: true },
+  ],
+  manor: [           // Argynvostholt
+    { file: 'sky', factor: 0 },
+    { file: 'manor', factor: 0.12 },
+    { file: 'trees', factor: 0.35 },
+    { file: 'wall', factor: 0.7 },
+    { file: 'ground', factor: 1 },
+    { file: 'fog', factor: 0.9, drift: 0.35 },
+    { file: 'foreground', factor: 1.3, front: true },
+  ],
+  temple: [          // the Amber Temple
+    { file: 'wall', factor: 0.5 },
+    { file: 'floor', factor: 1 },
+    { file: 'foreground', factor: 1.35, front: true },
+  ],
 };

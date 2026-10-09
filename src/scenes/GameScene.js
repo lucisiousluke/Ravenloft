@@ -10,6 +10,7 @@ import { toClear, toWin, toDead } from '../flow.js';
 
 const alive = (e) => e.state !== 'dying';
 const SLOT_REGEN = 480; // ticks to recover one spell slot (8 seconds)
+const PROJ_SPEED = { bat: 5.5, shade: 4.5, holy: 5, fire: 5 }; // boss projectile speeds (pixels per tick)
 const HEAL_T = 24;      // ticks the healing ability animation takes
 
 // One level of play. Game rules run at a fixed 60 ticks per second in step();
@@ -26,7 +27,7 @@ export class GameScene extends Phaser.Scene {
     this.L = L; this.theme = L.theme;
     this.info = this.registry.get('spriteInfo');
     this.registry.set('levelGold', this.registry.get('gold'));
-    Object.assign(this, { tick: 0, acc: 0, cam: 0, lock: null, wave: 0, queue: [], foes: [], proj: [], parts: [], pickups: [], spawnT: 0, spawnSide: false, bannerT: 200, clearT: 0, ended: false });
+    Object.assign(this, { tick: 0, acc: 0, cam: 0, lock: null, wave: 0, queue: [], foes: [], proj: [], parts: [], pickups: [], spawnT: 0, spawnSide: false, bannerT: 200, bannerTop: null, bannerTitle: null, bossTitle: null, bossTotal: 0, packSize: 1, clearT: 0, ended: false });
 
     this.layers = buildLayers(this, this.theme);
     this.gGround = this.add.graphics().setDepth(1);   // shadows, rings on the floor
@@ -74,13 +75,15 @@ export class GameScene extends Phaser.Scene {
   spawn(q) {
     const d = FOES[q.type];
     this.spawnSide = !this.spawnSide;
-    const left = !d.boss && this.spawnSide;
+    const left = (!d.boss || d.pack) && this.spawnSide;
     const hp = Math.round(d.hp * (d.boss ? 1 : 1 + this.lvl * 0.12));
-    this.foes.push({ kind: 'foe', type: q.type, def: d, boss: !!d.boss, sprite: this.makeSprite(d.sprite),
+    const e = { kind: 'foe', type: q.type, def: d, boss: !!d.boss, sprite: this.makeSprite(d.sprite), tint: q.tint || null,
       x: left ? this.cam - 50 : this.cam + W + 60, y: rnd(FT + 30, FB - 15), z: 0, vx: 0, face: left ? 1 : -1,
       hp, maxHp: hp, state: 'enter', t: 0, seq: 0, cd: rnd(30, 70), moving: false, flash: 0, root: 0, yoff: rnd(-40, 40),
-      poise: 0, sp: 200, summoned: false, hitDone: false, alpha: 1, mode: 0 });
-    if (d.boss) { this.shake(10); sfx('roar'); }
+      poise: 0, sp: 200, summoned: false, hitDone: false, alpha: 1, mode: 0 };
+    this.foes.push(e);
+    if (q.name) e.tag = this.add.text(0, 0, q.name, { fontFamily: FONT_BODY, fontStyle: '800', fontSize: '13px', color: C.parchment, stroke: C.ink, strokeThickness: 4 }).setOrigin(0.5, 1).setDepth(9400);
+    if (d.boss && !q.quiet) { this.shake(10); sfx('roar'); }
   }
 
   /* ---------------- effects ---------------- */
@@ -194,9 +197,12 @@ export class GameScene extends Phaser.Scene {
       this.pickups.push({ x: e.x, y: e.y, z: 34, vz: 3, t: 0, sprite: s });
     }
     if (e.boss) {
-      this.shake(16); sfx('roar'); this.burst(e.x, e.y, 60, '#ffd460', 30);
-      this.queue = []; for (const f of this.foes) if (f !== e && alive(f)) this.killFoe(f, 1);
-      this.clearT = 1;
+      this.shake(e.def.pack ? 6 : 16); sfx('roar'); this.burst(e.x, e.y, 60, '#ffd460', e.def.pack ? 14 : 30);
+      const more = this.foes.some((f) => f !== e && f.boss && alive(f)) || this.queue.some((q) => FOES[q.type].boss);
+      if (!more) { // the last boss is down: the act is won
+        this.queue = []; for (const f of this.foes) if (f !== e && alive(f)) this.killFoe(f, 1);
+        this.clearT = 1;
+      }
     }
   }
 
@@ -223,42 +229,42 @@ export class GameScene extends Phaser.Scene {
 
   /* ---------------- enemies ---------------- */
 
-  attackers() { let n = 0; for (const e of this.foes) if (!e.boss && (e.state === 'windup' || e.state === 'strike')) n++; return n; }
+  attackers() { let n = 0; for (const e of this.foes) if (!(e.boss && !e.def.pack) && (e.state === 'windup' || e.state === 'strike')) n++; return n; }
 
   tryHit(e, p, reach, dice, knock) {
     if (p.state === 'dead' || p.inv > 0) return false;
     const dx = (p.x - e.x) * e.face;
     if (dx > -20 && dx < reach + 14 && Math.abs(p.y - e.y) < 24 && p.z < 45) {
       e.hitDone = true; this.hurtPlayer(p, roll(dice || e.def.dmg), e.face, knock || 6);
-      if (e.type === 'vampire') { e.hp = Math.min(e.maxHp, e.hp + 10); this.text(e.x, e.y, e.def.height + 10, '+10 drain', '#ff6a7a', 14); }
+      if (e.def.drain) { e.hp = Math.min(e.maxHp, e.hp + e.def.drain); this.text(e.x, e.y, e.def.height + 10, `+${e.def.drain} drain`, '#ff6a7a', 14); }
       return true;
     }
     return false;
   }
 
+  // A boss's special move, taken in turn from `moves` in foes.js. Returns true if one started.
   bossSpecial(e, p) {
-    if (e.type === 'owlbear') {
-      e.sp = rnd(220, 320); this.go(e, 'charge_wind', 50); e.face = p.x > e.x ? 1 : -1;
-      this.text(e.x, e.y, e.def.height + 12, 'SCREECH!', '#ff9a5a', 18); this.shake(4); return true;
+    const d = e.def;
+    if (!d.moves) return false;
+    e.sp = rnd(d.every[0], d.every[1]);
+    const s = d.summon;
+    if (s && !e.summoned && e.hp < e.maxHp * s.below) {
+      e.summoned = true; this.queue.push(...s.foes.map((type) => ({ type }))); this.spawnT = 10;
+      this.text(e.x, e.y, d.height + 12, s.line, s.col || '#ff6a7a', 16);
     }
-    if (e.type === 'wight') {
-      e.sp = rnd(260, 340);
-      if (!e.summoned && e.hp < e.maxHp * 0.55) { e.summoned = true; this.queue.push({ type: 'skeleton' }, { type: 'skeleton' }); this.spawnT = 10; this.text(e.x, e.y, e.def.height + 12, 'Rise, my children', '#7fe0ff', 16); }
-      this.go(e, 'cast', 40); return true;
-    }
-    if (e.type === 'vampire') {
-      e.sp = rnd(170, 250);
-      if (!e.summoned && e.hp < e.maxHp * 0.45) { e.summoned = true; this.queue.push({ type: 'cultist' }, { type: 'cultist' }); this.spawnT = 10; this.text(e.x, e.y, e.def.height + 12, 'Servants, to me!', '#ff6a7a', 16); }
-      e.mode++;
-      if (e.mode % 2) { this.go(e, 'vanish', 24); sfx('zap'); } else this.go(e, 'cast', 36);
-      return true;
-    }
-    return false;
+    const move = d.moves[e.mode++ % d.moves.length];
+    if (move === 'charge') {
+      this.go(e, 'charge_wind', 50); e.face = p.x > e.x ? 1 : -1;
+      this.text(e.x, e.y, d.height + 12, d.shout || 'RAAAH!', '#ff9a5a', 18); this.shake(4);
+    } else if (move === 'vanish') { this.go(e, 'vanish', 24); sfx('zap'); }
+    else this.go(e, 'cast', 40);
+    return true;
   }
 
+  // Three projectiles aimed around the hero (the boss's `proj` from foes.js)
   bossCast(e, p) {
-    const kind = e.type === 'wight' ? 'shade' : 'bat';
-    for (const off of [-40, 0, 40]) this.addProj({ kind, team: 'foe', x: e.x + e.face * 30, y: clamp(p.y + off, FT + 14, FB), z: 52, vx: e.face * (kind === 'bat' ? 5.5 : 4.5), life: 240, dmg: { n: 1, s: 8, b: 2 } });
+    const kind = e.def.proj || 'bolt';
+    for (const off of [-40, 0, 40]) this.addProj({ kind, team: 'foe', x: e.x + e.face * 30, y: clamp(p.y + off, FT + 14, FB), z: 52, vx: e.face * (PROJ_SPEED[kind] || 5), life: 240, dmg: { n: 1, s: 8, b: 2 } });
     sfx('zap');
   }
 
@@ -267,6 +273,7 @@ export class GameScene extends Phaser.Scene {
     if (e.flash > 0) e.flash--;
     if (e.state === 'dying') { e.t++; e.x += e.vx; e.vx *= 0.9; return; }
     if (e.root > 0) e.root--;
+    if (d.regen && e.hp < e.maxHp && this.tick % 60 === 0) { e.hp = Math.min(e.maxHp, e.hp + d.regen); this.burst(e.x, e.y, d.height * 0.6, C.heal, 2); } // revenants knit back together
     const toP = p.x - e.x, dy = p.y - e.y, adx = Math.abs(toP), pDead = p.state === 'dead';
     switch (e.state) {
       case 'enter': {
@@ -293,7 +300,7 @@ export class GameScene extends Phaser.Scene {
         const m = Math.hypot(mx, my);
         if (m > 4) { e.x += (mx / m) * d.spd; e.y += (my / m) * d.spd * 0.7; e.moving = true; }
         const inRange = d.ranged ? (Math.abs(dy) < 22 && adx < 480 && adx > 110) : (adx < d.reach + 10 && Math.abs(dy) < 16);
-        if (inRange && e.cd <= 0 && (e.boss || this.attackers() < 2) && p.z < 70) { this.go(e, 'windup', d.wind); e.moving = false; }
+        if (inRange && e.cd <= 0 && ((e.boss && !d.pack) || this.attackers() < 2) && p.z < 70) { this.go(e, 'windup', d.wind); e.moving = false; }
         break;
       }
       case 'windup':
@@ -433,17 +440,45 @@ export class GameScene extends Phaser.Scene {
     if (this.lock === null && this.wave < waves.length && this.cam >= waves[this.wave].at - 1) {
       const wv = waves[this.wave];
       this.lock = wv.at;
-      this.queue = wv.boss ? [{ type: wv.type }, ...wv.add.map((t) => ({ type: t }))] : wv.foes.map((t) => ({ type: t }));
-      this.spawnT = wv.boss ? 40 : 20; this.wave++;
+      if (wv.boss) {
+        const bosses = wv.bosses.map((b, i) => ({ ...(typeof b === 'string' ? { type: b } : b), quiet: i > 0 }));
+        this.queue = [...bosses, ...wv.add.map((t) => ({ type: t }))];
+        this.bossTitle = wv.title || FOES[bosses[0].type].name;
+        this.bossTotal = bosses.reduce((t, b) => t + FOES[b.type].hp, 0);
+        this.packSize = bosses.length;
+        if (wv.theme) this.enterArea(wv.theme, wv.place);
+      } else this.queue = wv.foes.map((t) => ({ type: t }));
+      this.spawnT = wv.boss ? (wv.theme ? 90 : 40) : 20; this.wave++;
     }
     const maxCam = this.lock !== null ? this.lock : (this.wave < waves.length ? waves[this.wave].at : waves[waves.length - 1].at);
     const target = p.x - W * 0.42;
     if (target > this.cam) this.cam = Math.min(maxCam, this.cam + Math.min(6, target - this.cam));
     if (this.lock !== null && !this.clearT) {
-      const live = this.foes.filter(alive).length, cap = this.foes.some((e) => e.boss && alive(e)) ? 5 : 4;
-      if (this.queue.length && --this.spawnT <= 0 && live < cap) { this.spawn(this.queue.shift()); this.spawnT = 55; }
+      const live = this.foes.filter(alive).length, cap = this.foes.some((e) => e.boss && alive(e)) ? Math.max(5, this.packSize + 1) : 4;
+      if (this.queue.length && --this.spawnT <= 0 && live < cap) { const q = this.queue.shift(); this.spawn(q); this.spawnT = FOES[q.type].pack ? 28 : 55; }
       if (!this.queue.length && !live) { this.lock = null; sfx('go'); }
     }
+  }
+
+  // Fade into a different background mid-level (Vallaki's church for the final fight)
+  enterArea(theme, place) {
+    const cam = this.cameras.main;
+    cam.fadeOut(350, 0, 0, 0);
+    cam.once('camerafadeoutcomplete', () => {
+      for (const l of this.layers) l.obj.destroy();
+      this.layers = buildLayers(this, theme); this.theme = theme;
+      this.bannerTop = this.L.name.toUpperCase(); this.bannerTitle = place; this.bannerT = 200;
+      cam.fadeIn(450, 0, 0, 0);
+    });
+  }
+
+  // For the HUD: this act's bosses as one health bar (a pack shares a bar). null = no bar.
+  bossInfo() {
+    if (!this.bossTotal || this.clearT) return null;
+    let hp = 0, any = false;
+    for (const e of this.foes) if (e.boss && alive(e)) { hp += Math.max(0, e.hp); any = true; }
+    for (const q of this.queue) if (FOES[q.type].boss) { hp += FOES[q.type].hp; any = true; }
+    return any ? { title: this.bossTitle, k: hp / this.bossTotal } : null;
   }
 
   step() {
@@ -451,7 +486,7 @@ export class GameScene extends Phaser.Scene {
     const p = this.p;
     this.updPlayer(p);
     for (const e of this.foes) this.updFoe(e, p);
-    this.foes = this.foes.filter((e) => { if (e.state === 'dying' && e.t > 70) { e.sprite.destroy(); return false; } return true; });
+    this.foes = this.foes.filter((e) => { if (e.state === 'dying' && e.t > 70) { e.sprite.destroy(); e.tag?.destroy(); return false; } return true; });
     this.updProj(); this.updMisc(); this.updWaves();
     if (this.bannerT > 0) this.bannerT--;
     Input.tick();
@@ -512,7 +547,10 @@ export class GameScene extends Phaser.Scene {
     if (e.state === 'dying' && e.t > 40) a *= Math.max(0, 1 - (e.t - 40) / 30);
     if (isHero && e.inv > 0 && e.state !== 'spell' && e.state !== 'heal' && e.state !== 'dead' && this.tick % 8 < 4) a *= 0.45;
     s.setAlpha(a);
-    if (e.flash > 0) s.setTint(0xffffff).setTintMode(Phaser.TintModes.FILL); else s.clearTint(); // white hit-flash
+    if (e.flash > 0) s.setTint(0xffffff).setTintMode(Phaser.TintModes.FILL); // white hit-flash
+    else if (e.tint) s.setTint(e.tint).setTintMode(Phaser.TintModes.MULTIPLY); // e.g. each revenant's own colour
+    else s.clearTint();
+    if (e.tag) e.tag.setPosition(Math.round(e.x), Math.round(e.y - e.z - e.def.height - 6)).setAlpha(a);
   }
 
   render() {
@@ -556,6 +594,19 @@ export class GameScene extends Phaser.Scene {
       for (let k = 0; k < 16; k++) {
         const fx = (((hash(k) * W * 1.6 - this.cam * 0.5) % W) + W) % W, fy = 110 + hash(k + 40) * 230 + Math.sin(this.tick * 0.02 + k) * 12;
         top.fillStyle(0xe6f08c, 0.35 + 0.4 * Math.sin(this.tick * 0.05 + k * 2)).fillRect(this.cam + fx, fy, 2, 2);
+      }
+    }
+    if (this.theme === 'abbey' || this.theme === 'manor') { // drifting snow
+      for (let k = 0; k < 24; k++) {
+        const fx = (((hash(k + 11) * W * 1.3 - this.cam * 0.6 + Math.sin(this.tick * 0.01 + k) * 20) % W) + W) % W, fy = (this.tick * (0.5 + hash(k + 5) * 0.6) + hash(k + 9) * H) % H;
+        top.fillStyle(0xeef2ff, 0.55).fillRect(this.cam + fx, fy, 2, 2);
+      }
+    }
+    if (this.theme === 'temple' || this.theme === 'church') { // rising amber motes / candle sparks
+      const col = this.theme === 'temple' ? 0xffb347 : 0xffd98a;
+      for (let k = 0; k < 14; k++) {
+        const fx = (((hash(k + 3) * W * 1.5 - this.cam * 0.7) % W) + W) % W, fy = H - ((this.tick * (0.25 + hash(k + 1) * 0.3) + hash(k + 8) * H) % H);
+        top.fillStyle(col, 0.3 + 0.35 * Math.sin(this.tick * 0.06 + k)).fillRect(this.cam + fx, fy, 2, 2);
       }
     }
     if (this.theme === 'castle') {

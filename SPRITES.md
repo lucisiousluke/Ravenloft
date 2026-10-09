@@ -86,8 +86,12 @@ Idle and walk play at your exact timing.
 | `blood-knight` | 184×144 | 92, 131 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6) |
 | `owlbear` | 280×224 | 140, 203 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6) |
 | `barrow-wight` | 240×192 | 120, 174 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6), cast(6) |
-| `count-vaszlo` | 216×176 | 108, 160 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6), cast(6) |
-| `fx` | 96×96 | 48, 48 (center) | bolt(2), bat(2), shade(2), wave(1), potion(1) |
+| `count-vaszlo` | 216×176 | 108, 160 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6), cast(6). This is Strahd |
+| `vampire-spawn` | 160×128 | 80, 116 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6), cast(6). Placeholder (Vallaki) |
+| `revenant` | 184×144 | 92, 131 | same tags. Placeholder (Argynvostholt; all four revenants share it, tinted differently) |
+| `the-abbot` | 216×176 | 108, 160 | same tags. Placeholder (Krezk) |
+| `bray-wyatt` | 216×176 | 108, 160 | same tags. Placeholder (Amber Temple): **Luke's sheet will replace it** |
+| `fx` | 96×96 | 48, 48 (center) | bolt(2), bat(2), shade(2), wave(1), potion(1), holy(2), fire(2) |
 
 `fx` holds projectiles and the healing potion. They're drawn facing right and centered.
 

@@ -151,13 +151,13 @@ export class HudScene extends Phaser.Scene {
     this.tAct.setText(`ACT ${ROMAN[G.lvl]}`); this.tLevel.setText(LEVELS[G.lvl].name);
 
     // boss bar
-    const b = G.foes.find((e) => e.boss && e.state !== 'dying');
+    const b = G.bossInfo(); // all of the act's bosses as one bar
     this.tBoss.setVisible(!!b);
     if (b) {
-      const x = W / 2 - 220, y = H - 34, w = 440, k = Math.max(0, b.hp) / b.maxHp;
+      const x = W / 2 - 220, y = H - 34, w = 440, k = Math.max(0, Math.min(1, b.k));
       g.fillStyle(0x0e0b13, 0.78).fillRect(x - 12, y - 30, w + 24, 50).lineStyle(1, 0xdcae4c, 0.4).strokeRect(x - 11.5, y - 29.5, w + 23, 49);
       g.fillStyle(0x2a1a1e, 1).fillRect(x, y, w, 10).fillStyle(0x8a1a26, 1).fillRect(x, y, w * k, 10).fillStyle(0xffffff, 0.15).fillRect(x, y, w * k, 2);
-      this.tBoss.setText(b.def.name);
+      this.tBoss.setText(b.title);
     }
     // "Onward" arrow when the screen is clear
     const total = LEVELS[G.lvl].waves.length + 1;
@@ -166,8 +166,8 @@ export class HudScene extends Phaser.Scene {
     if (showOnward) g.fillStyle(0xdcae4c, 1).fillTriangle(W - 56, H / 2 - 18, W - 28, H / 2 - 6, W - 56, H / 2 + 6);
     // act banner
     const a = G.bannerT > 0 ? Math.min(1, G.bannerT / 30, (200 - G.bannerT) / 20) : 0;
-    this.tBanner1.setAlpha(a).setText(`ACT ${ROMAN[G.lvl]}`);
-    this.tBanner2.setAlpha(a).setText(LEVELS[G.lvl].name);
+    this.tBanner1.setAlpha(a).setText(G.bannerTop || `ACT ${ROMAN[G.lvl]}`);   // or e.g. "VALLAKI" / "St. Andral's Church"
+    this.tBanner2.setAlpha(a).setText(G.bannerTitle || LEVELS[G.lvl].name);
   }
 
   pts(a) { const out = []; for (let i = 0; i < a.length; i += 2) out.push({ x: a[i], y: a[i + 1] }); return out; }

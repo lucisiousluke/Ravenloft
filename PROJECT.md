@@ -13,8 +13,9 @@ Keep it open in VS Code. Update it every time something meaningful changes (see 
 ## 1. The game in one paragraph
 
 **The Curse of Strahd** is a D&D-flavored side-scrolling beat 'em up, based on the *Curse of Strahd* adventure, in the style of the classic arcade brawlers
-(Golden Axe, Streets of Rage) that runs in a web browser. You pick one of four heroes and fight across three acts
-(The Lands of Barovia → Outside of Ravenloft → Inside Ravenloft), each ending in a boss fight; the final boss is Strahd von Zarovich. D&D shows up in the
+(Golden Axe, Streets of Rage) that runs in a web browser. You pick one of four heroes and fight across seven acts
+(The Lands of Barovia → Vallaki → Krezk → Argynvostholt → The Amber Temple → Outside of Ravenloft → Inside Ravenloft),
+each ending in a boss fight; the final boss is Strahd von Zarovich. D&D shows up in the
 mechanics: every hit is a d20 roll (natural 1 misses, natural 20 crits), weapons use damage dice (1d8+3),
 spells use spell slots, and the story cards between acts read like a DM's read-aloud text.
 It plays on desktop (keyboard) and phones (on-screen controls, held sideways).
@@ -23,9 +24,9 @@ It plays on desktop (keyboard) and phones (on-screen controls, held sideways).
 
 | Area | State |
 |---|---|
-| Playable start to finish | ✅ 3 acts, 3 bosses, win and lose screens |
+| Playable start to finish | ✅ 7 acts and their bosses, win and lose screens |
 | Heroes | ✅ 4 heroes, each with a 3-hit combo, a signature spell and a once-per-act heal |
-| Enemies | ✅ 6 regular foes + 3 bosses with special moves |
+| Enemies | ✅ 6 regular foes + 7 boss fights: Owlbear, 6 Vampire Spawn (Vallaki church), the Abbot, 4 Revenants (Emily, T, Fatama, Kindra), Bray Wyatt, Barrow Wight, Strahd |
 | Art | 🟡 **Ulrick and Rolfing have final art.** The other heroes, the enemies and the backgrounds are still placeholders that final art will replace using the same file names |
 | Sound | 🟡 Background music ("Lament of Home") on every screen. Sound effects are still the built-in synth |
 | Hosting | Netlify, deploys automatically when `main` is pushed to GitHub |
@@ -129,6 +130,7 @@ Write down any choice we'd otherwise forget the reason for.
 | Fixed 60-tick game loop | Same feel on every device; timings are easy to reason about |
 | Heal is once per act, not a cooldown | Makes it a big tactical choice ("save it for the boss?") instead of a button to spam |
 | Heal doesn't fire at full HP | Prevents accidentally wasting it |
+| Boss moves live in foes.js (`moves`, `summon`, `drain`, `regen`) | New bosses can be made by mixing existing moves in data, without new code |
 | Each class heals differently | Class flavor: the paladin's is one big instant burst, the druid's trickles in over time, the rogue and bard get a dice roll with a joke attached |
 | Placeholder art uses final file names | Real art can be dropped in without code changes |
 | Painted sheets are shrunk to fit the game | Art comes in bigger than game size; shrinking so the idle pose is ~68px tall keeps every hero the same scale |
@@ -139,6 +141,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-08**: Four new acts from Curse of Strahd, for **seven** in total: **Vallaki** (six vampire spawn inside St. Andral's Church, with a fade from the town into the church), **Krezk** (the Abbot: holy light, charges, calls helpers), **Argynvostholt** (four revenants named Emily, T, Fatama and Kindra, who regenerate) and **the Amber Temple** (Bray Wyatt, a pit fiend in human form: fireballs, charges, summons). Boss moves are now settings in `src/data/foes.js` instead of code, and acts can have several bosses sharing one health bar. Placeholder art for the new backgrounds and bosses comes from `tools/placeholders/`.
 - **2026-10-08**: Music volume lowered from 0.45 to 0.15 (`MUSIC_VOLUME` in `src/data/audio.js`).
 - **2026-10-08**: Renamed the game **The Curse of Strahd**. The acts are now The Lands of Barovia, Outside of Ravenloft and Inside Ravenloft, the final boss is Strahd von Zarovich, and the title screen, story text, victory screen and browser tab are updated to match. Internal names (sprite file `count-vaszlo`, the folder and repo names) are unchanged.
 - **2026-10-08**: Background music: `assets/audio/lament-of-home.mp3` plays on the title, select and story screens and in all three acts, and carries on between screens without restarting. It starts on the first click or key press, because browsers block sound until then. Track and volume settings live in `src/data/audio.js`; per-act music in `src/data/levels.js`.
@@ -159,6 +162,9 @@ Newest at the top. One line per change is plenty.
 ## 8. Ideas and to-do
 
 - [ ] Replace placeholder sprites with final art (see SPRITES.md). Ulrick and Rolfing are done; Sunday, Fae'ron and the enemies are left
+- [ ] Bray Wyatt sprite sheet (Luke is making it). It replaces `assets/sprites/bray-wyatt.png/json`
+- [ ] Real names for the four Argynvostholt revenants (placeholders: Emily, T, Fatama, Kindra in `src/data/levels.js`)
+- [ ] Final art for the new backgrounds (town, church, abbey, manor, temple) and bosses (vampire-spawn, the-abbot, revenant)
 - [ ] Repaint the walk rows for Ulrick and Rolfing with a clear stride → legs-together → stride cycle (the current frames barely move the legs)
 - [ ] Ulrick: optional separate Lay on Hands animation (it currently shares the Divine Smite glow row)
 - [ ] Add real sound effects, and optionally a different music track per act (`src/data/audio.js`, `src/data/levels.js`)

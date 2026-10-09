@@ -1,0 +1,806 @@
+{
+ "frames": [
+  {
+   "filename": "the-abbot 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 180
+  },
+  {
+   "filename": "the-abbot 1",
+   "frame": {
+    "x": 216,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 180
+  },
+  {
+   "filename": "the-abbot 2",
+   "frame": {
+    "x": 432,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 180
+  },
+  {
+   "filename": "the-abbot 3",
+   "frame": {
+    "x": 648,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 180
+  },
+  {
+   "filename": "the-abbot 4",
+   "frame": {
+    "x": 864,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 100
+  },
+  {
+   "filename": "the-abbot 5",
+   "frame": {
+    "x": 1080,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 100
+  },
+  {
+   "filename": "the-abbot 6",
+   "frame": {
+    "x": 1296,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 100
+  },
+  {
+   "filename": "the-abbot 7",
+   "frame": {
+    "x": 1512,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 100
+  },
+  {
+   "filename": "the-abbot 8",
+   "frame": {
+    "x": 0,
+    "y": 176,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 100
+  },
+  {
+   "filename": "the-abbot 9",
+   "frame": {
+    "x": 216,
+    "y": 176,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 100
+  },
+  {
+   "filename": "the-abbot 10",
+   "frame": {
+    "x": 432,
+    "y": 176,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 100
+  },
+  {
+   "filename": "the-abbot 11",
+   "frame": {
+    "x": 648,
+    "y": 176,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 100
+  },
+  {
+   "filename": "the-abbot 12",
+   "frame": {
+    "x": 864,
+    "y": 176,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 100
+  },
+  {
+   "filename": "the-abbot 13",
+   "frame": {
+    "x": 1080,
+    "y": 176,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 100
+  },
+  {
+   "filename": "the-abbot 14",
+   "frame": {
+    "x": 1296,
+    "y": 176,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 100
+  },
+  {
+   "filename": "the-abbot 15",
+   "frame": {
+    "x": 1512,
+    "y": 176,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 70
+  },
+  {
+   "filename": "the-abbot 16",
+   "frame": {
+    "x": 0,
+    "y": 352,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 70
+  },
+  {
+   "filename": "the-abbot 17",
+   "frame": {
+    "x": 216,
+    "y": 352,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 70
+  },
+  {
+   "filename": "the-abbot 18",
+   "frame": {
+    "x": 432,
+    "y": 352,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 70
+  },
+  {
+   "filename": "the-abbot 19",
+   "frame": {
+    "x": 648,
+    "y": 352,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 70
+  },
+  {
+   "filename": "the-abbot 20",
+   "frame": {
+    "x": 864,
+    "y": 352,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 120
+  },
+  {
+   "filename": "the-abbot 21",
+   "frame": {
+    "x": 1080,
+    "y": 352,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 120
+  },
+  {
+   "filename": "the-abbot 22",
+   "frame": {
+    "x": 1296,
+    "y": 352,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 110
+  },
+  {
+   "filename": "the-abbot 23",
+   "frame": {
+    "x": 1512,
+    "y": 352,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 110
+  },
+  {
+   "filename": "the-abbot 24",
+   "frame": {
+    "x": 0,
+    "y": 528,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 110
+  },
+  {
+   "filename": "the-abbot 25",
+   "frame": {
+    "x": 216,
+    "y": 528,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 110
+  },
+  {
+   "filename": "the-abbot 26",
+   "frame": {
+    "x": 432,
+    "y": 528,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 110
+  },
+  {
+   "filename": "the-abbot 27",
+   "frame": {
+    "x": 648,
+    "y": 528,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 110
+  },
+  {
+   "filename": "the-abbot 28",
+   "frame": {
+    "x": 864,
+    "y": 528,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 110
+  },
+  {
+   "filename": "the-abbot 29",
+   "frame": {
+    "x": 1080,
+    "y": 528,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 110
+  },
+  {
+   "filename": "the-abbot 30",
+   "frame": {
+    "x": 1296,
+    "y": 528,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 110
+  },
+  {
+   "filename": "the-abbot 31",
+   "frame": {
+    "x": 1512,
+    "y": 528,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 110
+  },
+  {
+   "filename": "the-abbot 32",
+   "frame": {
+    "x": 0,
+    "y": 704,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 110
+  },
+  {
+   "filename": "the-abbot 33",
+   "frame": {
+    "x": 216,
+    "y": 704,
+    "w": 216,
+    "h": 176
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 216,
+    "h": 176
+   },
+   "sourceSize": {
+    "w": 216,
+    "h": 176
+   },
+   "duration": 110
+  }
+ ],
+ "meta": {
+  "app": "ravenmoor tools/placeholders/sprites.py",
+  "image": "the-abbot.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1728,
+   "h": 880
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "idle",
+    "from": 0,
+    "to": 3,
+    "direction": "forward"
+   },
+   {
+    "name": "walk",
+    "from": 4,
+    "to": 11,
+    "direction": "forward"
+   },
+   {
+    "name": "windup",
+    "from": 12,
+    "to": 14,
+    "direction": "forward"
+   },
+   {
+    "name": "attack",
+    "from": 15,
+    "to": 19,
+    "direction": "forward"
+   },
+   {
+    "name": "hurt",
+    "from": 20,
+    "to": 21,
+    "direction": "forward"
+   },
+   {
+    "name": "death",
+    "from": 22,
+    "to": 27,
+    "direction": "forward"
+   },
+   {
+    "name": "cast",
+    "from": 28,
+    "to": 33,
+    "direction": "forward"
+   }
+  ]
+ }
+}

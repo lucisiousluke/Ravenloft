@@ -175,6 +175,94 @@
     "h": 96
    },
    "duration": 110
+  },
+  {
+   "filename": "fx 8",
+   "frame": {
+    "x": 768,
+    "y": 0,
+    "w": 96,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 96,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 96,
+    "h": 96
+   },
+   "duration": 120
+  },
+  {
+   "filename": "fx 9",
+   "frame": {
+    "x": 864,
+    "y": 0,
+    "w": 96,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 96,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 96,
+    "h": 96
+   },
+   "duration": 120
+  },
+  {
+   "filename": "fx 10",
+   "frame": {
+    "x": 960,
+    "y": 0,
+    "w": 96,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 96,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 96,
+    "h": 96
+   },
+   "duration": 120
+  },
+  {
+   "filename": "fx 11",
+   "frame": {
+    "x": 1056,
+    "y": 0,
+    "w": 96,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 96,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 96,
+    "h": 96
+   },
+   "duration": 120
   }
  ],
  "meta": {
@@ -182,7 +270,7 @@
   "image": "fx.png",
   "format": "RGBA8888",
   "size": {
-   "w": 768,
+   "w": 1152,
    "h": 96
   },
   "scale": "1",
@@ -215,6 +303,18 @@
     "name": "potion",
     "from": 7,
     "to": 7,
+    "direction": "forward"
+   },
+   {
+    "name": "holy",
+    "from": 8,
+    "to": 9,
+    "direction": "forward"
+   },
+   {
+    "name": "fire",
+    "from": 10,
+    "to": 11,
     "direction": "forward"
    }
   ]
