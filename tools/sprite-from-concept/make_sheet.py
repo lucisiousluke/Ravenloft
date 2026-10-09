@@ -21,6 +21,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 # strips  -> optional {tag: dict(file=..., height=..., ms=...)}: a separate row of figures on a transparent background,
 #            any size (e.g. a redone walk cycle from ChatGPT). Shrunk so the tallest figure is `height` game pixels,
 #            lined up by the torso so the body stays steady, and used for that animation instead of the sheet's row.
+#            solid = optional opacity cut-off (0-255) for exports where the background is only half erased:
+#            pixels at least this solid become fully solid, everything else is removed.
 # tags    -> game animation name -> list of (frame, milliseconds). Only the rhythm matters for attacks/spells;
 #            the game stretches them to the move's length. The hit lands ~40% through an attack.
 HEROES = {
@@ -43,9 +45,11 @@ HEROES = {
   'rolfing': dict(
     rows=[('idle', 4), ('walk', 7), ('slam', 6), ('jab', 6), ('spin', 6), ('jump', 2), ('hurt', 2), ('death', 6), ('vines', 6)],
     stand_h=58, light=(190, 255, 150), glow=['slam5', 'slam6', 'spin', 'vines'], lying=['death3', 'death4', 'death5', 'death6'], lying_off=55, trapped_checker=True,
+    # ChatGPT's export left a faint checkerboard haze (under 60% solid); the dwarf himself is over 80% solid
+    strips={'walk': dict(file='art-source/rolfing-walk.png', height=58, ms=100, solid=200)},
     tags={
       'idle':    [(f'idle{i}', 250) for i in range(1, 5)],
-      'walk':    [(f'walk{i}', 70) for i in range(1, 8)],
+      'walk':    [(f'walk{i}', 70) for i in range(1, 8)],      # replaced by strips['walk'] below
       'attack1': list(zip([f'jab{i}' for i in range(1, 7)], [70, 70, 90, 70, 70, 80])),      # staff jab
       'attack2': [(f'spin{i}', 80) for i in range(1, 7)],                                     # spinning sweep
       'attack3': list(zip([f'slam{i}' for i in range(1, 7)], [40, 40, 40, 40, 150, 130])),   # ground slam finisher
@@ -148,6 +152,7 @@ def build(hero):
     # separate transparent strips (e.g. a redone walk): each figure cut out, shrunk, lined up by the torso
     for tag, st in cfg.get('strips', {}).items():
         src = np.array(Image.open(os.path.join(ROOT, st['file'])).convert('RGBA'))
+        if st.get('solid'): src[..., 3] = np.where(src[..., 3] >= st['solid'], 255, 0)
         solid = src[..., 3] > 128
         slab, sn = ndimage.label(solid, structure=np.ones((3, 3)))
         sobjs = ndimage.find_objects(slab); ssz = ndimage.sum(solid, slab, range(1, sn + 1))

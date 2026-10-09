@@ -108,7 +108,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 100
   },
   {
    "filename": "rolfing 5",
@@ -130,7 +130,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 100
   },
   {
    "filename": "rolfing 6",
@@ -152,7 +152,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 100
   },
   {
    "filename": "rolfing 7",
@@ -174,7 +174,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 100
   },
   {
    "filename": "rolfing 8",
@@ -196,7 +196,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 100
   },
   {
    "filename": "rolfing 9",
@@ -218,7 +218,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 100
   },
   {
    "filename": "rolfing 10",
@@ -284,7 +284,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 90
   },
   {
    "filename": "rolfing 13",
@@ -306,7 +306,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 70
   },
   {
    "filename": "rolfing 14",
@@ -350,7 +350,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 80
   },
   {
    "filename": "rolfing 16",
@@ -504,7 +504,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 80
+   "duration": 40
   },
   {
    "filename": "rolfing 23",
@@ -592,7 +592,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 40
+   "duration": 150
   },
   {
    "filename": "rolfing 27",
@@ -614,7 +614,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 150
+   "duration": 130
   },
   {
    "filename": "rolfing 28",
@@ -636,7 +636,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 130
+   "duration": 120
   },
   {
    "filename": "rolfing 29",
@@ -658,7 +658,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 120
+   "duration": 400
   },
   {
    "filename": "rolfing 30",
@@ -680,7 +680,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 400
+   "duration": 100
   },
   {
    "filename": "rolfing 31",
@@ -702,7 +702,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 120
   },
   {
    "filename": "rolfing 32",
@@ -724,7 +724,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 120
+   "duration": 90
   },
   {
    "filename": "rolfing 33",
@@ -790,7 +790,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 100
   },
   {
    "filename": "rolfing 36",
@@ -812,7 +812,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 120
   },
   {
    "filename": "rolfing 37",
@@ -834,7 +834,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 120
+   "duration": 600
   },
   {
    "filename": "rolfing 38",
@@ -856,7 +856,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 600
+   "duration": 100
   },
   {
    "filename": "rolfing 39",
@@ -988,34 +988,12 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 120
   },
   {
    "filename": "rolfing 45",
    "frame": {
     "x": 800,
-    "y": 640,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 120
-  },
-  {
-   "filename": "rolfing 46",
-   "frame": {
-    "x": 960,
     "y": 640,
     "w": 160,
     "h": 128
@@ -1054,55 +1032,55 @@
    {
     "name": "walk",
     "from": 4,
-    "to": 10,
+    "to": 9,
     "direction": "forward"
    },
    {
     "name": "attack1",
-    "from": 11,
-    "to": 16,
+    "from": 10,
+    "to": 15,
     "direction": "forward"
    },
    {
     "name": "attack2",
-    "from": 17,
-    "to": 22,
+    "from": 16,
+    "to": 21,
     "direction": "forward"
    },
    {
     "name": "attack3",
-    "from": 23,
-    "to": 28,
+    "from": 22,
+    "to": 27,
     "direction": "forward"
    },
    {
     "name": "jump",
-    "from": 29,
-    "to": 30,
+    "from": 28,
+    "to": 29,
     "direction": "forward"
    },
    {
     "name": "hurt",
-    "from": 31,
-    "to": 32,
+    "from": 30,
+    "to": 31,
     "direction": "forward"
    },
    {
     "name": "death",
-    "from": 33,
-    "to": 38,
+    "from": 32,
+    "to": 37,
     "direction": "forward"
    },
    {
     "name": "cast",
-    "from": 39,
-    "to": 44,
+    "from": 38,
+    "to": 43,
     "direction": "forward"
    },
    {
     "name": "heal",
-    "from": 45,
-    "to": 46,
+    "from": 44,
+    "to": 45,
     "direction": "forward"
    }
   ]

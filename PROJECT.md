@@ -141,6 +141,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-09**: New 6-frame walk cycle for Rolfing (`art-source/rolfing-walk.png`, from ChatGPT). Its export left a faint checkerboard haze, so the converter's new `solid` option keeps only the near-solid dwarf.
 - **2026-10-09**: New 6-frame walk cycle for Ulrick (`art-source/ulrick-walk.png`, made with ChatGPT from the walk prompt). The legs now clearly pass each other. Added a `strips` option to the sheet converter for separate transparent rows like this.
 - **2026-10-08**: The revenant **T** now says a line every 7–13 seconds in a speech bubble: the user-supplied "Karma" lyric plus Taylor Swift song titles as taunts. Any boss can get lines with `quips: [...]` in `src/data/levels.js`. Avoid adding more song lyrics, since the game is public; titles and original lines are fine.
 - **2026-10-08**: The game restarting "at random" during local testing came from Live Server reloading the page whenever a project file changed, here while Claude was editing files. Don't test while Claude is making changes, and refresh once it's done. `.vscode/settings.json` now also stops changes to the docs, `art-source` and `tools` from reloading the page.
@@ -168,7 +169,6 @@ Newest at the top. One line per change is plenty.
 - [ ] Bray Wyatt sprite sheet (Luke is making it). It replaces `assets/sprites/bray-wyatt.png/json`
 - [ ] Real names for the four Argynvostholt revenants (placeholders: Emily, T, Fatama, Kindra in `src/data/levels.js`)
 - [ ] Final art for the new backgrounds (town, church, abbey, manor, temple) and bosses (vampire-spawn, the-abbot, revenant)
-- [ ] Repaint Rolfing's walk row with a clear stride → legs-together → stride cycle (Ulrick's is done)
 - [ ] Ulrick: optional separate Lay on Hands animation (it currently shares the Divine Smite glow row)
 - [ ] Add real sound effects, and optionally a different music track per act (`src/data/audio.js`, `src/data/levels.js`)
 - [ ] Delete the old `Ravenloft/` folder inside the project. It's a leftover local copy, ignored by git
