@@ -34,8 +34,8 @@ export class BootScene extends Phaser.Scene {
       for (const tag of json.meta.frameTags || []) {
         const slice = frames.slice(tag.from, tag.to + 1);
         const total = slice.reduce((t, f) => t + (f.duration || 100), 0);
-        const avg = total / slice.length;
-        let list = slice.map((f) => ({ key, frame: f.filename, duration: (f.duration || 100) - avg }));
+        // Phaser 4: a frame's duration is how long it shows, in ms (Phaser 3 treated it as extra time on top of an average)
+        let list = slice.map((f) => ({ key, frame: f.filename, duration: f.duration || 100 }));
         if (tag.direction === 'reverse') list = list.reverse();
         this.anims.create({
           key: `${key}:${tag.name}`, frames: list, duration: total,

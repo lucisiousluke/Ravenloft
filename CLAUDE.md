@@ -2,7 +2,8 @@
 
 "The Curse of Strahd", a D&D-themed (Curse of Strahd / Barovia) side-scrolling beat 'em up built with Phaser 4.2.1 (`vendor/phaser.min.js`, loaded as a global `Phaser`).
 Phaser 4 changed some APIs from v3 (e.g. `setTintFill` is gone: use `setTint(c).setTintMode(Phaser.TintModes.FILL)`);
-check the v4 docs, not v3 examples, when writing engine code.
+check the v4 docs, not v3 examples, when writing engine code. Animation frame `duration` is the frame's
+total ms in v4 (it was extra ms in v3). After engine changes, sample animation frames in the browser, not just screenshots.
 Plain ES modules, **no build step and no npm dependencies**. Keep it that way unless asked.
 
 ## Project notebook

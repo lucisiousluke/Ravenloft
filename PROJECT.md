@@ -125,7 +125,7 @@ Write down any choice we'd otherwise forget the reason for.
 | Decision | Why |
 |---|---|
 | No build step, no npm | Easy for a designer to run and edit; nothing to install or break. Vite is on the wish list but on hold until there's a concrete need |
-| Phaser 4 (Oct 2026) | Current engine with a faster, more modern renderer. When reading tutorials, make sure they're for v4: some v3 calls (like `setTintFill`) no longer exist |
+| Phaser 4 (Oct 2026) | Current engine with a faster, more modern renderer. When reading tutorials, make sure they're for v4: some v3 calls (like `setTintFill`) no longer exist, and animation frame `duration` means total ms, not extra ms |
 | Tuning lives in `src/data/` | Balance and content changes don't require reading game code |
 | Fixed 60-tick game loop | Same feel on every device; timings are easy to reason about |
 | Heal is once per act, not a cooldown | Makes it a big tactical choice ("save it for the boss?") instead of a button to spam |
@@ -141,6 +141,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-09**: **Fixed:** since the Phaser 4 upgrade, any animation with uneven frame timing (attacks, spells, idles, hurt, death) skipped straight to its last frame, so attacks showed no swing. Phaser 4 reads a frame's duration as its total time on screen (Phaser 3 treated it as extra time), and `BootScene.js` now passes the real durations. Walks weren't affected because their frames are all the same length.
 - **2026-10-09**: Fae'ron gets final art (`art-source/faeron-sheet.png`, from ChatGPT): thrust, slash and lunge combo, Thunderwave with sound rings, Song of Rest with music notes. His walk properly alternates legs. The converter learned to read sheets with real transparency (`transparent`, `solid`), keep faint spell glow, and resize rows drawn at the wrong size (`resize`).
 - **2026-10-09**: New 6-frame walk cycle for Rolfing (`art-source/rolfing-walk.png`, from ChatGPT). Its export left a faint checkerboard haze, so the converter's new `solid` option keeps only the near-solid dwarf.
 - **2026-10-09**: New 6-frame walk cycle for Ulrick (`art-source/ulrick-walk.png`, made with ChatGPT from the walk prompt). The legs now clearly pass each other. Added a `strips` option to the sheet converter for separate transparent rows like this.
