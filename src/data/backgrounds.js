@@ -3,16 +3,15 @@
 // factor -> how fast the layer scrolls with the camera (0 = fixed sky, 1 = moves with the floor, >1 = foreground)
 // drift  -> extra pixels per tick the layer slides on its own (clouds, fog)
 // front  -> drawn in front of the characters
+// once   -> shown a single time instead of repeating: the image's left edge sits at this x (in pixels) at the
+//           start of the level, then scrolls at `factor` like the others. On title/menu screens it stays put.
+// y      -> for `once` layers: how far down the image's top edge sits
 // Scrolling layers should tile seamlessly left-to-right (the placeholders are 1920px wide).
 export const BACKGROUNDS = {
-  forest: [
-    { file: 'sky', factor: 0 },
-    { file: 'hillsFar', factor: 0.08 },
-    { file: 'hillsNear', factor: 0.16 },
-    { file: 'treesFar', factor: 0.3 },
-    { file: 'treesNear', factor: 0.62 },
+  forest: [          // Act I, also the title and hero select screens (made by tools/backgrounds/make_forest.py)
+    { file: 'backdrop', factor: 0.15 },               // the dark forest
+    { file: 'castle', factor: 0.15, once: 400, y: 40 }, // Castle Ravenloft and the moon, in the forest clearing
     { file: 'ground', factor: 1 },
-    { file: 'foreground', factor: 1.3, front: true },
   ],
   gothic: [
     { file: 'sky', factor: 0 },

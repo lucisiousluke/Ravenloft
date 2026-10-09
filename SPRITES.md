@@ -106,6 +106,10 @@ Each level theme has layers in `assets/backgrounds/<theme>/`, listed back to fro
   The placeholders are 1920px wide, but any width works.
 - The walkable floor is between **y = 345 and y = 515**. Keep the ground layer's horizon at 345.
 - `foreground` layers draw in front of the characters, so keep them sparse.
+- A layer with `once` in `src/data/backgrounds.js` is a single image that doesn't repeat, such as Act I's
+  castle. It can be any size and can have transparency.
+- Act I's layers are built from `art-source/backgrounds/forest-dark.png` and `forest-castle.png` by
+  `tools/backgrounds/make_forest.py` (it lines them up, recolors the castle and makes the forest repeat seamlessly).
 
 ## Sound
 

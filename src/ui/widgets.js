@@ -49,16 +49,19 @@ export function buildLayers(scene, theme, { fixed = false } = {}) {
   return BACKGROUNDS[theme].map((def, i) => {
     const key = `bg-${theme}-${def.file}`;
     const tex = scene.textures.get(key).getSourceImage();
-    const obj = def.factor === 0
-      ? scene.add.image(0, 0, key).setOrigin(0)
+    const obj = def.once != null ? scene.add.image(def.once, def.y || 0, key).setOrigin(0)   // shown once
+      : def.factor === 0 ? scene.add.image(0, 0, key).setOrigin(0)
       : scene.add.tileSprite(0, 0, W, tex.height || H, key).setOrigin(0);
     obj.setScrollFactor(0).setDepth(def.front ? 9000 : -1000 + i);
     if (fixed && def.front) obj.setVisible(false);
-    return { obj, factor: def.factor, drift: def.drift || 0 };
+    return { obj, factor: def.factor, drift: def.drift || 0, once: def.once, pinned: fixed };
   });
 }
 export function scrollLayers(layers, cam, tick) {
-  for (const l of layers) if (l.factor) l.obj.tilePositionX = cam * l.factor + tick * l.drift;
+  for (const l of layers) {
+    if (l.once != null) { if (!l.pinned) l.obj.x = Math.round(l.once - cam * l.factor); }   // single image slides by
+    else if (l.factor) l.obj.tilePositionX = cam * l.factor + tick * l.drift;
+  }
 }
 
 // Dark wash used behind menus

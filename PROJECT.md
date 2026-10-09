@@ -141,6 +141,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-09**: Act I (and the title and select screens) has a new pixel-art background: a dark moonlit forest that repeats seamlessly, with Castle Ravenloft and a full moon in the clearing, shown **once** and drifting slowly. Backgrounds can now have `once` layers. Built by `tools/backgrounds/make_forest.py` from two images in `art-source/backgrounds/`.
 - **2026-10-09**: **Fixed:** since the Phaser 4 upgrade, any animation with uneven frame timing (attacks, spells, idles, hurt, death) skipped straight to its last frame, so attacks showed no swing. Phaser 4 reads a frame's duration as its total time on screen (Phaser 3 treated it as extra time), and `BootScene.js` now passes the real durations. Walks weren't affected because their frames are all the same length.
 - **2026-10-09**: Fae'ron gets final art (`art-source/faeron-sheet.png`, from ChatGPT): thrust, slash and lunge combo, Thunderwave with sound rings, Song of Rest with music notes. His walk properly alternates legs. The converter learned to read sheets with real transparency (`transparent`, `solid`), keep faint spell glow, and resize rows drawn at the wrong size (`resize`).
 - **2026-10-09**: New 6-frame walk cycle for Rolfing (`art-source/rolfing-walk.png`, from ChatGPT). Its export left a faint checkerboard haze, so the converter's new `solid` option keeps only the near-solid dwarf.
