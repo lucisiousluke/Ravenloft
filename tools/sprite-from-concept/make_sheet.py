@@ -18,15 +18,19 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 # trapped_checker -> also clear checkerboard trapped inside a figure (e.g. between staff and body)
 # ready   -> optional {tag: 'art-source/<file>.png'}: a strip painted on the game grid (160x128 cells, transparent,
 #            feet on y 116, centred on x 80). Used as-is, replacing that animation. Timing = first value in `tags`.
+# strips  -> optional {tag: dict(file=..., height=..., ms=...)}: a separate row of figures on a transparent background,
+#            any size (e.g. a redone walk cycle from ChatGPT). Shrunk so the tallest figure is `height` game pixels,
+#            lined up by the torso so the body stays steady, and used for that animation instead of the sheet's row.
 # tags    -> game animation name -> list of (frame, milliseconds). Only the rhythm matters for attacks/spells;
 #            the game stretches them to the move's length. The hit lands ~40% through an attack.
 HEROES = {
   'ulrick': dict(
     rows=[('idle', 3), ('walk', 8), ('slash', 6), ('thrust', 6), ('chop', 5), ('jump', 2), ('hurt', 2), ('death', 6), ('glow', 6)],
     stand_h=68, light=(255, 226, 140), glow=['glow'], lying=['death3', 'death4', 'death5', 'death6'],
+    strips={'walk': dict(file='art-source/ulrick-walk.png', height=67, ms=100)},   # 6-frame walk: stride, down, passing x2
     tags={
       'idle':    [('idle1', 400), ('idle2', 300), ('idle3', 400)],
-      'walk':    [(f'walk{i}', 70) for i in range(1, 9)],      # fast enough that the feet don't look like they slide
+      'walk':    [(f'walk{i}', 70) for i in range(1, 9)],      # replaced by strips['walk'] below
       'attack1': list(zip([f'thrust{i}' for i in range(1, 7)], [60, 90, 70, 70, 70, 80])),   # quick thrust
       'attack2': list(zip([f'slash{i}' for i in range(1, 7)], [60, 60, 60, 120, 80, 140])),  # rising slash
       'attack3': list(zip([f'chop{i}' for i in range(1, 6)], [50, 50, 50, 60, 220])),        # heavy chop finisher
@@ -124,11 +128,15 @@ def build(hero):
 
     def cell(name):
         a = CUT[name]; fx, fy = feet(name, a)
+        return place(a, fx, fy, scale, is_glow(name))
+
+    def place(a, fx, fy, scale, soft=False):
+        """Shrink a cut-out figure and put its anchor point (fx, fy, in source pixels) on the cell's feet spot."""
         h, w = a.shape[:2]; nw, nh = max(1, round(w * scale)), max(1, round(h * scale))
         al = a[..., 3:] / 255.0   # shrink with premultiplied alpha so edges don't go dark or white
         p = np.array(Image.fromarray(np.dstack([a[..., :3] * al, al * 255]).astype(np.uint8)).resize((nw, nh), Image.BOX)).astype(float)
         al2 = p[..., 3:] / 255; col = np.where(al2 > 0, p[..., :3] / np.maximum(al2, 1e-3), 0)
-        lo, hi = (0.12, 0.85) if is_glow(name) else (0.5, 0.5)   # crisp edges, soft glow
+        lo, hi = (0.12, 0.85) if soft else (0.5, 0.5)   # crisp edges, soft glow
         al2 = np.where(al2 > hi, 1, np.where(al2 < lo, 0, al2))
         img = Image.fromarray(np.dstack([np.clip(col, 0, 255), al2 * 255]).astype(np.uint8))
         out = Image.new('RGBA', (FW, FH))
@@ -137,6 +145,27 @@ def build(hero):
 
     cells = {f: cell(f) for f in frames}
     seq = [(tag, f, ms) for tag, fs in cfg['tags'].items() for f, ms in fs]
+    # separate transparent strips (e.g. a redone walk): each figure cut out, shrunk, lined up by the torso
+    for tag, st in cfg.get('strips', {}).items():
+        src = np.array(Image.open(os.path.join(ROOT, st['file'])).convert('RGBA'))
+        solid = src[..., 3] > 128
+        slab, sn = ndimage.label(solid, structure=np.ones((3, 3)))
+        sobjs = ndimage.find_objects(slab); ssz = ndimage.sum(solid, slab, range(1, sn + 1))
+        figs = sorted([i + 1 for i in range(sn) if ssz[i] > 0.2 * ssz.max()], key=lambda i: sobjs[i - 1][1].start)
+        tallest = max(sobjs[i - 1][0].stop - sobjs[i - 1][0].start for i in figs)
+        k = st['height'] / tallest; new = []
+        for j, i in enumerate(figs):
+            sl = sobjs[i - 1]
+            y0, y1, x0, x1 = sl[0].start - 3, sl[0].stop + 3, sl[1].start - 3, sl[1].stop + 3
+            a = src[max(0, y0):y1, max(0, x0):x1].copy()
+            mine = ndimage.binary_dilation(slab[max(0, y0):y1, max(0, x0):x1] == i, iterations=3)   # keep its soft edges
+            a[..., 3] = np.where(mine, a[..., 3], 0)
+            al = a[..., 3] > 128; rows = np.where(al.any(1))[0]; top, bot = rows.min(), rows.max()
+            band = al[top + int((bot - top) * 0.35): top + int((bot - top) * 0.6)]   # torso height
+            tx = float(np.median(np.where(band)[1]))
+            cells[f'{tag}#{j}'] = place(a, tx, bot, k); new.append((tag, f'{tag}#{j}', st['ms']))
+        at = next(i for i, x in enumerate(seq) if x[0] == tag)
+        seq = seq[:at] + new + [x for x in seq[at:] if x[0] != tag]
     # ready-made strips replace whole animations, pixel for pixel
     for tag, path in cfg.get('ready', {}).items():
         strip = Image.open(os.path.join(ROOT, path)).convert('RGBA')
