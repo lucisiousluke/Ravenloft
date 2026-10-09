@@ -18,9 +18,11 @@ export class TitleScene extends Phaser.Scene {
     const x = 72;
     const d = 9200;
     this.add.text(x, 92, 'A SIDE-SCROLLING BRAWL IN THREE ACTS', T.eyebrow).setDepth(d);
-    this.add.text(x - 4, 112, 'Ravenmoor', T.logo).setDepth(d).setShadow(0, 0, 'rgba(176,58,63,0.9)', 28, false, true);
-    this.add.text(x, 262, 'Four adventurers, one cursed road. Fight through the Thornwood and the haunted graves of Gravesend Hollow to reach the castle of Count Vaszlo.', { ...T.body, wordWrap: { width: 560 } }).setDepth(d);
-    const btns = buttonRow(this, x, 352, [{ label: 'Gather the party', primary: true, action: () => this.scene.start('Select') }]);
+    // Game title: "The Curse of" small, "Strahd" large
+    this.add.text(x - 2, 110, 'The Curse of', { ...T.logo, fontSize: '46px' }).setDepth(d).setShadow(0, 0, 'rgba(176,58,63,0.9)', 18, false, true);
+    this.add.text(x - 4, 140, 'Strahd', T.logo).setDepth(d).setShadow(0, 0, 'rgba(176,58,63,0.9)', 28, false, true);
+    this.add.text(x, 290, 'Four adventurers, one cursed land. Fight through the Lands of Barovia and the haunted grounds outside Castle Ravenloft, then storm the castle to face Strahd von Zarovich.', { ...T.body, wordWrap: { width: 560 } }).setDepth(d);
+    const btns = buttonRow(this, x, 380, [{ label: 'Gather the party', primary: true, action: () => this.scene.start('Select') }]);
     btns.forEach((b) => b.setDepth(d));
     this.add.text(x, H - 64, CONTROLS, { ...T.small, wordWrap: { width: W - x * 2 } }).setDepth(d);
   }

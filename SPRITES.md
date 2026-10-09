@@ -63,7 +63,7 @@ and `meta.frameTags` in Aseprite's format.
 `jump`, `hurt`, `death`, `cast` (spell), and optionally `heal` (the once-per-act heal; heroes without it use `cast`).
 
 **Enemies:** `idle`, `walk`, `windup` (the warning pose before a hit), `attack`, `hurt`, `death`,
-plus `cast` for the Blood Cultist, Barrow Wight and Count Vaszlo.
+plus `cast` for the Blood Cultist, Barrow Wight and Strahd (whose sprite file is still named `count-vaszlo`).
 
 Attacks, wind-ups and spells are **stretched to fit the move's game timing** (e.g. Ulrick's swing
 takes 20 ticks = ⅓ second). Your frame durations still set the rhythm *within* the move. The hit

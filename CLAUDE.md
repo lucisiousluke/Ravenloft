@@ -1,6 +1,6 @@
-# Ravenmoor — notes for Claude
+# The Curse of Strahd (project folder: ravenmoor) — notes for Claude
 
-A D&D-themed side-scrolling beat 'em up built with Phaser 4.2.1 (`vendor/phaser.min.js`, loaded as a global `Phaser`).
+"The Curse of Strahd", a D&D-themed (Curse of Strahd / Barovia) side-scrolling beat 'em up built with Phaser 4.2.1 (`vendor/phaser.min.js`, loaded as a global `Phaser`).
 Phaser 4 changed some APIs from v3 (e.g. `setTintFill` is gone: use `setTint(c).setTintMode(Phaser.TintModes.FILL)`);
 check the v4 docs, not v3 examples, when writing engine code.
 Plain ES modules, **no build step and no npm dependencies**. Keep it that way unless asked.

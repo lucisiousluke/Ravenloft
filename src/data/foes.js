@@ -14,5 +14,5 @@ export const FOES = {
 
   owlbear:  { name: 'The Owlbear', boss: true, sprite: 'owlbear', height: 108, shadow: 30, hp: 300, spd: 1.9, dmg: { n: 2, s: 6, b: 2 }, reach: 82, wind: 26, cd: 50, gold: 120, poise: 3 },
   wight:    { name: 'The Barrow Wight', boss: true, sprite: 'barrow-wight', height: 93, shadow: 26, hp: 360, spd: 1.6, dmg: { n: 2, s: 8, b: 1 }, reach: 118, wind: 30, cd: 60, gold: 180, poise: 3 },
-  vampire:  { name: 'Count Vaszlo', boss: true, sprite: 'count-vaszlo', height: 86, shadow: 23, hp: 480, spd: 2.2, dmg: { n: 2, s: 8, b: 3 }, reach: 70, wind: 20, cd: 45, gold: 300, poise: 4 },
+  vampire:  { name: 'Strahd von Zarovich', boss: true, sprite: 'count-vaszlo', height: 86, shadow: 23, hp: 480, spd: 2.2, dmg: { n: 2, s: 8, b: 3 }, reach: 70, wind: 20, cd: 45, gold: 300, poise: 4 },
 };

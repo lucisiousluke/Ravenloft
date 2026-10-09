@@ -1,4 +1,6 @@
-# Ravenmoor
+# The Curse of Strahd
+
+*(Project folder and repo names still say Ravenmoor/Ravenloft; the game itself is called The Curse of Strahd.)*
 
 A Dungeons & Dragons side-scrolling brawler built with [Phaser 4](https://phaser.io) (v4.2.1, included in `vendor/`).
 There is no build step: the folder runs exactly as it is, locally and on Netlify.

@@ -30,7 +30,7 @@ export function toClear(scene, lvl, hp, maxHp) {
 export function toWin(scene) {
   const h = HEROES[scene.registry.get('hero')];
   scene.scene.start('Story', {
-    theme: 'castle', eyebrow: 'CAMPAIGN COMPLETE', title: 'Dawn over Ravenmoor', readAloud: LEVELS[LEVELS.length - 1].outro,
+    theme: 'castle', eyebrow: 'CAMPAIGN COMPLETE', title: 'Dawn over Barovia', readAloud: LEVELS[LEVELS.length - 1].outro,
     tally: [['HERO', h.name], ['TREASURE', `${scene.registry.get('gold')} gp`]],
     buttons: [
       { label: 'Play again', primary: true, action: (s) => s.scene.start('Select') },

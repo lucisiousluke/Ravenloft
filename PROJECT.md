@@ -1,4 +1,4 @@
-# Ravenmoor: Project Notebook
+# The Curse of Strahd: Project Notebook
 
 The living record of **what** we're building, **how** it's built, and **why** we made the choices we did.
 Keep it open in VS Code. Update it every time something meaningful changes (see "Keeping this file up to date" at the bottom).
@@ -12,9 +12,9 @@ Keep it open in VS Code. Update it every time something meaningful changes (see 
 
 ## 1. The game in one paragraph
 
-Ravenmoor is a D&D-flavored side-scrolling beat 'em up in the style of the classic arcade brawlers
+**The Curse of Strahd** is a D&D-flavored side-scrolling beat 'em up, based on the *Curse of Strahd* adventure, in the style of the classic arcade brawlers
 (Golden Axe, Streets of Rage) that runs in a web browser. You pick one of four heroes and fight across three acts
-(The Thornwood → Gravesend Hollow → Castle Ravenmoor), each ending in a boss fight. D&D shows up in the
+(The Lands of Barovia → Outside of Ravenloft → Inside Ravenloft), each ending in a boss fight; the final boss is Strahd von Zarovich. D&D shows up in the
 mechanics: every hit is a d20 roll (natural 1 misses, natural 20 crits), weapons use damage dice (1d8+3),
 spells use spell slots, and the story cards between acts read like a DM's read-aloud text.
 It plays on desktop (keyboard) and phones (on-screen controls, held sideways).
@@ -139,6 +139,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-08**: Renamed the game **The Curse of Strahd**. The acts are now The Lands of Barovia, Outside of Ravenloft and Inside Ravenloft, the final boss is Strahd von Zarovich, and the title screen, story text, victory screen and browser tab are updated to match. Internal names (sprite file `count-vaszlo`, the folder and repo names) are unchanged.
 - **2026-10-08**: Background music: `assets/audio/lament-of-home.mp3` plays on the title, select and story screens and in all three acts, and carries on between screens without restarting. It starts on the first click or key press, because browsers block sound until then. Track and volume settings live in `src/data/audio.js`; per-act music in `src/data/levels.js`.
 - **2026-10-08**: Art hand-off guide ("Sending new art" in SPRITES.md), a walk-cycle template on the game grid (`art-source/templates/walk-template.png`), and the converter can now drop in ready-made rows pixel for pixel.
 - **2026-10-08**: Faster walk cycles for Ulrick and Rolfing (70 ms per frame, was 100–110) so their feet don't look like they slide. Their painted walk frames still have too little leg movement and need a redo (see to-do).
