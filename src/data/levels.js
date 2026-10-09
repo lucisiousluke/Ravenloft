@@ -56,9 +56,9 @@ export const LEVELS = [
             bosses: [{ type: 'revenant', name: 'Emily', tint: 0xc8d8ff },
                      { type: 'revenant', name: 'T', tint: 0xffd0c0, quips: [
                        'Karma is a cat, purring in my lap',
-                       'Look what you made me do.',
+                       'I love you, it’s ruining my life',
                        'Bad Blood, adventurer.',
-                       'Shake it off? I’m already dead.',
+                       'I shake it off, I shake it off.',
                        'Death by a Thousand Cuts!',
                        'Is it over now? Not for me.',
                        'Haunted.',
