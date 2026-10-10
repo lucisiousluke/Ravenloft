@@ -54,6 +54,8 @@ const SYNTH = {
   roar: () => { noise(0.6, 0.2, 200); tone(110, 50, 0.6, 'sawtooth', 0.1); },
   heal: () => { tone(520, 520, 0.1, 'sine', 0.07); tone(780, 780, 0.18, 'sine', 0.07, 0.1); },
   go: () => { tone(440, 440, 0.08, 'triangle', 0.06); tone(660, 660, 0.12, 'triangle', 0.06, 0.09); },
+  omen: () => { tone(65, 45, 2.8, 'sawtooth', 0.05); tone(98, 70, 2.8, 'sine', 0.06); noise(2.0, 0.05, 160); },  // low ominous drone
+  toll: () => { tone(110, 108, 1.6, 'sine', 0.08); tone(220, 218, 1.2, 'sine', 0.03); },                       // distant bell
 };
 
 export function sfx(name) {
@@ -62,6 +64,9 @@ export function sfx(name) {
   if (!AC || !SYNTH[name]) return;
   try { SYNTH[name](); } catch (e) {}
 }
+
+// Turn the music down (on = true) while something dramatic plays, and back up afterwards.
+export function duckMusic(on) { if (currentMusic) currentMusic.setVolume(MUSIC_VOLUME * (on ? 0.35 : 1)); }
 
 // Music: one track at a time. Asking for the track that's already playing does nothing,
 // so music carries on smoothly between menus and levels.

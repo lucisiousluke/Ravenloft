@@ -13,6 +13,7 @@
 // summon -> calls helpers once, when its HP drops below `below` (0.5 = half)
 // drain  -> HP the boss heals each time it hits you
 // regen  -> HP the boss heals every second
+// finale -> instead of dying, starts a scripted ending (Strahd: vanishes and gives his final speech)
 export const FOES = {
   goblin:   { name: 'Goblin', sprite: 'goblin', height: 44, shadow: 15, hp: 22, spd: 1.9, dmg: { n: 1, s: 4, b: 1 }, reach: 46, wind: 24, cd: 55, gold: 5 },
   wolf:     { name: 'Dire Wolf', sprite: 'dire-wolf', height: 42, shadow: 24, hp: 26, spd: 2.8, dmg: { n: 1, s: 6, b: 1 }, reach: 64, wind: 20, cd: 70, gold: 6, lunge: true },
@@ -38,5 +39,6 @@ export const FOES = {
               summon: { below: 0.55, foes: ['skeleton', 'skeleton'], line: 'Rise, my children', col: '#7fe0ff' } },
   vampire:  { name: 'Strahd von Zarovich', boss: true, sprite: 'count-vaszlo', height: 86, shadow: 23, hp: 480, spd: 2.2, dmg: { n: 2, s: 8, b: 3 }, reach: 70, wind: 20, cd: 45, gold: 300, poise: 4,
               moves: ['vanish', 'cast'], every: [170, 250], proj: 'bat', drain: 10,
+              finale: 'strahd',   // at 0 HP he vanishes into mist and speaks instead of dying (data/dialogue.js)
               summon: { below: 0.45, foes: ['cultist', 'cultist'], line: 'Servants, to me!', col: '#ff6a7a' } },
 };

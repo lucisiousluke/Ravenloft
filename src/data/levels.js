@@ -91,7 +91,7 @@ export const LEVELS = [
   {
     name: 'Inside Ravenloft', theme: 'castle', music: 'music-lament',
     intro: 'The gates stand open, as if you were expected. Strahd von Zarovich waits in the great hall. He has waited for centuries. He can wait a few minutes more.',
-    outro: 'Strahd von Zarovich crumbles to ash, and for the first time in centuries, dawn breaks over Barovia.',
+    outro: 'Strahd is gone, dissolved into the dark of his own halls. Dawn breaks over Barovia, pale and uncertain. Somewhere beneath the castle, the throne waits.',
     waves: [
       { at: 520, foes: ['cultist', 'skeleton', 'skeleton', 'cultist'] },
       { at: 1350, foes: ['knight', 'cultist', 'ghoul', 'cultist'] },

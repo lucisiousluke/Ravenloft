@@ -3,12 +3,13 @@ import { HEROES } from '../data/heroes.js';
 import { FOES } from '../data/foes.js';
 import { LEVELS } from '../data/levels.js';
 import { Input } from '../systems/input.js';
-import { sfx, playMusic } from '../systems/audio.js';
+import { sfx, playMusic, duckMusic } from '../systems/audio.js';
+import { STRAHD_FINALE } from '../data/dialogue.js';
 import { TAU, rnd, clamp, hash, roll, d20 } from '../systems/util.js';
 import { buildLayers, scrollLayers } from '../ui/widgets.js';
 import { toClear, toWin, toDead } from '../flow.js';
 
-const alive = (e) => e.state !== 'dying';
+const alive = (e) => e.state !== 'dying' && e.state !== 'finale';   // 'finale' = dissolving into mist (Strahd's ending)
 const SLOT_REGEN = 480; // ticks to recover one spell slot (8 seconds)
 const PROJ_SPEED = { bat: 5.5, shade: 4.5, holy: 5, fire: 5 }; // boss projectile speeds (pixels per tick)
 // How hero attacks feel. Index = which hit of the 3-hit combo.
@@ -52,7 +53,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   pauseGame() {
-    if (this.ended || this.p.state === 'dead' || !this.scene.isActive()) return;
+    if (this.ended || this.finale || this.p.state === 'dead' || !this.scene.isActive()) return;   // no pausing mid-cinematic
     this.scene.pause(); this.scene.launch('Pause');
   }
 
@@ -115,6 +116,11 @@ export class GameScene extends Phaser.Scene {
     const d = p.def;
     if (p.inv > 0) p.inv--; if (p.comboT > 0) p.comboT--; if (p.flash > 0) p.flash--;
     if (p.state === 'dead') { p.t++; return; }
+    if (p.state === 'stunned') {   // frozen during Strahd's ending: no input, no damage (just land if mid-jump)
+      p.t++; p.moving = false;
+      if (p.z > 0 || p.vz > 0) { p.vz -= 0.62; p.z += p.vz; if (p.z <= 0) { p.z = 0; p.vz = 0; } }
+      return;
+    }
     if (p.slots < 3 && ++p.slotT >= SLOT_REGEN) { p.slots++; p.slotT = 0; this.text(p.x, p.y, d.height + 14, '+1 spell slot', C.arcane, 15); }
     // heal-over-time (Goodberry): one pulse every half second
     if (p.regen > 0 && ++p.regenT >= 30) { p.regen--; p.regenT = 0; this.healPlayer(p, roll(d.heal.dice)); }
@@ -205,6 +211,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   killFoe(e, dir) {
+    if (e.def.finale) { this.startFinale(e); return; }   // Strahd doesn't die: he vanishes and speaks
     this.go(e, 'dying'); e.vx = (dir || 1) * 4; e.hp = 0; e.root = 0;
     this.registry.inc('gold', e.def.gold);
     this.text(e.x, e.y, e.def.height + 22, `+${e.def.gold} gp`, C.gold, 15); sfx('coin');
@@ -220,6 +227,42 @@ export class GameScene extends Phaser.Scene {
         this.clearT = 1;
       }
     }
+  }
+
+  // Strahd at 0 HP: no death. Everyone freezes, he dissolves into black mist and speaks (data/dialogue.js),
+  // one section at a time. Only after the last Continue does the hero move again and the act end.
+  startFinale(e) {
+    if (this.finale) return;   // only ever once, even if several hits land on the same frame
+    this.finale = true;
+    const p = this.p;
+    e.hp = 0; this.go(e, 'finale');
+    for (const f of this.foes) if (f !== e && alive(f)) this.go(f, 'finale');   // his servants fade with him
+    this.queue = []; for (const q of this.proj) q.life = 0;                     // no more attacks of any kind
+    if (p.state === 'dead') p.hp = 1;   // a trade of final blows still leads to the speech, not the death screen
+    this.go(p, 'stunned'); p.inv = 1e9; p.vx = 0; p.tint = 0x9a90b0;
+    Input.reset();
+    this.shake(10); sfx('roar'); sfx('omen'); duckMusic(true);
+    this.gloom = this.add.rectangle(0, 0, W, H, 0x0a0008, 1).setOrigin(0).setScrollFactor(0).setDepth(8600).setAlpha(0);
+    this.tweens.add({ targets: this.gloom, alpha: 0.55, duration: 1400 });
+    this.time.delayedCall(1800, () => this.scene.launch('Dialogue', { script: STRAHD_FINALE, onDone: () => this.endFinale() }));
+  }
+
+  endFinale() {
+    const p = this.p;
+    this.tweens.add({ targets: this.gloom, alpha: 0, duration: 900 });
+    duckMusic(false);
+    if (p.state === 'stunned') { this.go(p, 'idle'); p.inv = 30; p.tint = null; }   // control returns
+    this.clearT = 1;   // then on to the victory screen
+  }
+
+  // A dissolving foe: fades out while black (and a little crimson) mist swirls up. Leaves nothing behind.
+  dissolve(e) {
+    e.t++; e.alpha = Math.max(0, 1 - e.t / 60); e.moving = false;
+    if (e.t < 75 && e.t % 2 === 0) {
+      const n = e.def.finale ? 3 : 1;
+      for (let i = 0; i < n; i++) this.parts.push({ k: 'mist', x: e.x + rnd(-14, 14), y: e.y, z: rnd(0, e.def.height), r: rnd(5, 11), a: rnd(0, TAU), sp: rnd(0.6, 1.5), life: 60, max: 60, col: Math.random() < 0.4 ? 0x6a1428 : 0x2c1a36 });   // smoky purple-black and blood red
+    }
+    if (e.tag) e.tag.setVisible(false);
   }
 
   // The hero's once-per-act heal (data in heroes.js). Instant, or spread over `pulses`.
@@ -289,6 +332,7 @@ export class GameScene extends Phaser.Scene {
     if (e.flash > 0) e.flash--;
     if (e.bubble) e.bubble.life--;
     if (e.state === 'dying') { e.t++; e.x += e.vx; e.vx *= 0.9; return; }
+    if (e.state === 'finale') { this.dissolve(e); return; }
     if (e.root > 0) e.root--;
     if (e.quips && --e.quipT <= 0) { this.say(e, e.quips[Math.floor(Math.random() * e.quips.length)]); e.quipT = rnd(420, 780); } // a line every 7-13 s
     if (d.regen && e.hp < e.maxHp && this.tick % 60 === 0) { e.hp = Math.min(e.maxHp, e.hp + d.regen); this.burst(e.x, e.y, d.height * 0.6, C.heal, 2); } // revenants knit back together
@@ -437,6 +481,7 @@ export class GameScene extends Phaser.Scene {
       else if (o.k === 'slash') o.r += 1.5;
       else if (o.k === 'vine') o.h = Math.min(o.mh, o.h + 3);
       else if (o.k === 'smoke') o.z += 0.6;
+      else if (o.k === 'mist') { o.a += 0.12; o.x += Math.cos(o.a) * o.sp; o.z += 0.9; o.r += 0.15; }   // swirling upward
     }
     this.parts = this.parts.filter((o) => o.life > 0);
     const p = this.p;
@@ -475,7 +520,7 @@ export class GameScene extends Phaser.Scene {
     if (this.lock !== null && !this.clearT) {
       const live = this.foes.filter(alive).length, cap = this.foes.some((e) => e.boss && alive(e)) ? Math.max(5, this.packSize + 1) : 4;
       if (this.queue.length && --this.spawnT <= 0 && live < cap) { const q = this.queue.shift(); this.spawn(q); this.spawnT = FOES[q.type].pack ? 28 : 55; }
-      if (!this.queue.length && !live) { this.lock = null; sfx('go'); }
+      if (!this.queue.length && !live && !this.finale) { this.lock = null; sfx('go'); }
     }
   }
 
@@ -575,7 +620,7 @@ export class GameScene extends Phaser.Scene {
     s.setPosition(Math.round(e.x), Math.round(e.y - e.z)).setFlipX(e.face < 0).setDepth(e.y + (isHero ? 0.1 : 0));
     let a = e.alpha ?? 1;
     if (e.state === 'dying' && e.t > 40) a *= Math.max(0, 1 - (e.t - 40) / 30);
-    if (isHero && e.inv > 0 && e.state !== 'spell' && e.state !== 'heal' && e.state !== 'dead' && this.tick % 8 < 4) a *= 0.45;
+    if (isHero && e.inv > 0 && e.state !== 'spell' && e.state !== 'heal' && e.state !== 'dead' && e.state !== 'stunned' && this.tick % 8 < 4) a *= 0.45;
     s.setAlpha(a);
     if (e.flash > 0) s.setTint(0xffffff).setTintMode(Phaser.TintModes.FILL); // white hit-flash
     else if (e.tint) s.setTint(e.tint).setTintMode(Phaser.TintModes.MULTIPLY); // e.g. each revenant's own colour
@@ -629,7 +674,7 @@ export class GameScene extends Phaser.Scene {
         const c = new Phaser.Curves.QuadraticBezier(new Phaser.Math.Vector2(o.x, o.y), new Phaser.Math.Vector2(o.x + o.curl * 14, o.y - o.h * 0.6), new Phaser.Math.Vector2(o.x - o.curl * 6, o.y - o.h));
         c.draw(top, 8);
         top.fillStyle(0x8fc85a, Math.min(1, o.life / 30)).fillRect(o.x - o.curl * 6 - 2, o.y - o.h - 2, 4, 4);
-      } else if (o.k === 'smoke') top.fillStyle(o.col, a * 0.7).fillCircle(o.x, o.y - o.z, o.r);
+      } else if (o.k === 'smoke' || o.k === 'mist') top.fillStyle(o.col, a * 0.7).fillCircle(o.x, o.y - o.z, o.r);
     }
     if (this.theme === 'forest') {
       for (let k = 0; k < 16; k++) {

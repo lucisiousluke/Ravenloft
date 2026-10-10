@@ -132,6 +132,7 @@ Write down any choice we'd otherwise forget the reason for.
 | Heal doesn't fire at full HP | Prevents accidentally wasting it |
 | Boss moves live in foes.js (`moves`, `summon`, `drain`, `regen`) | New bosses can be made by mixing existing moves in data, without new code |
 | Attack feel comes from timing and feedback, not new art | Held wind-up and impact frames, hit-stop, lunge and swipe trails turned subtle AI-drawn attacks into readable hits |
+| Strahd vanishes instead of dying | Keeps the Curse of Strahd mystery: the curse needs a new keeper |
 | Each class heals differently | Class flavor: the paladin's is one big instant burst, the druid's trickles in over time, the rogue and bard get a dice roll with a joke attached |
 | Placeholder art uses final file names | Real art can be dropped in without code changes |
 | Painted sheets are shrunk to fit the game | Art comes in bigger than game size; shrinking so the idle pose is ~68px tall keeps every hero the same scale |
@@ -142,6 +143,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-10**: **Strahd's ending.** At 0 HP Strahd doesn't die. The hero freezes, the screen darkens, and he dissolves into black and crimson mist (his cultists too). His final speech then plays in a gothic dialogue box, five sections, each advanced only by **Continue**, with the last line in large red text. Control returns after the last section, then the victory screen. The text is in `src/data/dialogue.js` and the box in `src/scenes/DialogueScene.js`. The victory text no longer says he crumbles to ash.
 - **2026-10-10**: The goblin gets final art (`art-source/goblin-sheet.png`, from the enemy prompt in `art-source/prompts/enemies-chatgpt.md`), the first of the six regular enemies. ChatGPT added two unused rows copied from Sunday's sheet, which the converter skips.
 - **2026-10-10**: Attacks feel like attacks. They have a held wind-up, then snap to the impact frame and hold it (impact frames chosen per attack in `make_sheet.py`). Adds hit-stop (a brief freeze when a blow lands, longer on the finisher), a step forward into each swing, a colored swipe trail, and light shake on every hit. Swings are about 20% longer, and attack presses are remembered for 24 ticks so combos still chain. Tuning: `HIT_STOP`, `LUNGE` and `HIT_SHAKE` at the top of `GameScene.js`; `atkT` and `slash` color in `heroes.js`.
 - **2026-10-10**: Sunday gets final art (`art-source/sunday-sheet.png`, from ChatGPT): a bearded halfling with an uncovered face, a stab, slash and spin combo, Shadow Step with a purple smoke trail, and Second Breakfast. **All four heroes now have real art.** The converter's glow can now be blue or purple (`glow_hue`).
