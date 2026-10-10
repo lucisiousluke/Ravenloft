@@ -28,10 +28,14 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 #            lined up by the torso so the body stays steady, and used for that animation instead of the sheet's row.
 #            solid = optional opacity cut-off (0-255) for exports where the background is only half erased:
 #            pixels at least this solid become fully solid, everything else is removed.
+# impact  -> {attack tag: frame number (1 = first)} where the blow lands. The frame before it is held as the
+#            wind-up, the impact frame is held, then the rest recovers. Without it, the frame with the furthest
+#            weapon reach is guessed (wrong for overhead swings, where the raised weapon reaches furthest).
 # tags    -> game animation name -> list of (frame, milliseconds). Only the rhythm matters for attacks/spells;
 #            the game stretches them to the move's length. The hit lands ~40% through an attack.
 HEROES = {
   'ulrick': dict(
+    impact={'attack1': 2, 'attack2': 6, 'attack3': 5},   # frame where each attack lands (thrusts early, overhead swings late)
     rows=[('idle', 3), ('walk', 8), ('slash', 6), ('thrust', 6), ('chop', 5), ('jump', 2), ('hurt', 2), ('death', 6), ('glow', 6)],
     stand_h=68, light=(255, 226, 140), glow=['glow'], lying=['death3', 'death4', 'death5', 'death6'],
     strips={'walk': dict(file='art-source/ulrick-walk.png', height=67, ms=100)},   # 6-frame walk: stride, down, passing x2
@@ -48,6 +52,7 @@ HEROES = {
       'heal':    [(f'glow{i}', 100) for i in range(1, 7)],                                    # Lay on Hands
     }),
   'rolfing': dict(
+    impact={'attack1': 2, 'attack2': 3, 'attack3': 5},   # frame where each attack lands (thrusts early, overhead swings late)
     rows=[('idle', 4), ('walk', 7), ('slam', 6), ('jab', 6), ('spin', 6), ('jump', 2), ('hurt', 2), ('death', 6), ('vines', 6)],
     stand_h=58, light=(190, 255, 150), glow=['slam5', 'slam6', 'spin', 'vines'], lying=['death3', 'death4', 'death5', 'death6'], lying_off=55, trapped_checker=True,
     # ChatGPT's export left a faint checkerboard haze (under 60% solid); the dwarf himself is over 80% solid
@@ -65,6 +70,7 @@ HEROES = {
       'heal':    [('vines1', 120), ('vines2', 300)],                                          # Goodberry: staff glows
     }),
   'faeron': dict(
+    impact={'attack1': 2, 'attack2': 3, 'attack3': 2},   # frame where each attack lands (thrusts early, overhead swings late)
     rows=[('idle', 4), ('walk', 6), ('thrust', 6), ('slash', 6), ('lunge', 5), ('jump', 2), ('hurt', 2), ('death', 7), ('wave', 6), ('song', 4)],
     transparent=True, solid=128, min_fig=800, glow_hue='blue',
     resize={'song': 1.2},   # ChatGPT drew the Song of Rest row ~20% smaller (the Thunderwave row is a crouch, not smaller)
@@ -82,6 +88,7 @@ HEROES = {
       'heal':    [('song1', 120), ('song2', 160), ('song3', 160), ('song4', 200)],            # Song of Rest
     }),
   'sunday': dict(
+    impact={'attack1': 2, 'attack2': 4, 'attack3': 4},   # frame where each attack lands (thrusts early, overhead swings late)
     rows=[('idle', 4), ('walk', 7), ('stab', 6), ('slash', 7), ('spin', 6), ('jump', 2), ('hurt', 2), ('death', 7), ('shadow', 6), ('snack', 4)],
     transparent=True, solid=128, min_fig=800, glow_hue='purple',
     stand_h=48, glow=['shadow'], lying=['death5', 'death6', 'death7'], lying_off=30,   # a halfling: shorter than Rolfing
@@ -276,6 +283,30 @@ def finish(hero, cfg, CUT, is_glow):
             if c.getbbox(): cells[f'{tag}#{j}'] = c; new.append((tag, f'{tag}#{j}', ms))   # skip empty cells
         at = next(i for i, x in enumerate(seq) if x[0] == tag)
         seq = seq[:at] + new + [x for x in seq[at:] if x[0] != tag]
+    # attack rhythm: hold the wind-up, snap to the impact frame (where the weapon reaches furthest) and hold it,
+    # then recover. Replaces the evenly spread timing that made attacks read as a twitch.
+    for tag in ('attack1', 'attack2', 'attack3'):
+        idx = [i for i, x in enumerate(seq) if x[0] == tag]
+        if len(idx) < 3: continue
+        def reach(f):
+            a = np.array(cells[f])[..., 3] > 128; cols = np.where(a.any(0))[0]
+            return max(cols.max() - FX, FX - cols.min()) if len(cols) else 0
+        r = [reach(seq[i][1]) for i in idx]
+        hit = cfg.get('impact', {}).get(tag, 0) - 1                             # chosen by eye, or guessed:
+        if hit < 0: hit = next(j for j, v in enumerate(r) if v >= 0.9 * max(r))   # first frame at (almost) full reach
+        hit = max(hit, 1)                                                       # always leave a wind-up frame
+        share = [0.0] * len(idx)
+        pre, post = list(range(hit)), list(range(hit + 1, len(idx)))
+        share[pre[-1]] += 0.22                                                  # anticipation: the held wind-up
+        for j in pre[:-1]: share[j] += 0.12 / max(1, len(pre) - 1)
+        if len(pre) == 1: share[pre[-1]] += 0.12
+        share[hit] += 0.30                                                      # impact, held
+        if post:
+            share[post[0]] += 0.16                                              # follow-through
+            for j in post[1:]: share[j] += 0.20 / max(1, len(post) - 1)
+            if len(post) == 1: share[post[0]] += 0.20
+        else: share[hit] += 0.36
+        for j, i in enumerate(idx): seq[i] = (seq[i][0], seq[i][1], round(600 * share[j]))
     COLS = 8; rows = (len(seq) + COLS - 1) // COLS
     sheet = Image.new('RGBA', (FW * COLS, FH * rows)); meta, tags = [], []
     for i, (tag, f, ms) in enumerate(seq):

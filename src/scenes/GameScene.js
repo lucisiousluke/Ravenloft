@@ -11,6 +11,10 @@ import { toClear, toWin, toDead } from '../flow.js';
 const alive = (e) => e.state !== 'dying';
 const SLOT_REGEN = 480; // ticks to recover one spell slot (8 seconds)
 const PROJ_SPEED = { bat: 5.5, shade: 4.5, holy: 5, fire: 5 }; // boss projectile speeds (pixels per tick)
+// How hero attacks feel. Index = which hit of the 3-hit combo.
+const HIT_STOP = [4, 4, 8];        // ticks the action freezes when a blow lands (the "impact" pause)
+const LUNGE = [1.2, 1.2, 2.2];      // pixels per tick the hero steps forward until the blow lands
+const HIT_SHAKE = [2, 2, 5];        // screen shake on a hit (crits shake more)
 const HEAL_T = 24;      // ticks the healing ability animation takes
 
 // One level of play. Game rules run at a fixed 60 ticks per second in step();
@@ -27,7 +31,7 @@ export class GameScene extends Phaser.Scene {
     this.L = L; this.theme = L.theme;
     this.info = this.registry.get('spriteInfo');
     this.registry.set('levelGold', this.registry.get('gold'));
-    Object.assign(this, { tick: 0, acc: 0, cam: 0, lock: null, wave: 0, queue: [], foes: [], proj: [], parts: [], pickups: [], spawnT: 0, spawnSide: false, bannerT: 200, bannerTop: null, bannerTitle: null, bossTitle: null, bossTotal: 0, packSize: 1, clearT: 0, ended: false });
+    Object.assign(this, { tick: 0, acc: 0, cam: 0, lock: null, wave: 0, queue: [], foes: [], proj: [], parts: [], pickups: [], spawnT: 0, spawnSide: false, hitStop: 0, bannerT: 200, bannerTop: null, bannerTitle: null, bossTitle: null, bossTotal: 0, packSize: 1, clearT: 0, ended: false });
 
     this.layers = buildLayers(this, this.theme);
     this.gGround = this.add.graphics().setDepth(1);   // shadows, rings on the floor
@@ -43,7 +47,7 @@ export class GameScene extends Phaser.Scene {
     this.input.keyboard.on('keydown-P', () => this.pauseGame());
     this.input.keyboard.on('keydown-ESC', () => this.pauseGame());
     this.game.events.on('blur', this.pauseGame, this);
-    this.events.once('shutdown', () => { this.game.events.off('blur', this.pauseGame, this); this.scene.stop('Hud'); Input.reset(); });
+    this.events.once('shutdown', () => { this.game.events.off('blur', this.pauseGame, this); this.scene.stop('Hud'); Input.reset(); this.anims.resumeAll(); });
     playMusic(L.music);
   }
 
@@ -54,7 +58,11 @@ export class GameScene extends Phaser.Scene {
 
   update(_, delta) {
     this.acc += Math.min(100, delta);
-    while (this.acc >= TICK && !this.ended) { this.step(); this.acc -= TICK; }
+    while (this.acc >= TICK && !this.ended) {
+      if (this.hitStop > 0) { if (--this.hitStop === 0) this.anims.resumeAll(); }   // impact pause
+      else this.step();
+      this.acc -= TICK;
+    }
     if (!this.ended) this.render();
   }
 
@@ -117,7 +125,9 @@ export class GameScene extends Phaser.Scene {
       if (p.t <= 0) this.go(p, 'idle');
     } else if (p.state === 'attack') {
       p.t++; p.x += inp.x * d.spd * (p.z > 0 ? 0.9 : 0.25); p.y += inp.y * d.spd * 0.15;
-      if (p.t === Math.max(3, Math.round(d.atkT * 0.38))) this.meleeHit(p);
+      const hitT = Math.max(3, Math.round(d.atkT * 0.38));
+      if (p.t < hitT && p.z === 0) p.x += p.face * LUNGE[p.combo];   // step into the blow
+      if (p.t === hitT) this.meleeHit(p);
       if (p.t >= d.atkT) { this.go(p, 'idle'); p.comboT = 16; }
     } else if (p.state === 'spell') {
       p.t++; this.spellTick(p);
@@ -161,7 +171,12 @@ export class GameScene extends Phaser.Scene {
         any = true; this.attackRoll(p, e, d.dmg, { knock: third ? 10 : 3, bonus: third ? 2 : 0, dir: p.face });
       }
     }
-    if (any) sfx('hit');
+    // a swipe trail in the hero's colour, whether or not anything was hit
+    this.parts.push({ k: 'slash', x: p.x + p.face * d.reach * 0.5, y: p.y, z: p.z + d.height * 0.5, face: p.face, r: d.reach * (third ? 0.75 : 0.6), life: 10, max: 10, col: d.slash || 0xffffff, big: third });
+    if (any) {
+      sfx('hit'); this.shake(HIT_SHAKE[p.combo]);
+      this.hitStop = HIT_STOP[p.combo]; this.anims.pauseAll();
+    }
   }
 
   // Roll a d20: natural 1 misses, critMin+ doubles the damage dice.
@@ -419,6 +434,7 @@ export class GameScene extends Phaser.Scene {
       o.life--;
       if (o.k === 'spark') { o.x += o.vx; o.z += o.vz; o.vz -= 0.3; if (o.z < 0) o.z = 0; }
       else if (o.k === 'ring') o.r += o.vr;
+      else if (o.k === 'slash') o.r += 1.5;
       else if (o.k === 'vine') o.h = Math.min(o.mh, o.h + 3);
       else if (o.k === 'smoke') o.z += 0.6;
     }
@@ -602,6 +618,12 @@ export class GameScene extends Phaser.Scene {
       const a = o.life / o.max;
       if (o.k === 'spark') top.fillStyle(Phaser.Display.Color.HexStringToColor(o.col).color, a).fillRect(o.x, o.y - o.z, o.s, o.s);
       else if (o.k === 'ring') g.lineStyle(5, o.col, a).strokeEllipse(o.x, o.y, o.r * 2, o.r * 0.7);
+      else if (o.k === 'slash') {   // crescent swipe in front of the hero, thick and bright at first, then thinning out
+        const y = o.y - o.z, from = o.face > 0 ? -1.1 : Math.PI - 1.1, to = o.face > 0 ? 1.1 : Math.PI + 1.1;
+        for (const [w, k] of [[o.big ? 7 : 5, 0.35], [2, 1]]) {
+          top.lineStyle(w * a + 1, o.col, a * k); top.beginPath(); top.arc(o.x - o.face * o.r * 0.6, y, o.r, from, to, false); top.strokePath();
+        }
+      }
       else if (o.k === 'vine') {
         top.lineStyle(3, 0x5f9a3a, Math.min(1, o.life / 30));
         const c = new Phaser.Curves.QuadraticBezier(new Phaser.Math.Vector2(o.x, o.y), new Phaser.Math.Vector2(o.x + o.curl * 14, o.y - o.h * 0.6), new Phaser.Math.Vector2(o.x - o.curl * 6, o.y - o.h));

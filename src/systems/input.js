@@ -1,5 +1,6 @@
 // Gameplay input shared by keyboard and touch controls.
-// Actions are "buffered" for 12 ticks so a press slightly before you can act still counts.
+// Actions are "buffered" so a press slightly before you can act still counts: 12 ticks, or 24 for attacks
+// so the next hit of a combo can be pressed during the current swing.
 const KEYMAP = { j: 'atk', z: 'atk', k: 'jump', x: 'jump', ' ': 'jump', l: 'spell', c: 'spell', h: 'heal' };
 const NO_SCROLL = ['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' '];
 
@@ -8,7 +9,7 @@ export const Input = {
   buf: { atk: 0, jump: 0, spell: 0, heal: 0 },
   touch: { x: 0, y: 0 },
 
-  press(action) { this.buf[action] = 12; },
+  press(action) { this.buf[action] = action === 'atk' ? 24 : 12; },
   take(action) { if (this.buf[action] > 0) { this.buf[action] = 0; return true; } return false; },
   tick() { for (const k in this.buf) if (this.buf[k] > 0) this.buf[k]--; },
   reset() { this.held = {}; for (const k in this.buf) this.buf[k] = 0; this.touch.x = this.touch.y = 0; },

@@ -131,6 +131,7 @@ Write down any choice we'd otherwise forget the reason for.
 | Heal is once per act, not a cooldown | Makes it a big tactical choice ("save it for the boss?") instead of a button to spam |
 | Heal doesn't fire at full HP | Prevents accidentally wasting it |
 | Boss moves live in foes.js (`moves`, `summon`, `drain`, `regen`) | New bosses can be made by mixing existing moves in data, without new code |
+| Attack feel comes from timing and feedback, not new art | Held wind-up and impact frames, hit-stop, lunge and swipe trails turned subtle AI-drawn attacks into readable hits |
 | Each class heals differently | Class flavor: the paladin's is one big instant burst, the druid's trickles in over time, the rogue and bard get a dice roll with a joke attached |
 | Placeholder art uses final file names | Real art can be dropped in without code changes |
 | Painted sheets are shrunk to fit the game | Art comes in bigger than game size; shrinking so the idle pose is ~68px tall keeps every hero the same scale |
@@ -141,6 +142,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-10**: Attacks feel like attacks. They have a held wind-up, then snap to the impact frame and hold it (impact frames chosen per attack in `make_sheet.py`). Adds hit-stop (a brief freeze when a blow lands, longer on the finisher), a step forward into each swing, a colored swipe trail, and light shake on every hit. Swings are about 20% longer, and attack presses are remembered for 24 ticks so combos still chain. Tuning: `HIT_STOP`, `LUNGE` and `HIT_SHAKE` at the top of `GameScene.js`; `atkT` and `slash` color in `heroes.js`.
 - **2026-10-10**: Sunday gets final art (`art-source/sunday-sheet.png`, from ChatGPT): a bearded halfling with an uncovered face, a stab, slash and spin combo, Shadow Step with a purple smoke trail, and Second Breakfast. **All four heroes now have real art.** The converter's glow can now be blue or purple (`glow_hue`).
 - **2026-10-09**: Act I (and the title and select screens) has a new pixel-art background: a dark moonlit forest that repeats seamlessly, with Castle Ravenloft and a full moon in the clearing, shown **once** and drifting slowly. Backgrounds can now have `once` layers. Built by `tools/backgrounds/make_forest.py` from two images in `art-source/backgrounds/`.
 - **2026-10-09**: **Fixed:** since the Phaser 4 upgrade, any animation with uneven frame timing (attacks, spells, idles, hurt, death) skipped straight to its last frame, so attacks showed no swing. Phaser 4 reads a frame's duration as its total time on screen (Phaser 3 treated it as extra time), and `BootScene.js` now passes the real durations. Walks weren't affected because their frames are all the same length.
