@@ -33,7 +33,7 @@ export class GameScene extends Phaser.Scene {
     this.L = L; this.theme = L.theme;
     this.info = this.registry.get('spriteInfo');
     this.registry.set('levelGold', this.registry.get('gold'));
-    Object.assign(this, { tick: 0, acc: 0, cam: 0, lock: null, wave: 0, queue: [], foes: [], proj: [], parts: [], pickups: [], spawnT: 0, spawnSide: false, hitStop: 0, bannerT: 200, bannerTop: null, bannerTitle: null, bossTitle: null, bossTotal: 0, packSize: 1, clearT: 0, ended: false });
+    Object.assign(this, { tick: 0, acc: 0, cam: 0, lock: null, wave: 0, queue: [], foes: [], proj: [], parts: [], pickups: [], spawnT: 0, spawnSide: false, hitStop: 0, finale: false, bannerT: 200, bannerTop: null, bannerTitle: null, bossTitle: null, bossTotal: 0, packSize: 1, clearT: 0, ended: false });
 
     this.layers = buildLayers(this, this.theme);
     this.gGround = this.add.graphics().setDepth(1);   // shadows, rings on the floor
@@ -49,7 +49,7 @@ export class GameScene extends Phaser.Scene {
     this.input.keyboard.on('keydown-P', () => this.pauseGame());
     this.input.keyboard.on('keydown-ESC', () => this.pauseGame());
     this.game.events.on('blur', this.pauseGame, this);
-    this.events.once('shutdown', () => { this.game.events.off('blur', this.pauseGame, this); this.scene.stop('Hud'); Input.reset(); this.anims.resumeAll(); });
+    this.events.once('shutdown', () => { this.game.events.off('blur', this.pauseGame, this); this.scene.stop('Hud'); this.scene.stop('Dialogue'); Input.reset(); this.anims.resumeAll(); });
     playMusic(L.music);
     this.setupCheats();
   }

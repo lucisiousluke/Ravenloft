@@ -143,6 +143,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-10**: **Fixed:** after finishing the game once and choosing Play again, Strahd's ending wouldn't trigger a second time (the flag carried over), so he couldn't be defeated. It's now reset each level. Leaving a level also closes any open dialogue.
 - **2026-10-10**: Testing cheats. The Konami code (↑ ↑ ↓ ↓ ← → ← → B A) on the title or select screen opens a menu to pick a hero, toggle god mode or start-at-boss, and jump into any act. In game: G god mode, B jump to boss, N finish the act. Remembered per browser; a red HUD note shows when they're on.
 - **2026-10-10**: **Strahd's ending.** At 0 HP Strahd doesn't die. The hero freezes, the screen darkens, and he dissolves into black and crimson mist (his cultists too). His final speech then plays in a gothic dialogue box, five sections, each advanced only by **Continue**, with the last line in large red text. Control returns after the last section, then the victory screen. The text is in `src/data/dialogue.js` and the box in `src/scenes/DialogueScene.js`. The victory text no longer says he crumbles to ash.
 - **2026-10-10**: The goblin gets final art (`art-source/goblin-sheet.png`, from the enemy prompt in `art-source/prompts/enemies-chatgpt.md`), the first of the six regular enemies. ChatGPT added two unused rows copied from Sunday's sheet, which the converter skips.
