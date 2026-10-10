@@ -142,6 +142,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-10**: The goblin gets final art (`art-source/goblin-sheet.png`, from the enemy prompt in `art-source/prompts/enemies-chatgpt.md`), the first of the six regular enemies. ChatGPT added two unused rows copied from Sunday's sheet, which the converter skips.
 - **2026-10-10**: Attacks feel like attacks. They have a held wind-up, then snap to the impact frame and hold it (impact frames chosen per attack in `make_sheet.py`). Adds hit-stop (a brief freeze when a blow lands, longer on the finisher), a step forward into each swing, a colored swipe trail, and light shake on every hit. Swings are about 20% longer, and attack presses are remembered for 24 ticks so combos still chain. Tuning: `HIT_STOP`, `LUNGE` and `HIT_SHAKE` at the top of `GameScene.js`; `atkT` and `slash` color in `heroes.js`.
 - **2026-10-10**: Sunday gets final art (`art-source/sunday-sheet.png`, from ChatGPT): a bearded halfling with an uncovered face, a stab, slash and spin combo, Shadow Step with a purple smoke trail, and Second Breakfast. **All four heroes now have real art.** The converter's glow can now be blue or purple (`glow_hue`).
 - **2026-10-09**: Act I (and the title and select screens) has a new pixel-art background: a dark moonlit forest that repeats seamlessly, with Castle Ravenloft and a full moon in the clearing, shown **once** and drifting slowly. Backgrounds can now have `once` layers. Built by `tools/backgrounds/make_forest.py` from two images in `art-source/backgrounds/`.
@@ -171,7 +172,7 @@ Newest at the top. One line per change is plenty.
 
 ## 8. Ideas and to-do
 
-- [ ] Replace placeholder sprites with final art (see SPRITES.md). All four heroes are done; the enemies and bosses are left
+- [ ] Replace placeholder sprites with final art (see SPRITES.md). All four heroes and the goblin are done; the other five enemies (dire wolf, skeleton, ghoul, blood cultist, blood knight) and the bosses are left
 - [ ] Ulrick and Rolfing walks: frames 4–6 repeat 1–3 (same leg leads). Needs a redo or an Aseprite shading fix
 - [ ] Optional: redo Fae'ron's Thunderwave row (drawn in a squat pose, so he seems to duck while casting)
 - [ ] Bray Wyatt sprite sheet (Luke is making it). It replaces `assets/sprites/bray-wyatt.png/json`

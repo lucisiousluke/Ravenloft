@@ -104,6 +104,22 @@ HEROES = {
       'cast':    [(f'shadow{i}', 80) for i in range(1, 7)],                                   # Shadow Step
       'heal':    [('snack1', 120), ('snack2', 200), ('snack3', 200), ('snack4', 160)],        # Second Breakfast
     }),
+  # ---- enemies: animations are idle, walk, windup (the warning pose), attack, hurt, death ----
+  # The game stretches windup to the enemy's wind-up time and plays attack over 14 ticks, landing the hit ~20% in,
+  # so the attack's impact frame (2) comes almost at once and is held.
+  'goblin': dict(
+    # ChatGPT added two rows we don't use (a shadow dash and eating, copied from Sunday's sheet): parsed, then ignored
+    rows=[('idle', 4), ('walk', 7), ('windup', 3), ('attack', 5), ('hurt', 2), ('death', 6), ('unused_a', 5), ('unused_b', 4)],
+    transparent=True, solid=128, min_fig=800, glow=[],
+    stand_h=46, lying=['death3', 'death4', 'death5', 'death6'], lying_off=40,
+    tags={
+      'idle':   [(f'idle{i}', 200) for i in range(1, 5)],
+      'walk':   [(f'walk{i}', 90) for i in range(1, 8)],
+      'windup': [('windup1', 100), ('windup2', 100), ('windup3', 160)],
+      'attack': [('attack1', 40), ('attack2', 140), ('attack3', 80), ('attack4', 70), ('attack5', 70)],
+      'hurt':   [('hurt1', 100), ('hurt2', 120)],
+      'death':  list(zip([f'death{i}' for i in range(1, 7)], [90, 90, 100, 120, 160, 600])),
+    }),
 }
 
 FW, FH, FX, FY = 160, 128, 80, 116   # cell size and where the feet go (matches src/data/sprites.js)

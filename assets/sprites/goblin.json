@@ -20,7 +20,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 200
   },
   {
    "filename": "goblin 1",
@@ -42,7 +42,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 200
   },
   {
    "filename": "goblin 2",
@@ -64,7 +64,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 200
   },
   {
    "filename": "goblin 3",
@@ -86,7 +86,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 200
   },
   {
    "filename": "goblin 4",
@@ -262,7 +262,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 100
   },
   {
    "filename": "goblin 12",
@@ -284,7 +284,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 80
+   "duration": 100
   },
   {
    "filename": "goblin 13",
@@ -306,7 +306,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 80
+   "duration": 160
   },
   {
    "filename": "goblin 14",
@@ -328,7 +328,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 80
+   "duration": 40
   },
   {
    "filename": "goblin 15",
@@ -350,7 +350,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 140
   },
   {
    "filename": "goblin 16",
@@ -372,7 +372,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 80
   },
   {
    "filename": "goblin 17",
@@ -438,7 +438,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 100
   },
   {
    "filename": "goblin 20",
@@ -482,7 +482,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 120
+   "duration": 90
   },
   {
    "filename": "goblin 22",
@@ -504,7 +504,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 90
   },
   {
    "filename": "goblin 23",
@@ -548,7 +548,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 120
   },
   {
    "filename": "goblin 25",
@@ -570,7 +570,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 160
   },
   {
    "filename": "goblin 26",
@@ -592,33 +592,11 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
-  },
-  {
-   "filename": "goblin 27",
-   "frame": {
-    "x": 480,
-    "y": 384,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 100
+   "duration": 600
   }
  ],
  "meta": {
-  "app": "Ravenmoor placeholder generator",
+  "app": "ravenmoor tools/sprite-from-concept/make_sheet.py",
   "image": "goblin.png",
   "format": "RGBA8888",
   "size": {
@@ -636,31 +614,31 @@
    {
     "name": "walk",
     "from": 4,
-    "to": 11,
+    "to": 10,
     "direction": "forward"
    },
    {
     "name": "windup",
-    "from": 12,
-    "to": 14,
+    "from": 11,
+    "to": 13,
     "direction": "forward"
    },
    {
     "name": "attack",
-    "from": 15,
-    "to": 19,
+    "from": 14,
+    "to": 18,
     "direction": "forward"
    },
    {
     "name": "hurt",
-    "from": 20,
-    "to": 21,
+    "from": 19,
+    "to": 20,
     "direction": "forward"
    },
    {
     "name": "death",
-    "from": 22,
-    "to": 27,
+    "from": 21,
+    "to": 26,
     "direction": "forward"
    }
   ]
