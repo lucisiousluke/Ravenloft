@@ -2,10 +2,17 @@ import { W, H, C, IS_TOUCH } from '../config.js';
 import { playMusic } from '../systems/audio.js';
 import { TITLE_MUSIC } from '../data/audio.js';
 import { T, buttonRow, buildLayers, scrollLayers, dim } from '../ui/widgets.js';
+import { Cheats } from '../systems/cheats.js';
 
 export const CONTROLS = IS_TOUCH
   ? 'Move with the left stick.  Strike, Jump, Spell and Heal are on the right.  Pause is top right.'
   : 'Move  WASD or arrows      Strike  J or Z      Jump  K or Space      Spell  L or C      Heal  H      Pause  P';
+
+// The Konami code (systems/cheats.js) opens the cheat menu on this screen
+export function openCheatsOnCode(scene) {
+  Cheats.onCode = () => { if (scene.scene.isActive() && !scene.scene.isActive('Cheats')) scene.scene.launch('Cheats', { from: scene.scene.key }); };
+  scene.events.once('shutdown', () => { Cheats.onCode = null; });
+}
 
 export class TitleScene extends Phaser.Scene {
   constructor() { super('Title'); }
@@ -25,6 +32,8 @@ export class TitleScene extends Phaser.Scene {
     const btns = buttonRow(this, x, 380, [{ label: 'Gather the party', primary: true, action: () => this.scene.start('Select') }]);
     btns.forEach((b) => b.setDepth(d));
     this.add.text(x, H - 64, CONTROLS, { ...T.small, wordWrap: { width: W - x * 2 } }).setDepth(d);
+    openCheatsOnCode(this);
+    if (Cheats.unlocked) this.add.text(W - 24, 16, 'CHEATS ON · enter the code for the menu', { ...T.small, fontSize: '12px', color: '#e0565c' }).setOrigin(1, 0).setDepth(d);
   }
 
   update(_, delta) {

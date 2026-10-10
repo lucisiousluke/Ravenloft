@@ -40,6 +40,13 @@ roll back from the Netlify **Deploys** page with one click.
 
 For the big picture (how it's built, design decisions, changelog, to-do), see **PROJECT.md**.
 
+## Testing cheats
+
+On the title or hero select screen, type the Konami code: **↑ ↑ ↓ ↓ ← → ← → B A**. A cheat menu opens where you can
+pick a hero, turn on **god mode** or **start at the boss**, and jump into any act. Once unlocked (it's remembered in
+that browser), these keys work during play: **G** god mode on/off, **B** jump to the boss, **N** finish the act.
+A red "CHEATS" note on screen shows they're on. Use **Turn cheats off** in the menu to lock them again.
+
 ## Where things live
 
 | Folder / file | What it is |

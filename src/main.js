@@ -8,6 +8,7 @@ import { GameScene } from './scenes/GameScene.js';
 import { HudScene } from './scenes/HudScene.js';
 import { PauseScene } from './scenes/PauseScene.js';
 import { DialogueScene } from './scenes/DialogueScene.js';
+import { CheatScene } from './scenes/CheatScene.js';
 
 // Wait for the web fonts so Phaser doesn't draw text in a fallback face.
 const fonts = Promise.all([
@@ -29,7 +30,7 @@ Promise.race([fonts, timeout]).then(() => {
     roundPixels: true, // Phaser 4 turns this off by default; keeps sprites on whole pixels so they stay crisp
     scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
     input: { activePointers: 4 },
-    scene: [BootScene, TitleScene, SelectScene, StoryScene, GameScene, HudScene, PauseScene, DialogueScene],
+    scene: [BootScene, TitleScene, SelectScene, StoryScene, GameScene, HudScene, PauseScene, DialogueScene, CheatScene],
   });
   attachAudio(game);
   game.sound.mute = isMuted();

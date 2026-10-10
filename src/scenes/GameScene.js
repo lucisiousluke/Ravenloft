@@ -5,6 +5,7 @@ import { LEVELS } from '../data/levels.js';
 import { Input } from '../systems/input.js';
 import { sfx, playMusic, duckMusic } from '../systems/audio.js';
 import { STRAHD_FINALE } from '../data/dialogue.js';
+import { Cheats, saveCheats, godMode } from '../systems/cheats.js';
 import { TAU, rnd, clamp, hash, roll, d20 } from '../systems/util.js';
 import { buildLayers, scrollLayers } from '../ui/widgets.js';
 import { toClear, toWin, toDead } from '../flow.js';
@@ -50,6 +51,31 @@ export class GameScene extends Phaser.Scene {
     this.game.events.on('blur', this.pauseGame, this);
     this.events.once('shutdown', () => { this.game.events.off('blur', this.pauseGame, this); this.scene.stop('Hud'); Input.reset(); this.anims.resumeAll(); });
     playMusic(L.music);
+    this.setupCheats();
+  }
+
+  // Developer cheats (systems/cheats.js): only once the Konami code has been entered
+  setupCheats() {
+    const say = (txt) => this.text(this.p.x, this.p.y, this.p.def.height + 24, txt, '#e0565c', 16);
+    Cheats.onCode = () => say('Cheats unlocked');
+    this.events.once('shutdown', () => { Cheats.onCode = null; });
+    if (Cheats.unlocked && Cheats.boss) this.skipToBoss();
+    this.input.keyboard.on('keydown-G', () => { if (!Cheats.unlocked) return; Cheats.god = !Cheats.god; saveCheats(); say(`God mode ${Cheats.god ? 'ON' : 'off'}`); });
+    this.input.keyboard.on('keydown-B', () => { if (Cheats.unlocked) this.skipToBoss(); });
+    this.input.keyboard.on('keydown-N', () => {   // finish the act: defeat the boss if one is up, otherwise just end it
+      if (!Cheats.unlocked || this.finale || this.clearT || this.ended) return;
+      const bosses = this.foes.filter((e) => e.boss && alive(e));
+      if (bosses.length) { this.queue = this.queue.filter((q) => !FOES[q.type].boss); bosses.forEach((b) => this.killFoe(b, 1)); }
+      else { this.queue = []; for (const f of this.foes) if (alive(f)) this.killFoe(f, 1); this.clearT = 1; }
+    });
+  }
+
+  // Cheat: clear the waves and move to the boss stop (does nothing once the boss fight has started)
+  skipToBoss() {
+    if (this.bossTotal || this.wave > this.L.waves.length || this.clearT) return;
+    for (const f of this.foes) { f.sprite.destroy(); f.tag?.destroy(); f.bubble?.box.destroy(); }
+    this.foes = []; this.queue = []; this.lock = null;
+    this.wave = this.L.waves.length; this.cam = this.L.boss.at; this.p.x = this.cam + 300;
   }
 
   pauseGame() {
@@ -280,6 +306,7 @@ export class GameScene extends Phaser.Scene {
 
   hurtPlayer(p, dmg, dir, knock) {
     if (p.state === 'dead') return;
+    if (godMode()) { this.text(p.x, p.y, p.def.height + p.z, 'immune', '#e0565c', 14); return; }   // cheat
     p.hp = Math.max(0, p.hp - dmg); p.flash = 6;
     this.text(p.x, p.y, p.def.height + p.z, '-' + dmg, '#ff6a5a', 21); sfx('hurt'); this.shake(6);
     if (p.hp <= 0) { this.go(p, 'dead'); p.z = 0; p.vz = 0; return; }

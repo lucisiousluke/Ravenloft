@@ -2,6 +2,7 @@ import { W, H, C, FONT_DISPLAY, FONT_BODY, IS_TOUCH, ROMAN } from '../config.js'
 import { LEVELS } from '../data/levels.js';
 import { Input } from '../systems/input.js';
 import { isMuted, toggleMute } from '../systems/audio.js';
+import { Cheats } from '../systems/cheats.js';
 
 // Draws health, spell slots, gold, boss bar and touch controls on top of the Game scene.
 export class HudScene extends Phaser.Scene {
@@ -33,6 +34,7 @@ export class HudScene extends Phaser.Scene {
     this.drawIcons();
 
     if (IS_TOUCH) this.buildTouch(); else this.buildLegend();
+    this.tCheat = this.add.text(W - 14, 56, '', { fontFamily: FONT_BODY, fontStyle: '800', fontSize: '11px', color: '#e0565c', align: 'right', stroke: '#0f0c14', strokeThickness: 3 }).setOrigin(1, 0);
   }
 
   // Desktop only: a small key legend under the hero panel. Keys light up while held.
@@ -120,6 +122,7 @@ export class HudScene extends Phaser.Scene {
     const G = this.game_, p = G.p;
     if (!p) return;
     if (this.legendG) this.drawLegend();
+    this.tCheat.setText(Cheats.unlocked ? `CHEATS${Cheats.god ? ' · GOD MODE' : ''}\nG god · B boss · N finish` : '');
     const d = p.def, g = this.g.clear(), tick = G.tick;
     // hero panel
     g.fillStyle(0x0e0b13, 0.78).fillRect(14, 12, 300, 86).lineStyle(1, 0xdcae4c, 0.4).strokeRect(14.5, 12.5, 299, 85);

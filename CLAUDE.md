@@ -22,6 +22,10 @@ that's now out of date. Read it at the start of a session for context.
 - `src/systems/`: `input.js` (keyboard + touch, buffered actions), `audio.js` (synth fallback, real files override), `util.js` (dice).
 - Art lives in `assets/`. The format is documented in `SPRITES.md`.
 
+## Testing shortcuts
+Cheats (`src/systems/cheats.js`): the Konami code on the title or select screen opens a level-select menu
+(`CheatScene.js`); in game G = god mode, B = jump to boss, N = finish the act. Handy for checking boss fights.
+
 ## Conventions
 - Game logic runs at a fixed 60 ticks/sec in `GameScene.step()`. Timings in data files are in ticks (60 = 1 second).
 - World coordinates: `x` along the level, `y` = depth on the floor (345–515), `z` = height off the ground. Sprites sit at (x, y − z) with depth = y.

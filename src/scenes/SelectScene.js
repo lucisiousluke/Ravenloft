@@ -5,6 +5,7 @@ import { TITLE_MUSIC } from '../data/audio.js';
 import { T, buttonRow, buildLayers, scrollLayers, dim } from '../ui/widgets.js';
 import { diceLabel } from '../systems/util.js';
 import { newCampaign } from '../flow.js';
+import { openCheatsOnCode } from './TitleScene.js';
 
 const speedLabel = (s) => (s < 2.6 ? 'Steady' : s < 3.2 ? 'Quick' : 'Swift');
 
@@ -61,6 +62,7 @@ export class SelectScene extends Phaser.Scene {
     this.input.keyboard.on('keydown-A', () => this.step(-1));
     this.input.keyboard.on('keydown-D', () => this.step(1));
     this.input.keyboard.on('keydown-ESC', () => this.scene.start('Title'));
+    openCheatsOnCode(this);
     this.pick(this.registry.get('hero'));
     this.flourish = this.time.addEvent({ delay: 1600, loop: true, callback: () => this.showOff() });
   }
