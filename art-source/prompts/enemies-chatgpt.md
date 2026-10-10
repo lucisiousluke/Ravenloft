@@ -109,12 +109,19 @@ painted with blood-red symbols. This enemy attacks from a distance by casting a 
 - Death: drops to its knees, then falls backward with the robe spreading on the ground.
 
 ### 6. ENEMY: blood-knight
-A blood knight, the toughest regular enemy. Bigger and broader than the attached knight (about 15% taller). Heavy
-black plate armor with blood-red trim and spikes, a horned great-helm with a glowing red visor slit, a tattered
-crimson cape, a huge two-handed blade held in both hands. Moves slowly and heavily.
-- Wind-up: hauls the great blade all the way back behind the shoulder.
+A blood knight, the toughest regular enemy: an undead FALLEN PALADIN, a once-holy warrior corrupted by
+Strahd's curse. Bigger and broader than the attached knight (about 15% taller). Once-noble plate armor, now
+tarnished, blackened and rusting, with traces of faded gold trim and a scratched-out holy symbol on the chest.
+Whole pieces of armor are missing or torn away, exposing what's underneath: grey-green rotting flesh, sinew
+and bare bone on the arms, ribs and one side of the face. Dark red corruption seeps through the cracks like
+veins. A cracked great-helm with half the faceplate broken off, showing a skeletal jaw and one burning red eye
+inside. A torn, stained tabard that was once white and gold, now soaked dark red. Wields a huge, chipped
+two-handed greatsword whose holy runes have turned blood-red. Moves slowly and heavily, like a corpse
+that still remembers how to fight.
+- Wind-up: hauls the greatsword all the way back behind the shoulder; the red runes flare brighter.
 - Attack: a massive horizontal sweep.
-- Death: staggers, drops the blade and falls backward with a heavy crash.
+- Death: staggers, drops the sword, falls backward with a heavy crash, and the red glow in the eye fades out
+  on the last frame.
 
 Start now with enemy 1, the goblin.
 
