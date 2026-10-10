@@ -66,7 +66,7 @@ HEROES = {
     }),
   'faeron': dict(
     rows=[('idle', 4), ('walk', 6), ('thrust', 6), ('slash', 6), ('lunge', 5), ('jump', 2), ('hurt', 2), ('death', 7), ('wave', 6), ('song', 4)],
-    transparent=True, solid=128, min_fig=800, glow_blue=True,
+    transparent=True, solid=128, min_fig=800, glow_hue='blue',
     resize={'song': 1.2},   # ChatGPT drew the Song of Rest row ~20% smaller (the Thunderwave row is a crouch, not smaller)
     stand_h=66, glow=['wave', 'song'], lying=['death4', 'death5', 'death6', 'death7'], lying_off=60,
     tags={
@@ -80,6 +80,22 @@ HEROES = {
       'death':   list(zip([f'death{i}' for i in range(1, 8)], [90, 90, 90, 90, 100, 120, 600])),
       'cast':    [(f'wave{i}', 100) for i in range(1, 7)],                                    # Thunderwave
       'heal':    [('song1', 120), ('song2', 160), ('song3', 160), ('song4', 200)],            # Song of Rest
+    }),
+  'sunday': dict(
+    rows=[('idle', 4), ('walk', 7), ('stab', 6), ('slash', 7), ('spin', 6), ('jump', 2), ('hurt', 2), ('death', 7), ('shadow', 6), ('snack', 4)],
+    transparent=True, solid=128, min_fig=800, glow_hue='purple',
+    stand_h=48, glow=['shadow'], lying=['death5', 'death6', 'death7'], lying_off=30,   # a halfling: shorter than Rolfing
+    tags={
+      'idle':    [(f'idle{i}', 220) for i in range(1, 5)],
+      'walk':    [(f'walk{i}', 90) for i in range(1, 8)],
+      'attack1': list(zip([f'stab{i}' for i in range(1, 7)], [60, 60, 90, 70, 70, 80])),      # quick stab
+      'attack2': list(zip([f'slash{i}' for i in range(1, 8)], [50, 50, 60, 90, 70, 60, 70])), # backhand slash
+      'attack3': list(zip([f'spin{i}' for i in range(1, 7)], [60, 60, 90, 90, 70, 80])),      # spinning double slash
+      'jump':    [('jump1', 120), ('jump2', 400)],
+      'hurt':    [('hurt1', 100), ('hurt2', 120)],
+      'death':   list(zip([f'death{i}' for i in range(1, 8)], [90, 90, 90, 90, 100, 120, 600])),
+      'cast':    [(f'shadow{i}', 80) for i in range(1, 7)],                                   # Shadow Step
+      'heal':    [('snack1', 120), ('snack2', 200), ('snack3', 200), ('snack4', 160)],        # Second Breakfast
     }),
 }
 
@@ -172,7 +188,9 @@ def build_transparent(hero, cfg, im, src_a, sat, is_glow):
         if gap(objs[frames[best][0] - 1], y, x) < 40: frames[best].append(i)
     # faint but brightly coloured pixels = spell light (rings, notes); attach them to the nearest glow frame
     glowpx = (src_a > 0) & ~fg & (sat > 50) & (im.max(-1) > 150)
-    if cfg.get('glow_blue'): glowpx &= im[..., 2] > im[..., 0] + 40   # only blue light (drops reddish fringe)
+    hue = cfg.get('glow_hue')   # only keep light of the spell's colour (drops reddish/yellow fringe)
+    if hue == 'blue': glowpx &= im[..., 2] > im[..., 0] + 40
+    if hue == 'purple': glowpx &= (im[..., 0] > im[..., 1] + 30) & (im[..., 2] > im[..., 1] + 30)
     glab, gn = ndimage.label(glowpx, structure=np.ones((3, 3))); gobjs = ndimage.find_objects(glab)
     glows = {f: [] for f in frames}
     gnames = [f for f in frames if is_glow(f)]

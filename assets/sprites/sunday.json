@@ -20,7 +20,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 220
   },
   {
    "filename": "sunday 1",
@@ -42,7 +42,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 220
   },
   {
    "filename": "sunday 2",
@@ -64,7 +64,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 220
   },
   {
    "filename": "sunday 3",
@@ -86,7 +86,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 220
   },
   {
    "filename": "sunday 4",
@@ -262,7 +262,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 60
   },
   {
    "filename": "sunday 12",
@@ -306,7 +306,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 90
   },
   {
    "filename": "sunday 14",
@@ -328,7 +328,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 70
   },
   {
    "filename": "sunday 15",
@@ -350,7 +350,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 70
   },
   {
    "filename": "sunday 16",
@@ -372,7 +372,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 80
   },
   {
    "filename": "sunday 17",
@@ -394,7 +394,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 50
   },
   {
    "filename": "sunday 18",
@@ -416,7 +416,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 50
   },
   {
    "filename": "sunday 19",
@@ -460,7 +460,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 90
   },
   {
    "filename": "sunday 21",
@@ -482,7 +482,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 70
   },
   {
    "filename": "sunday 22",
@@ -526,7 +526,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 70
   },
   {
    "filename": "sunday 24",
@@ -592,7 +592,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 90
   },
   {
    "filename": "sunday 27",
@@ -614,7 +614,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 90
   },
   {
    "filename": "sunday 28",
@@ -636,7 +636,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 70
   },
   {
    "filename": "sunday 29",
@@ -658,7 +658,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 60
+   "duration": 80
   },
   {
    "filename": "sunday 30",
@@ -702,7 +702,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 120
+   "duration": 400
   },
   {
    "filename": "sunday 32",
@@ -724,7 +724,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 120
+   "duration": 100
   },
   {
    "filename": "sunday 33",
@@ -768,7 +768,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 90
   },
   {
    "filename": "sunday 35",
@@ -790,7 +790,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 90
   },
   {
    "filename": "sunday 36",
@@ -812,7 +812,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 90
   },
   {
    "filename": "sunday 37",
@@ -834,7 +834,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 90
   },
   {
    "filename": "sunday 38",
@@ -878,7 +878,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 120
   },
   {
    "filename": "sunday 40",
@@ -900,7 +900,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 80
+   "duration": 600
   },
   {
    "filename": "sunday 41",
@@ -1011,15 +1011,125 @@
     "h": 128
    },
    "duration": 80
+  },
+  {
+   "filename": "sunday 46",
+   "frame": {
+    "x": 960,
+    "y": 640,
+    "w": 160,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 128
+   },
+   "duration": 80
+  },
+  {
+   "filename": "sunday 47",
+   "frame": {
+    "x": 1120,
+    "y": 640,
+    "w": 160,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 128
+   },
+   "duration": 120
+  },
+  {
+   "filename": "sunday 48",
+   "frame": {
+    "x": 0,
+    "y": 768,
+    "w": 160,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 128
+   },
+   "duration": 200
+  },
+  {
+   "filename": "sunday 49",
+   "frame": {
+    "x": 160,
+    "y": 768,
+    "w": 160,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 128
+   },
+   "duration": 200
+  },
+  {
+   "filename": "sunday 50",
+   "frame": {
+    "x": 320,
+    "y": 768,
+    "w": 160,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 128
+   },
+   "duration": 160
   }
  ],
  "meta": {
-  "app": "Ravenmoor placeholder generator",
+  "app": "ravenmoor tools/sprite-from-concept/make_sheet.py",
   "image": "sunday.png",
   "format": "RGBA8888",
   "size": {
    "w": 1280,
-   "h": 768
+   "h": 896
   },
   "scale": "1",
   "frameTags": [
@@ -1032,18 +1142,18 @@
    {
     "name": "walk",
     "from": 4,
-    "to": 11,
+    "to": 10,
     "direction": "forward"
    },
    {
     "name": "attack1",
-    "from": 12,
-    "to": 17,
+    "from": 11,
+    "to": 16,
     "direction": "forward"
    },
    {
     "name": "attack2",
-    "from": 18,
+    "from": 17,
     "to": 23,
     "direction": "forward"
    },
@@ -1068,13 +1178,19 @@
    {
     "name": "death",
     "from": 34,
-    "to": 39,
+    "to": 40,
     "direction": "forward"
    },
    {
     "name": "cast",
-    "from": 40,
-    "to": 45,
+    "from": 41,
+    "to": 46,
+    "direction": "forward"
+   },
+   {
+    "name": "heal",
+    "from": 47,
+    "to": 50,
     "direction": "forward"
    }
   ]

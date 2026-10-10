@@ -25,9 +25,9 @@ It plays on desktop (keyboard) and phones (on-screen controls, held sideways).
 | Area | State |
 |---|---|
 | Playable start to finish | ✅ 7 acts and their bosses, win and lose screens |
-| Heroes | ✅ 4 heroes, each with a 3-hit combo, a signature spell and a once-per-act heal |
+| Heroes | ✅ 4 heroes with final art, each with a 3-hit combo, a signature spell and a once-per-act heal |
 | Enemies | ✅ 6 regular foes + 7 boss fights: Owlbear, 6 Vampire Spawn (Vallaki church), the Abbot, 4 Revenants (Emily, T, Fatama, Kindra), Bray Wyatt, Barrow Wight, Strahd |
-| Art | 🟡 **Ulrick, Rolfing and Fae'ron have final art.** The other heroes, the enemies and the backgrounds are still placeholders that final art will replace using the same file names |
+| Art | 🟡 **All four heroes have final art**, and so does Act I's background. The enemies, bosses and the other backgrounds are still placeholders that final art will replace using the same file names |
 | Sound | 🟡 Background music ("Lament of Home") on every screen. Sound effects are still the built-in synth |
 | Hosting | Netlify, deploys automatically when `main` is pushed to GitHub |
 
@@ -141,6 +141,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-10**: Sunday gets final art (`art-source/sunday-sheet.png`, from ChatGPT): a bearded halfling with an uncovered face, a stab, slash and spin combo, Shadow Step with a purple smoke trail, and Second Breakfast. **All four heroes now have real art.** The converter's glow can now be blue or purple (`glow_hue`).
 - **2026-10-09**: Act I (and the title and select screens) has a new pixel-art background: a dark moonlit forest that repeats seamlessly, with Castle Ravenloft and a full moon in the clearing, shown **once** and drifting slowly. Backgrounds can now have `once` layers. Built by `tools/backgrounds/make_forest.py` from two images in `art-source/backgrounds/`.
 - **2026-10-09**: **Fixed:** since the Phaser 4 upgrade, any animation with uneven frame timing (attacks, spells, idles, hurt, death) skipped straight to its last frame, so attacks showed no swing. Phaser 4 reads a frame's duration as its total time on screen (Phaser 3 treated it as extra time), and `BootScene.js` now passes the real durations. Walks weren't affected because their frames are all the same length.
 - **2026-10-09**: Fae'ron gets final art (`art-source/faeron-sheet.png`, from ChatGPT): thrust, slash and lunge combo, Thunderwave with sound rings, Song of Rest with music notes. His walk properly alternates legs. The converter learned to read sheets with real transparency (`transparent`, `solid`), keep faint spell glow, and resize rows drawn at the wrong size (`resize`).
@@ -168,7 +169,7 @@ Newest at the top. One line per change is plenty.
 
 ## 8. Ideas and to-do
 
-- [ ] Replace placeholder sprites with final art (see SPRITES.md). Ulrick, Rolfing and Fae'ron are done; Sunday and the enemies are left
+- [ ] Replace placeholder sprites with final art (see SPRITES.md). All four heroes are done; the enemies and bosses are left
 - [ ] Ulrick and Rolfing walks: frames 4–6 repeat 1–3 (same leg leads). Needs a redo or an Aseprite shading fix
 - [ ] Optional: redo Fae'ron's Thunderwave row (drawn in a squat pose, so he seems to duck while casting)
 - [ ] Bray Wyatt sprite sheet (Luke is making it). It replaces `assets/sprites/bray-wyatt.png/json`

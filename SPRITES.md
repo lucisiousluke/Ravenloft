@@ -76,7 +76,7 @@ Idle and walk play at your exact timing.
 |---|---|---|---|
 | `ulrick` | 160×128 | 80, 116 | idle(3), walk(8), attack1(6), attack2(6), attack3(5), jump(2), hurt(2), death(6), cast(6), heal(6). **Final art**, made from `art-source/ulrick-sheet.png` |
 | `rolfing` | 160×128 | 80, 116 | idle(4), walk(7), attack1(6), attack2(6), attack3(6), jump(2), hurt(2), death(6), cast(6), heal(2). **Final art**, made from `art-source/rolfing-sheet.png` |
-| `sunday` | 160×128 | 80, 116 | idle(4), walk(8), attack1(6), attack2(6), attack3(6), jump(2), hurt(2), death(6), cast(6) |
+| `sunday` | 160×128 | 80, 116 | idle(4), walk(7), attack1(6), attack2(7), attack3(6), jump(2), hurt(2), death(7), cast(6), heal(4). **Final art**, made from `art-source/sunday-sheet.png` |
 | `faeron` | 160×128 | 80, 116 | idle(4), walk(6), attack1(6), attack2(6), attack3(5), jump(2), hurt(2), death(7), cast(6), heal(4). **Final art**, made from `art-source/faeron-sheet.png` |
 | `goblin` | 160×128 | 80, 116 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6) |
 | `dire-wolf` | 160×128 | 80, 116 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6) |
