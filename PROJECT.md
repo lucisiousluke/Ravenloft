@@ -26,7 +26,7 @@ It plays on desktop (keyboard) and phones (on-screen controls, held sideways).
 |---|---|
 | Playable start to finish | ✅ 7 acts and their bosses, win and lose screens |
 | Heroes | ✅ 4 heroes with final art, each with a 3-hit combo, a signature spell and a once-per-act heal |
-| Enemies | ✅ 6 regular foes + 7 boss fights: Owlbear, 6 Vampire Spawn (Vallaki church), the Abbot, 4 Revenants (Emily, T, Fatama, Kindra), Bray Wyatt, Barrow Wight, Strahd |
+| Enemies | ✅ 6 regular foes + 7 boss fights: the 3 Hags of Old Bonegrinder, 6 Vampire Spawn (Vallaki church), the Abbot, 4 Revenants (Emily, T, Fatama, Kindra), Bray Wyatt, Barrow Wight, Strahd |
 | Art | 🟡 **All four heroes have final art**, and so does Act I's background. The enemies, bosses and the other backgrounds are still placeholders that final art will replace using the same file names |
 | Sound | 🟡 Background music ("Lament of Home") on every screen. Sound effects are still the built-in synth |
 | Hosting | Netlify, deploys automatically when `main` is pushed to GitHub |
@@ -143,6 +143,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-11**: **Act I's boss is now the Hags of Old Bonegrinder** (Morgantha, Bella Sunbane and Offalia Wormwiggle), replacing the owlbear. They're a group of three that vanishes, throws green hexes and drains life, each with creepy speech bubbles. The windmill appears at the end of the forest path; the hero walks to its door, it creaks open with light spilling out, the camera pushes in and fades, and the fight happens inside the firelit mill. Placeholder art for the hags, the windmill, the interior and the hex. Levels can now have an `entrance` for this.
 - **2026-10-11**: **Strahd gets final art** (`art-source/strahd-sheet.png`, from `art-source/prompts/strahd-chatgpt.md`): a claw wind-up and strike, and a cape-spread bat summoning. ChatGPT drew some rows smaller, especially casting at about 55%, so they're resized by eye. He uses wider 200 px frames (the converter's new `cell` option) so his claw and bats aren't cut off. The sprite is renamed from `count-vaszlo` to `strahd`.
 - **2026-10-10**: **Fixed:** after finishing the game once and choosing Play again, Strahd's ending wouldn't trigger a second time (the flag carried over), so he couldn't be defeated. It's now reset each level. Leaving a level also closes any open dialogue.
 - **2026-10-10**: Testing cheats. The Konami code (↑ ↑ ↓ ↓ ← → ← → B A) on the title or select screen opens a menu to pick a hero, toggle god mode or start-at-boss, and jump into any act. In game: G god mode, B jump to boss, N finish the act. Remembered per browser; a red HUD note shows when they're on.
@@ -180,6 +181,8 @@ Newest at the top. One line per change is plenty.
 - [ ] Replace placeholder sprites with final art (see SPRITES.md). All four heroes and the goblin are done; the other five enemies (dire wolf, skeleton, ghoul, blood cultist, blood knight) and the bosses except Strahd are left
 - [ ] Ulrick and Rolfing walks: frames 4–6 repeat 1–3 (same leg leads). Needs a redo or an Aseprite shading fix
 - [ ] Optional: redo Fae'ron's Thunderwave row (drawn in a squat pose, so he seems to duck while casting)
+- [ ] Hag sprite sheet (Act I boss; placeholder `night-hag`), windmill art (`assets/backgrounds/forest/windmill.png`) and the mill interior (`assets/backgrounds/mill/`)
+- [ ] Decide on Act I's minions: goblins aren't native to Barovia (twig blights, zombies or scarecrows instead?)
 - [ ] Bray Wyatt sprite sheet (Luke is making it). It replaces `assets/sprites/bray-wyatt.png/json`
 - [ ] Real names for the four Argynvostholt revenants (placeholders: Emily, T, Fatama, Kindra in `src/data/levels.js`)
 - [ ] Final art for the new backgrounds (town, church, abbey, manor, temple) and bosses (vampire-spawn, the-abbot, revenant)

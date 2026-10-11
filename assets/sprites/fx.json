@@ -263,6 +263,50 @@
     "h": 96
    },
    "duration": 120
+  },
+  {
+   "filename": "fx 12",
+   "frame": {
+    "x": 1152,
+    "y": 0,
+    "w": 96,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 96,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 96,
+    "h": 96
+   },
+   "duration": 120
+  },
+  {
+   "filename": "fx 13",
+   "frame": {
+    "x": 1248,
+    "y": 0,
+    "w": 96,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 96,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 96,
+    "h": 96
+   },
+   "duration": 120
   }
  ],
  "meta": {
@@ -270,7 +314,7 @@
   "image": "fx.png",
   "format": "RGBA8888",
   "size": {
-   "w": 1152,
+   "w": 1344,
    "h": 96
   },
   "scale": "1",
@@ -315,6 +359,12 @@
     "name": "fire",
     "from": 10,
     "to": 11,
+    "direction": "forward"
+   },
+   {
+    "name": "hex",
+    "from": 12,
+    "to": 13,
     "direction": "forward"
    }
   ]

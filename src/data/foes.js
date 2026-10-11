@@ -24,6 +24,8 @@ export const FOES = {
 
   owlbear:  { name: 'The Owlbear', boss: true, sprite: 'owlbear', height: 108, shadow: 30, hp: 300, spd: 1.9, dmg: { n: 2, s: 6, b: 2 }, reach: 82, wind: 26, cd: 50, gold: 120, poise: 3,
               moves: ['charge'], every: [220, 320], shout: 'SCREECH!' },
+  hag:      { name: 'Night Hag', boss: true, pack: true, sprite: 'night-hag', height: 58, shadow: 16, hp: 120, spd: 1.8, dmg: { n: 1, s: 8, b: 1 }, reach: 56, wind: 24, cd: 60, gold: 50, poise: 1,
+              moves: ['vanish', 'cast'], every: [260, 380], proj: 'hex', drain: 3 },   // the three hags of Old Bonegrinder
   spawn:    { name: 'Vampire Spawn', boss: true, pack: true, sprite: 'vampire-spawn', height: 58, shadow: 16, hp: 70, spd: 2.6, dmg: { n: 1, s: 8, b: 1 }, reach: 50, wind: 18, cd: 50, gold: 25, poise: 1,
               drain: 4 },
   abbot:    { name: 'The Abbot', boss: true, sprite: 'the-abbot', height: 92, shadow: 22, hp: 420, spd: 2.0, dmg: { n: 2, s: 8, b: 2 }, reach: 80, wind: 22, cd: 50, gold: 220, poise: 3,

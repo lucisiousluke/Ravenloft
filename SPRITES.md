@@ -88,10 +88,11 @@ Idle and walk play at your exact timing.
 | `barrow-wight` | 240×192 | 120, 174 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6), cast(6) |
 | `strahd` | 200×128 | 96, 116 | idle(4), walk(6), windup(3), attack(5), hurt(2), cast(6). **Final art**, made from `art-source/strahd-sheet.png` (no death: he vanishes instead) |
 | `vampire-spawn` | 160×128 | 80, 116 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6), cast(6). Placeholder (Vallaki) |
+| `night-hag` | 160×128 | 80, 116 | same tags. Placeholder (Act I: the three hags of Old Bonegrinder, tinted differently) |
 | `revenant` | 184×144 | 92, 131 | same tags. Placeholder (Argynvostholt; all four revenants share it, tinted differently) |
 | `the-abbot` | 216×176 | 108, 160 | same tags. Placeholder (Krezk) |
 | `bray-wyatt` | 216×176 | 108, 160 | same tags. Placeholder (Amber Temple): **Luke's sheet will replace it** |
-| `fx` | 96×96 | 48, 48 (center) | bolt(2), bat(2), shade(2), wave(1), potion(1), holy(2), fire(2) |
+| `fx` | 96×96 | 48, 48 (center) | bolt(2), bat(2), shade(2), wave(1), potion(1), holy(2), fire(2), hex(2) |
 
 `fx` holds projectiles and the healing potion. They're drawn facing right and centered.
 
@@ -108,6 +109,8 @@ Each level theme has layers in `assets/backgrounds/<theme>/`, listed back to fro
 - `foreground` layers draw in front of the characters, so keep them sparse.
 - A layer with `once` in `src/data/backgrounds.js` is a single image that doesn't repeat, such as Act I's
   castle. It can be any size and can have transparency.
+- Act I's windmill (`forest/windmill.png`, a `once` layer) is a placeholder. Its door must line up with
+  `entrance` in `src/data/levels.js` (the door's center x in the level, its bottom y, and its size).
 - Act I's layers are built from `art-source/backgrounds/forest-dark.png` and `forest-castle.png` by
   `tools/backgrounds/make_forest.py` (it lines them up, recolors the castle and makes the forest repeat seamlessly).
 

@@ -18,10 +18,11 @@ export const SPRITES = {
   strahd:          { feet: [96, 116], scale: 1 },   // 200x128 frames
   'vampire-spawn': { feet: [80, 116], scale: 1 },
   revenant:        { feet: [92, 131], scale: 1 },
+  'night-hag':     { feet: [80, 116], scale: 1 },
   'the-abbot':     { feet: [108, 160], scale: 1 },
   'bray-wyatt':    { feet: [108, 160], scale: 1 },
   fx:              { feet: [48, 48], scale: 1 }, // projectiles and potion, centered
 };
 
 // Animations that repeat. Everything else plays once.
-export const LOOPING = new Set(['idle', 'walk', 'bolt', 'bat', 'shade', 'holy', 'fire']);
+export const LOOPING = new Set(['idle', 'walk', 'bolt', 'bat', 'shade', 'holy', 'fire', 'hex']);

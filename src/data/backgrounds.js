@@ -11,6 +11,7 @@ export const BACKGROUNDS = {
   forest: [          // Act I, also the title and hero select screens (made by tools/backgrounds/make_forest.py)
     { file: 'backdrop', factor: 0.15 },               // the dark forest
     { file: 'castle', factor: 0.15, once: 400, y: 40 }, // Castle Ravenloft and the moon, in the forest clearing
+    { file: 'windmill', factor: 1, once: 3578, y: 24 },  // Old Bonegrinder at the end of the path (its door is entrance.x in levels.js)
     { file: 'ground', factor: 1 },
   ],
   gothic: [
@@ -60,6 +61,11 @@ export const BACKGROUNDS = {
     { file: 'ground', factor: 1 },
     { file: 'fog', factor: 0.9, drift: 0.35 },
     { file: 'foreground', factor: 1.3, front: true },
+  ],
+  mill: [            // inside Old Bonegrinder (Act I's boss fight)
+    { file: 'wall', factor: 0.5 },
+    { file: 'floor', factor: 1 },
+    { file: 'foreground', factor: 1.35, front: true },
   ],
   temple: [          // the Amber Temple
     { file: 'wall', factor: 0.5 },

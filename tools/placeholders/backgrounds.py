@@ -204,5 +204,78 @@ def temple():
     for x in (380, 1340): d.rectangle((x, 0, x + 60, 540), fill=(150, 190, 214, 210)); d.rectangle((x + 10, 0, x + 22, 540), fill=(220, 240, 250, 210))
     save(fg, 'temple', 'foreground')
 
+# ---------------- Act I's windmill (Old Bonegrinder), seen at the end of the forest path ----------------
+# A single image (a `once` layer in backgrounds.js), drawn large then shrunk by WM_SCALE so the whole mill fits
+# above the path. Saved size 224x329; the door's bottom-centre is at (112, 328): levels.js places the entrance
+# there (door 24x34), so keep them in sync if you redraw it.
+WM_W, WM_H, WM_DOOR_X, WM_SCALE = 320, 470, 160, 0.7
+def windmill():
+    img = Image.new('RGBA', (WM_W, WM_H), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
+    stone, edge, dark, roof = (18, 42, 56, 255), (34, 74, 88, 255), (8, 16, 24, 255), (12, 30, 42, 255)
+    base_y, top_y = WM_H - 2, 150
+    d.polygon([(70, base_y), (250, base_y), (215, top_y), (105, top_y)], fill=stone)                      # tapered tower
+    d.line([(70, base_y), (105, top_y)], fill=edge, width=3)
+    for y in range(top_y + 30, base_y, 34): d.line([(80 + (base_y - y) * 0.0, y), (240, y)], fill=(14, 34, 46, 255), width=1)  # stone courses
+    d.polygon([(92, top_y + 4), (160, 70), (228, top_y + 4)], fill=roof)                                   # cap
+    hub = (160, 130)
+    for ang, length in ((-55, 150), (35, 140), (125, 95), (215, 150)):                                     # sails, one broken short
+        a = math.radians(ang); tip = (hub[0] + math.cos(a) * length, hub[1] + math.sin(a) * length)
+        d.line([hub, tip], fill=(28, 56, 66, 255), width=5)
+        n = (-math.sin(a), math.cos(a))
+        for k in range(30, int(length), 14):                                                              # lattice
+            px, py = hub[0] + math.cos(a) * k, hub[1] + math.sin(a) * k
+            d.line([(px, py), (px + n[0] * 22, py + n[1] * 22)], fill=(24, 50, 60, 255), width=2)
+    d.ellipse((150, 120, 170, 140), fill=dark)
+    d.ellipse((140, 230, 182, 272), fill=(255, 160, 70, 60)); d.rounded_rectangle((151, 238, 171, 266), 8, fill=(240, 150, 70, 255))   # lit window
+    d.line([(161, 238), (161, 266)], fill=dark, width=2)
+    dx = WM_DOOR_X                                                                                         # arched door at the base
+    d.rounded_rectangle((dx - 17, base_y - 50, dx + 17, base_y), 14, fill=dark)
+    for x in range(dx - 11, dx + 12, 7): d.line([(x, base_y - 44), (x, base_y)], fill=(22, 30, 36, 255), width=1)
+    d.rectangle((dx - 22, base_y - 2, dx + 22, base_y), fill=edge)                                        # step
+    img = img.resize((round(WM_W * WM_SCALE), round(WM_H * WM_SCALE)), Image.BOX)
+    os.makedirs(os.path.join(ROOT, 'assets', 'backgrounds', 'forest'), exist_ok=True)
+    img.save(os.path.join(ROOT, 'assets', 'backgrounds', 'forest', 'windmill.png'), optimize=True)
+
+# ---------------- Inside Old Bonegrinder: the hags' mill and bakery ----------------
+def mill():
+    wall = layer(); d = ImageDraw.Draw(wall)
+    d.rectangle((0, 0, W, H), fill=(36, 24, 18, 255))
+    for x in range(0, W, 26): d.line([(x, 0), (x, 345)], fill=(28, 18, 14, 255), width=2)                 # planks
+    for y in (60, 200): d.rectangle((0, y, W, y + 14), fill=(52, 34, 24, 255))                             # cross beams
+    rnd = random.Random(21)
+    for x in range(160, W, 640):                                                                           # big wooden gear
+        cx, cy, r = x, 120, 70
+        for t in range(16):
+            a = t / 16 * 2 * math.pi; d.rectangle((cx + math.cos(a) * r - 7, cy + math.sin(a) * r - 7, cx + math.cos(a) * r + 7, cy + math.sin(a) * r + 7), fill=(66, 44, 28, 255))
+        d.ellipse((cx - r, cy - r, cx + r, cy + r), outline=(66, 44, 28, 255), width=12)
+        for t in range(4): a = t * math.pi / 4; d.line([(cx - math.cos(a) * r, cy - math.sin(a) * r), (cx + math.cos(a) * r, cy + math.sin(a) * r)], fill=(60, 40, 26, 255), width=8)
+    for x in range(420, W, 640):                                                                           # bread ovens, fire inside
+        d.rectangle((x, 220, x + 150, 345), fill=(74, 40, 30, 255))
+        for y in range(226, 345, 12):
+            for bx in range(x + ((y // 12) % 2) * 12, x + 150, 24): d.rectangle((bx + 1, y + 1, bx + 22, y + 10), outline=(58, 30, 22, 255))
+        d.rounded_rectangle((x + 40, 270, x + 110, 335), 30, fill=(20, 8, 6, 255))
+        d.rounded_rectangle((x + 48, 290, x + 102, 335), 24, fill=(230, 110, 40, 255)); d.rounded_rectangle((x + 60, 305, x + 90, 335), 14, fill=(255, 200, 90, 255))
+    for x in range(40, W, 320):                                                                            # shelves of jars and pastries
+        d.rectangle((x, 150, x + 110, 156), fill=(70, 46, 30, 255))
+        for k in range(5):
+            jx = x + 6 + k * 21; col = rnd.choice([(120, 140, 90), (150, 90, 70), (200, 170, 120), (90, 110, 130)])
+            d.rectangle((jx, 128, jx + 14, 150), fill=col + (255,)); d.rectangle((jx + 2, 124, jx + 12, 128), fill=(60, 40, 30, 255))
+    for x in range(250, W, 400):                                                                           # hanging herbs and bones
+        d.line([(x, 74), (x, 104)], fill=(40, 30, 22, 255), width=2); d.ellipse((x - 9, 100, x + 9, 122), fill=(70, 90, 50, 255))
+        d.line([(x + 30, 74), (x + 30, 96)], fill=(40, 30, 22, 255), width=2); d.rectangle((x + 26, 96, x + 34, 116), fill=(200, 190, 160, 255))
+    for x in range(560, W, 700): d.ellipse((x, 300, x + 60, 345), fill=(150, 130, 100, 255)); d.ellipse((x + 50, 312, x + 100, 345), fill=(140, 120, 92, 255))   # flour sacks
+    d.rectangle((0, 330, W, 345), fill=(30, 20, 14, 255))
+    save(wall, 'mill', 'wall')
+    floor = layer(); d = ImageDraw.Draw(floor); d.rectangle((0, FT - 4, W, H), fill=(66, 44, 30, 255))
+    for y in range(FT, H, 20): d.line((0, y, W, y), fill=(52, 34, 24, 255), width=2)
+    for _ in range(140): x, y = rnd.randrange(W), rnd.randrange(FT, H); d.ellipse((x, y, x + rnd.randrange(10, 40), y + 4), fill=(210, 200, 180, 50))   # spilled flour
+    for x in range(300, W, 900): d.ellipse((x, 420, x + 170, 470), fill=(90, 84, 76, 255)); d.ellipse((x + 60, 436, x + 110, 454), fill=(50, 44, 40, 255))  # millstone
+    save(floor, 'mill', 'floor')
+    fg = layer(); d = ImageDraw.Draw(fg)
+    for x in (120, 1080):
+        d.rectangle((x, 0, x + 46, 540), fill=(24, 14, 10, 255))
+        for y in range(20, 200, 16): d.ellipse((x + 50, y, x + 60, y + 12), outline=(70, 70, 76, 255), width=2)   # hanging chain
+    save(fg, 'mill', 'foreground')
+
 if __name__ == '__main__':
-    for fn in (town, church, abbey, manor, temple): fn(); print('wrote', fn.__name__)
+    for fn in (town, church, abbey, manor, temple, windmill, mill): fn(); print('wrote', fn.__name__)

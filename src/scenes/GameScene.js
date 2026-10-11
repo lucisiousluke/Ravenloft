@@ -12,7 +12,7 @@ import { toClear, toWin, toDead } from '../flow.js';
 
 const alive = (e) => e.state !== 'dying' && e.state !== 'finale';   // 'finale' = dissolving into mist (Strahd's ending)
 const SLOT_REGEN = 480; // ticks to recover one spell slot (8 seconds)
-const PROJ_SPEED = { bat: 5.5, shade: 4.5, holy: 5, fire: 5 }; // boss projectile speeds (pixels per tick)
+const PROJ_SPEED = { bat: 5.5, shade: 4.5, holy: 5, fire: 5, hex: 4.5 }; // boss projectile speeds (pixels per tick)
 // How hero attacks feel. Index = which hit of the 3-hit combo.
 const HIT_STOP = [4, 4, 8];        // ticks the action freezes when a blow lands (the "impact" pause)
 const LUNGE = [1.2, 1.2, 2.2];      // pixels per tick the hero steps forward until the blow lands
@@ -33,7 +33,7 @@ export class GameScene extends Phaser.Scene {
     this.L = L; this.theme = L.theme;
     this.info = this.registry.get('spriteInfo');
     this.registry.set('levelGold', this.registry.get('gold'));
-    Object.assign(this, { tick: 0, acc: 0, cam: 0, lock: null, wave: 0, queue: [], foes: [], proj: [], parts: [], pickups: [], spawnT: 0, spawnSide: false, hitStop: 0, finale: false, bannerT: 200, bannerTop: null, bannerTitle: null, bossTitle: null, bossTotal: 0, packSize: 1, clearT: 0, ended: false });
+    Object.assign(this, { tick: 0, acc: 0, cam: 0, lock: null, wave: 0, queue: [], foes: [], proj: [], parts: [], pickups: [], spawnT: 0, spawnSide: false, hitStop: 0, finale: false, cutscene: null, bannerT: 200, bannerTop: null, bannerTitle: null, bossTitle: null, bossTotal: 0, packSize: 1, clearT: 0, ended: false });
 
     this.layers = buildLayers(this, this.theme);
     this.gGround = this.add.graphics().setDepth(1);   // shadows, rings on the floor
@@ -63,7 +63,7 @@ export class GameScene extends Phaser.Scene {
     this.input.keyboard.on('keydown-G', () => { if (!Cheats.unlocked) return; Cheats.god = !Cheats.god; saveCheats(); say(`God mode ${Cheats.god ? 'ON' : 'off'}`); });
     this.input.keyboard.on('keydown-B', () => { if (Cheats.unlocked) this.skipToBoss(); });
     this.input.keyboard.on('keydown-N', () => {   // finish the act: defeat the boss if one is up, otherwise just end it
-      if (!Cheats.unlocked || this.finale || this.clearT || this.ended) return;
+      if (!Cheats.unlocked || this.finale || this.cutscene || this.clearT || this.ended) return;
       const bosses = this.foes.filter((e) => e.boss && alive(e));
       if (bosses.length) { this.queue = this.queue.filter((q) => !FOES[q.type].boss); bosses.forEach((b) => this.killFoe(b, 1)); }
       else { this.queue = []; for (const f of this.foes) if (alive(f)) this.killFoe(f, 1); this.clearT = 1; }
@@ -142,7 +142,14 @@ export class GameScene extends Phaser.Scene {
     const d = p.def;
     if (p.inv > 0) p.inv--; if (p.comboT > 0) p.comboT--; if (p.flash > 0) p.flash--;
     if (p.state === 'dead') { p.t++; return; }
-    if (p.state === 'stunned') {   // frozen during Strahd's ending: no input, no damage (just land if mid-jump)
+    if (p.state === 'walkin') {    // walking up to a building's door on their own (Act I's windmill)
+      const tx = this.cutscene.door.x, ty = FT + 16, dx = tx - p.x, dy = ty - p.y, dist = Math.hypot(dx, dy);
+      if (p.z > 0 || p.vz > 0) { p.vz -= 0.62; p.z += p.vz; if (p.z <= 0) { p.z = 0; p.vz = 0; } }
+      if (dist < 3) { p.moving = false; this.openDoor(); }
+      else { const sp = Math.min(d.spd * 0.8, dist); p.x += (dx / dist) * sp; p.y += (dy / dist) * sp; p.face = dx >= 0 ? 1 : -1; p.moving = true; }
+      return;
+    }
+    if (p.state === 'stunned') {   // frozen during Strahd's ending (and while a door opens): no input, no damage (just land if mid-jump)
       p.t++; p.moving = false;
       if (p.z > 0 || p.vz > 0) { p.vz -= 0.62; p.z += p.vz; if (p.z <= 0) { p.z = 0; p.vz = 0; } }
       return;
@@ -537,16 +544,17 @@ export class GameScene extends Phaser.Scene {
         this.bossTitle = wv.title || FOES[bosses[0].type].name;
         this.bossTotal = bosses.reduce((t, b) => t + FOES[b.type].hp, 0);
         this.packSize = bosses.length;
-        if (wv.theme) this.enterArea(wv.theme, wv.place);
+        if (wv.entrance) this.enterBuilding(wv);           // walk in through a door first (the windmill)
+        else if (wv.theme) this.enterArea(wv.theme, wv.place);
       } else this.queue = wv.foes.map((t) => ({ type: t }));
       this.spawnT = wv.boss ? (wv.theme ? 90 : 40) : 20; this.wave++;
     }
     const maxCam = this.lock !== null ? this.lock : (this.wave < waves.length ? waves[this.wave].at : waves[waves.length - 1].at);
     const target = p.x - W * 0.42;
-    if (target > this.cam) this.cam = Math.min(maxCam, this.cam + Math.min(6, target - this.cam));
+    if (!this.cutscene && target > this.cam) this.cam = Math.min(maxCam, this.cam + Math.min(6, target - this.cam));
     if (this.lock !== null && !this.clearT) {
       const live = this.foes.filter(alive).length, cap = this.foes.some((e) => e.boss && alive(e)) ? Math.max(5, this.packSize + 1) : 4;
-      if (this.queue.length && --this.spawnT <= 0 && live < cap) { const q = this.queue.shift(); this.spawn(q); this.spawnT = FOES[q.type].pack ? 28 : 55; }
+      if (this.queue.length && !this.cutscene && --this.spawnT <= 0 && live < cap) { const q = this.queue.shift(); this.spawn(q); this.spawnT = FOES[q.type].pack ? 28 : 55; }
       if (!this.queue.length && !live && !this.finale) { this.lock = null; sfx('go'); }
     }
   }
@@ -555,17 +563,45 @@ export class GameScene extends Phaser.Scene {
   enterArea(theme, place) {
     const cam = this.cameras.main;
     cam.fadeOut(350, 0, 0, 0);
+    cam.once('camerafadeoutcomplete', () => { this.switchArea(theme, place); cam.fadeIn(450, 0, 0, 0); });
+  }
+
+  switchArea(theme, place) {   // swap the background and show the place's name
+    for (const l of this.layers) l.obj.destroy();
+    this.layers = buildLayers(this, theme); this.theme = theme;
+    this.bannerTop = this.L.name.toUpperCase(); this.bannerTitle = place; this.bannerT = 200;
+  }
+
+  // Walk in through a door before the boss fight (Act I's windmill): the hero walks to the door on their own
+  // (updPlayer 'walkin'), then openDoor() plays the entrance. The bosses wait until the hero is inside.
+  enterBuilding(wv) {
+    this.cutscene = { door: wv.entrance, theme: wv.theme, place: wv.place };
+    Input.reset(); this.go(this.p, 'walkin'); this.p.inv = 1e9;
+  }
+
+  openDoor() {
+    const d = this.cutscene.door, cam = this.cameras.main, p = this.p;
+    this.go(p, 'stunned'); p.face = 1; sfx('door');
+    // the door swings open from its hinge and warm light spills out onto the ground
+    const light = this.add.rectangle(d.x - d.w / 2, d.y - d.h, d.w, d.h, 0xffb45a).setOrigin(0, 0).setDepth(d.y).setScale(0, 1);
+    const spill = this.add.ellipse(d.x, d.y + 12, d.w, 12, 0xffb45a, 1).setDepth(d.y - 1).setAlpha(0);
+    this.tweens.add({ targets: light, scaleX: 1, duration: 700, ease: 'Sine.out' });
+    this.tweens.add({ targets: spill, alpha: 0.55, scaleX: 3, scaleY: 2.2, duration: 1000 });
+    // centre the doorway, push in on it and fade to black
+    this.tweens.add({ targets: this, cam: d.x - W / 2, duration: 900, delay: 300, ease: 'Sine.inOut' });
+    this.time.delayedCall(800, () => { cam.zoomTo(2.4, 1300, 'Sine.easeIn'); cam.fadeOut(1300, 0, 0, 0); });
     cam.once('camerafadeoutcomplete', () => {
-      for (const l of this.layers) l.obj.destroy();
-      this.layers = buildLayers(this, theme); this.theme = theme;
-      this.bannerTop = this.L.name.toUpperCase(); this.bannerTitle = place; this.bannerT = 200;
-      cam.fadeIn(450, 0, 0, 0);
+      light.destroy(); spill.destroy(); cam.setZoom(1);
+      this.cam = this.L.boss.at; p.x = this.cam + 180; p.y = 440; this.go(p, 'idle'); p.inv = 60;
+      this.switchArea(this.cutscene.theme, this.cutscene.place);
+      this.cutscene = null; this.spawnT = 70;   // the hags arrive shortly after
+      cam.fadeIn(700, 0, 0, 0);
     });
   }
 
   // For the HUD: this act's bosses as one health bar (a pack shares a bar). null = no bar.
   bossInfo() {
-    if (!this.bossTotal || this.clearT) return null;
+    if (!this.bossTotal || this.clearT || this.cutscene) return null;
     let hp = 0, any = false;
     for (const e of this.foes) if (e.boss && alive(e)) { hp += Math.max(0, e.hp); any = true; }
     for (const q of this.queue) if (FOES[q.type].boss) { hp += FOES[q.type].hp; any = true; }
@@ -647,7 +683,7 @@ export class GameScene extends Phaser.Scene {
     s.setPosition(Math.round(e.x), Math.round(e.y - e.z)).setFlipX(e.face < 0).setDepth(e.y + (isHero ? 0.1 : 0));
     let a = e.alpha ?? 1;
     if (e.state === 'dying' && e.t > 40) a *= Math.max(0, 1 - (e.t - 40) / 30);
-    if (isHero && e.inv > 0 && e.state !== 'spell' && e.state !== 'heal' && e.state !== 'dead' && e.state !== 'stunned' && this.tick % 8 < 4) a *= 0.45;
+    if (isHero && e.inv > 0 && e.state !== 'spell' && e.state !== 'heal' && e.state !== 'dead' && e.state !== 'stunned' && e.state !== 'walkin' && this.tick % 8 < 4) a *= 0.45;
     s.setAlpha(a);
     if (e.flash > 0) s.setTint(0xffffff).setTintMode(Phaser.TintModes.FILL); // white hit-flash
     else if (e.tint) s.setTint(e.tint).setTintMode(Phaser.TintModes.MULTIPLY); // e.g. each revenant's own colour
@@ -715,8 +751,8 @@ export class GameScene extends Phaser.Scene {
         top.fillStyle(0xeef2ff, 0.55).fillRect(this.cam + fx, fy, 2, 2);
       }
     }
-    if (this.theme === 'temple' || this.theme === 'church') { // rising amber motes / candle sparks
-      const col = this.theme === 'temple' ? 0xffb347 : 0xffd98a;
+    if (this.theme === 'temple' || this.theme === 'church' || this.theme === 'mill') { // amber motes / candle sparks / flour dust
+      const col = this.theme === 'temple' ? 0xffb347 : this.theme === 'mill' ? 0xe8dcc0 : 0xffd98a;
       for (let k = 0; k < 14; k++) {
         const fx = (((hash(k + 3) * W * 1.5 - this.cam * 0.7) % W) + W) % W, fy = H - ((this.tick * (0.25 + hash(k + 1) * 0.3) + hash(k + 8) * H) % H);
         top.fillStyle(col, 0.3 + 0.35 * Math.sin(this.tick * 0.06 + k)).fillRect(this.cam + fx, fy, 2, 2);

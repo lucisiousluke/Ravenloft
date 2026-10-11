@@ -3,7 +3,7 @@
 # Not part of the game. Needs Python with Pillow (see tools/sprite-from-concept/README.md for setup).
 #   python tools/placeholders/sprites.py
 # Writes assets/sprites/<name>.png + .json (Aseprite "Array" format with tags). Real art replaces these files.
-import json, math, os
+import json, math, os, sys
 from PIL import Image, ImageDraw
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -16,6 +16,8 @@ SPECS = {
                         tabard=(84, 104, 138), helm=(132, 138, 146), eyes=(190, 240, 255), sword=(200, 208, 214)),
   'the-abbot':     dict(frame=(216, 176), feet=(108, 160), h=92, skin=(228, 206, 188), body=(236, 230, 214), legs=(236, 230, 214), hair=(214, 204, 180),
                         trim=(212, 170, 70), robe=True, wings=(244, 244, 252), halo=(255, 214, 110), eyes=(255, 230, 150), glow=(255, 226, 140)),
+  'night-hag':     dict(frame=(160, 128), feet=(80, 116), h=58, skin=(122, 140, 128), body=(64, 52, 46), legs=(52, 42, 38), hair=(86, 86, 82),
+                        trim=(40, 32, 28), robe=True, eyes=(240, 220, 90), claws=True, hunch=8, glow=(150, 220, 120)),
   'bray-wyatt':    dict(frame=(216, 176), feet=(108, 160), h=88, skin=(222, 188, 166), body=(40, 32, 34), legs=(30, 26, 28), hair=(52, 38, 30),
                         shirt=(150, 32, 34), beard=True, eyes=(255, 70, 40), lantern=(255, 200, 90), glow=(255, 120, 50)),
 }
@@ -135,9 +137,9 @@ def sheet(name, spec):
     print('wrote', name, len(frames), 'frames')
 
 def fx_projectiles():
-    """Adds 'holy' and 'fire' (2 frames each, 96x96, centred, facing right) to the fx sheet, keeping existing frames."""
+    """Adds 'holy', 'fire' and 'hex' (2 frames each, 96x96, centred, facing right) to the fx sheet, keeping the original frames."""
     base = os.path.join(ROOT, 'assets', 'sprites', 'fx'); data = json.load(open(base + '.json')); old = Image.open(base + '.png').convert('RGBA')
-    tags = [t for t in data['meta']['frameTags'] if t['name'] not in ('holy', 'fire')]
+    tags = [t for t in data['meta']['frameTags'] if t['name'] not in ('holy', 'fire', 'hex')]
     keep = max(t['to'] for t in tags) + 1
     frames = data['frames'][:keep]
     new = []
@@ -151,17 +153,26 @@ def fx_projectiles():
         d.polygon([(30, 48), (8 + k * 4, 38), (16, 48), (6 + k * 4, 58)], fill=(255, 120, 40, 200))
         d.ellipse((30, 34, 62, 62), fill=(240, 80, 30, 255)); d.ellipse((40, 40, 58, 56), fill=(255, 190, 80, 255)); d.ellipse((46, 44, 56, 52), fill=(255, 245, 200, 255))
         new.append(('fire', img))
+    for k in range(2):   # hag's hex: a sickly green wisp with a purple core and a trailing tail
+        img = Image.new('RGBA', (96, 96)); d = ImageDraw.Draw(img)
+        d.polygon([(34, 48), (12 + k * 5, 40), (20, 48), (10 + k * 5, 57)], fill=(120, 200, 100, 170))
+        d.ellipse((32, 36, 58, 60), fill=(110, 190, 90, 255)); d.ellipse((40, 42, 54, 56), fill=(150, 70, 170, 255)); d.ellipse((45, 46, 51, 52), fill=(230, 210, 255, 255))
+        new.append(('hex', img))
     total = keep + len(new); out = Image.new('RGBA', (96 * total, 96))
     out.paste(old.crop((0, 0, 96 * keep, 96)), (0, 0))
     for j, (tag, img) in enumerate(new):
         i = keep + j; out.paste(img, (96 * i, 0))
         frames.append({'filename': f'fx {i}', 'frame': {'x': 96 * i, 'y': 0, 'w': 96, 'h': 96}, 'rotated': False, 'trimmed': False,
                        'spriteSourceSize': {'x': 0, 'y': 0, 'w': 96, 'h': 96}, 'sourceSize': {'w': 96, 'h': 96}, 'duration': 120})
-    tags += [{'name': 'holy', 'from': keep, 'to': keep + 1, 'direction': 'forward'}, {'name': 'fire', 'from': keep + 2, 'to': keep + 3, 'direction': 'forward'}]
+    tags += [{'name': n, 'from': keep + 2 * j, 'to': keep + 2 * j + 1, 'direction': 'forward'} for j, n in enumerate(('holy', 'fire', 'hex'))]
     data['frames'] = frames; data['meta']['frameTags'] = tags; data['meta']['size'] = {'w': out.width, 'h': 96}
     out.save(base + '.png', optimize=True); json.dump(data, open(base + '.json', 'w'), indent=1)
     print('fx: added holy + fire')
 
 if __name__ == '__main__':
-    for name, spec in SPECS.items(): sheet(name, spec)
-    fx_projectiles()
+    # python sprites.py               -> every placeholder plus the fx projectiles
+    # python sprites.py night-hag fx  -> just those (never overwrites art that has been replaced)
+    only = sys.argv[1:]
+    for name, spec in SPECS.items():
+        if not only or name in only: sheet(name, spec)
+    if not only or 'fx' in only: fx_projectiles()

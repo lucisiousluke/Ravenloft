@@ -9,14 +9,22 @@
 export const LEVELS = [
   {
     name: 'The Lands of Barovia', theme: 'forest', music: 'music-lament',
-    intro: 'The mists closed behind you on the road into Barovia, and they will not let you leave. The goblin drums went quiet an hour ago, and something large is crashing through the brambles ahead.',
-    outro: 'The owlbear falls with a final screech. Down the Old Svalich Road, the walled town of Vallaki waits behind its palisade.',
+    intro: 'The mists closed behind you on the road into Barovia, and they will not let you leave. Somewhere ahead, past the twisted trees, an old windmill creaks in the dark, and the air smells of something sweet baking.',
+    outro: 'The cackling dies among the millstones of Old Bonegrinder, and the ovens go cold. Down the Old Svalich Road, the walled town of Vallaki waits behind its palisade.',
     waves: [
       { at: 520, foes: ['goblin', 'goblin', 'goblin'] },
       { at: 1350, foes: ['goblin', 'wolf', 'goblin', 'wolf'] },
       { at: 2200, foes: ['wolf', 'goblin', 'goblin', 'wolf', 'goblin'] },
     ],
-    boss: { at: 3050, bosses: ['owlbear'], add: ['goblin', 'goblin'] },
+    // the windmill stands at the end of the path (backgrounds.js); the hero walks in through its door (entrance.x = the
+    // door's position in the level) and the fight happens inside
+    boss: { at: 3050, title: 'The Hags of Old Bonegrinder', theme: 'mill', place: 'Old Bonegrinder', entrance: { x: 3690, y: 352, w: 24, h: 34 },
+            add: [],
+            bosses: [
+              { type: 'hag', name: 'Morgantha', quips: ['Care for a pastry, dearie?', 'Such sweet dreams you’ll have…', 'The oven is warm. Come closer.', 'Bella! Offalia! We have guests!'] },
+              { type: 'hag', name: 'Bella Sunbane', tint: 0xe2ccff, quips: ['Mother, may I keep this one?', 'Your fear smells delicious.'] },
+              { type: 'hag', name: 'Offalia Wormwiggle', tint: 0xcdeec0, quips: ['Fresh meat for the grinder!', 'Hee hee hee…'] },
+            ] },
   },
   {
     name: 'Vallaki', theme: 'town', music: 'music-lament',
