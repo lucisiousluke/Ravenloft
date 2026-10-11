@@ -179,6 +179,7 @@ Newest at the top. One line per change is plenty.
 - [ ] Replace placeholder sprites with final art (see SPRITES.md). All four heroes and the goblin are done; the other five enemies (dire wolf, skeleton, ghoul, blood cultist, blood knight) and the bosses are left
 - [ ] Ulrick and Rolfing walks: frames 4–6 repeat 1–3 (same leg leads). Needs a redo or an Aseprite shading fix
 - [ ] Optional: redo Fae'ron's Thunderwave row (drawn in a squat pose, so he seems to duck while casting)
+- [ ] Strahd sprite sheet: prompt in `art-source/prompts/strahd-chatgpt.md`, reference pose in `art-source/references/strahd-reference.png` (a parts kit, `strahd-parts.png`, couldn't be rigged: its torso faces front, the cape is seen from behind and the arms are doubled)
 - [ ] Bray Wyatt sprite sheet (Luke is making it). It replaces `assets/sprites/bray-wyatt.png/json`
 - [ ] Real names for the four Argynvostholt revenants (placeholders: Emily, T, Fatama, Kindra in `src/data/levels.js`)
 - [ ] Final art for the new backgrounds (town, church, abbey, manor, temple) and bosses (vampire-spawn, the-abbot, revenant)
