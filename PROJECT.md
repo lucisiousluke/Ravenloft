@@ -143,6 +143,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-11**: The dire wolf gets final art (`art-source/dire-wolf-sheet.png`, from `art-source/prompts/dire-wolf-chatgpt.md`): a gaunt, shaggy wolf with a crouching wind-up and a mid-air lunge. Every row came out at the same size, so no fixes were needed.
 - **2026-10-11**: **Act I's boss is now the Hags of Old Bonegrinder** (Morgantha, Bella Sunbane and Offalia Wormwiggle), replacing the owlbear. They're a group of three that vanishes, throws green hexes and drains life, each with creepy speech bubbles. The windmill appears at the end of the forest path; the hero walks to its door, it creaks open with light spilling out, the camera pushes in and fades, and the fight happens inside the firelit mill. Placeholder art for the hags, the windmill, the interior and the hex. Levels can now have an `entrance` for this.
 - **2026-10-11**: **Strahd gets final art** (`art-source/strahd-sheet.png`, from `art-source/prompts/strahd-chatgpt.md`): a claw wind-up and strike, and a cape-spread bat summoning. ChatGPT drew some rows smaller, especially casting at about 55%, so they're resized by eye. He uses wider 200 px frames (the converter's new `cell` option) so his claw and bats aren't cut off. The sprite is renamed from `count-vaszlo` to `strahd`.
 - **2026-10-10**: **Fixed:** after finishing the game once and choosing Play again, Strahd's ending wouldn't trigger a second time (the flag carried over), so he couldn't be defeated. It's now reset each level. Leaving a level also closes any open dialogue.
@@ -178,10 +179,11 @@ Newest at the top. One line per change is plenty.
 
 ## 8. Ideas and to-do
 
-- [ ] Replace placeholder sprites with final art (see SPRITES.md). All four heroes and the goblin are done; the other five enemies (dire wolf, skeleton, ghoul, blood cultist, blood knight) and the bosses except Strahd are left
+- [ ] Replace placeholder sprites with final art (see SPRITES.md). All four heroes, the goblin and the dire wolf are done; the other four enemies (skeleton, ghoul, blood cultist, blood knight) and the bosses except Strahd are left
 - [ ] Ulrick and Rolfing walks: frames 4–6 repeat 1–3 (same leg leads). Needs a redo or an Aseprite shading fix
 - [ ] Optional: redo Fae'ron's Thunderwave row (drawn in a squat pose, so he seems to duck while casting)
 - [ ] Hag sprite sheet (Act I boss; placeholder `night-hag`), windmill art (`assets/backgrounds/forest/windmill.png`) and the mill interior (`assets/backgrounds/mill/`)
+- [ ] Consider a rim light or stronger ground shadow so dark characters (Sunday, the wolf) stand out on dark floors
 - [ ] Decide on Act I's minions: goblins aren't native to Barovia (twig blights, zombies or scarecrows instead?)
 - [ ] Bray Wyatt sprite sheet (Luke is making it). It replaces `assets/sprites/bray-wyatt.png/json`
 - [ ] Real names for the four Argynvostholt revenants (placeholders: Emily, T, Fatama, Kindra in `src/data/levels.js`)

@@ -122,6 +122,18 @@ HEROES = {
       'hurt':   [('hurt1', 100), ('hurt2', 120)],
       'death':  list(zip([f'death{i}' for i in range(1, 7)], [90, 90, 100, 120, 160, 600])),
     }),
+  'dire-wolf': dict(
+    rows=[('idle', 3), ('walk', 6), ('windup', 3), ('attack', 5), ('hurt', 2), ('death', 6)],
+    transparent=True, solid=128, min_fig=800, glow=[],
+    stand_h=44,   # shoulder height about half the knight's; body about as long as the knight is tall
+    tags={
+      'idle':   [(f'idle{i}', 300) for i in range(1, 4)],
+      'walk':   [(f'walk{i}', 100) for i in range(1, 7)],
+      'windup': [('windup1', 100), ('windup2', 100), ('windup3', 160)],
+      'attack': [('attack1', 40), ('attack2', 140), ('attack3', 80), ('attack4', 70), ('attack5', 70)],   # the lunge
+      'hurt':   [('hurt1', 100), ('hurt2', 120)],
+      'death':  list(zip([f'death{i}' for i in range(1, 7)], [90, 90, 100, 120, 160, 600])),
+    }),
   # ---- bosses ----
   'strahd': dict(
     impact={'attack': 2},

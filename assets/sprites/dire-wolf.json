@@ -20,7 +20,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 300
   },
   {
    "filename": "dire-wolf 1",
@@ -42,7 +42,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 300
   },
   {
    "filename": "dire-wolf 2",
@@ -64,7 +64,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 300
   },
   {
    "filename": "dire-wolf 3",
@@ -86,7 +86,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 180
+   "duration": 100
   },
   {
    "filename": "dire-wolf 4",
@@ -108,7 +108,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 100
   },
   {
    "filename": "dire-wolf 5",
@@ -130,7 +130,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 100
   },
   {
    "filename": "dire-wolf 6",
@@ -152,7 +152,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 100
   },
   {
    "filename": "dire-wolf 7",
@@ -174,7 +174,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 100
   },
   {
    "filename": "dire-wolf 8",
@@ -196,7 +196,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 100
   },
   {
    "filename": "dire-wolf 9",
@@ -218,7 +218,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 100
   },
   {
    "filename": "dire-wolf 10",
@@ -240,7 +240,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 100
   },
   {
    "filename": "dire-wolf 11",
@@ -262,7 +262,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 90
+   "duration": 160
   },
   {
    "filename": "dire-wolf 12",
@@ -284,7 +284,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 80
+   "duration": 40
   },
   {
    "filename": "dire-wolf 13",
@@ -306,7 +306,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 80
+   "duration": 140
   },
   {
    "filename": "dire-wolf 14",
@@ -394,7 +394,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 100
   },
   {
    "filename": "dire-wolf 18",
@@ -416,7 +416,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 120
   },
   {
    "filename": "dire-wolf 19",
@@ -438,7 +438,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 70
+   "duration": 90
   },
   {
    "filename": "dire-wolf 20",
@@ -460,7 +460,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 120
+   "duration": 90
   },
   {
    "filename": "dire-wolf 21",
@@ -482,7 +482,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 120
+   "duration": 100
   },
   {
    "filename": "dire-wolf 22",
@@ -504,7 +504,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 120
   },
   {
    "filename": "dire-wolf 23",
@@ -526,7 +526,7 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
+   "duration": 160
   },
   {
    "filename": "dire-wolf 24",
@@ -548,77 +548,11 @@
     "w": 160,
     "h": 128
    },
-   "duration": 100
-  },
-  {
-   "filename": "dire-wolf 25",
-   "frame": {
-    "x": 160,
-    "y": 384,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 100
-  },
-  {
-   "filename": "dire-wolf 26",
-   "frame": {
-    "x": 320,
-    "y": 384,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 100
-  },
-  {
-   "filename": "dire-wolf 27",
-   "frame": {
-    "x": 480,
-    "y": 384,
-    "w": 160,
-    "h": 128
-   },
-   "rotated": false,
-   "trimmed": false,
-   "spriteSourceSize": {
-    "x": 0,
-    "y": 0,
-    "w": 160,
-    "h": 128
-   },
-   "sourceSize": {
-    "w": 160,
-    "h": 128
-   },
-   "duration": 100
+   "duration": 600
   }
  ],
  "meta": {
-  "app": "Ravenmoor placeholder generator",
+  "app": "ravenmoor tools/sprite-from-concept/make_sheet.py",
   "image": "dire-wolf.png",
   "format": "RGBA8888",
   "size": {
@@ -630,37 +564,37 @@
    {
     "name": "idle",
     "from": 0,
-    "to": 3,
+    "to": 2,
     "direction": "forward"
    },
    {
     "name": "walk",
-    "from": 4,
-    "to": 11,
+    "from": 3,
+    "to": 8,
     "direction": "forward"
    },
    {
     "name": "windup",
-    "from": 12,
-    "to": 14,
+    "from": 9,
+    "to": 11,
     "direction": "forward"
    },
    {
     "name": "attack",
-    "from": 15,
-    "to": 19,
+    "from": 12,
+    "to": 16,
     "direction": "forward"
    },
    {
     "name": "hurt",
-    "from": 20,
-    "to": 21,
+    "from": 17,
+    "to": 18,
     "direction": "forward"
    },
    {
     "name": "death",
-    "from": 22,
-    "to": 27,
+    "from": 19,
+    "to": 24,
     "direction": "forward"
    }
   ]
