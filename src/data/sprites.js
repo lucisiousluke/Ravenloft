@@ -15,7 +15,7 @@ export const SPRITES = {
   'blood-knight':  { feet: [92, 131], scale: 1 },
   owlbear:         { feet: [140, 203], scale: 1 },
   'barrow-wight':  { feet: [120, 174], scale: 1 },
-  'count-vaszlo':  { feet: [108, 160], scale: 1 },   // Strahd
+  strahd:          { feet: [96, 116], scale: 1 },   // 200x128 frames
   'vampire-spawn': { feet: [80, 116], scale: 1 },
   revenant:        { feet: [92, 131], scale: 1 },
   'the-abbot':     { feet: [108, 160], scale: 1 },

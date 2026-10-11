@@ -143,6 +143,7 @@ Write down any choice we'd otherwise forget the reason for.
 
 Newest at the top. One line per change is plenty.
 
+- **2026-10-11**: **Strahd gets final art** (`art-source/strahd-sheet.png`, from `art-source/prompts/strahd-chatgpt.md`): a claw wind-up and strike, and a cape-spread bat summoning. ChatGPT drew some rows smaller, especially casting at about 55%, so they're resized by eye. He uses wider 200 px frames (the converter's new `cell` option) so his claw and bats aren't cut off. The sprite is renamed from `count-vaszlo` to `strahd`.
 - **2026-10-10**: **Fixed:** after finishing the game once and choosing Play again, Strahd's ending wouldn't trigger a second time (the flag carried over), so he couldn't be defeated. It's now reset each level. Leaving a level also closes any open dialogue.
 - **2026-10-10**: Testing cheats. The Konami code (↑ ↑ ↓ ↓ ← → ← → B A) on the title or select screen opens a menu to pick a hero, toggle god mode or start-at-boss, and jump into any act. In game: G god mode, B jump to boss, N finish the act. Remembered per browser; a red HUD note shows when they're on.
 - **2026-10-10**: **Strahd's ending.** At 0 HP Strahd doesn't die. The hero freezes, the screen darkens, and he dissolves into black and crimson mist (his cultists too). His final speech then plays in a gothic dialogue box, five sections, each advanced only by **Continue**, with the last line in large red text. Control returns after the last section, then the victory screen. The text is in `src/data/dialogue.js` and the box in `src/scenes/DialogueScene.js`. The victory text no longer says he crumbles to ash.
@@ -176,10 +177,9 @@ Newest at the top. One line per change is plenty.
 
 ## 8. Ideas and to-do
 
-- [ ] Replace placeholder sprites with final art (see SPRITES.md). All four heroes and the goblin are done; the other five enemies (dire wolf, skeleton, ghoul, blood cultist, blood knight) and the bosses are left
+- [ ] Replace placeholder sprites with final art (see SPRITES.md). All four heroes and the goblin are done; the other five enemies (dire wolf, skeleton, ghoul, blood cultist, blood knight) and the bosses except Strahd are left
 - [ ] Ulrick and Rolfing walks: frames 4–6 repeat 1–3 (same leg leads). Needs a redo or an Aseprite shading fix
 - [ ] Optional: redo Fae'ron's Thunderwave row (drawn in a squat pose, so he seems to duck while casting)
-- [ ] Strahd sprite sheet: prompt in `art-source/prompts/strahd-chatgpt.md`, reference pose in `art-source/references/strahd-reference.png` (a parts kit, `strahd-parts.png`, couldn't be rigged: its torso faces front, the cape is seen from behind and the arms are doubled)
 - [ ] Bray Wyatt sprite sheet (Luke is making it). It replaces `assets/sprites/bray-wyatt.png/json`
 - [ ] Real names for the four Argynvostholt revenants (placeholders: Emily, T, Fatama, Kindra in `src/data/levels.js`)
 - [ ] Final art for the new backgrounds (town, church, abbey, manor, temple) and bosses (vampire-spawn, the-abbot, revenant)

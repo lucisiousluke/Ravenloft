@@ -16,6 +16,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 # lying   -> frames where the hero lies on the ground; anchored by the feet so they fall backward
 #            (lying_off = how far in from the right edge the feet are, in source pixels)
 # trapped_checker -> also clear checkerboard trapped inside a figure (e.g. between staff and body)
+# cell    -> optional (width, height, feet x, feet y) of each frame, for characters wider than 160x128
+#            (set the same feet in src/data/sprites.js)
 # resize  -> optional {row: factor} for rows drawn at the wrong size, judged by eye against idle
 #            (e.g. 1.2 = draw that row 20% bigger). Automatic measuring proved unreliable (crouches, feathers, notes).
 # transparent -> the sheet has real transparency (no checkerboard). Pixels at least `solid` opaque (0-255) are the
@@ -120,6 +122,24 @@ HEROES = {
       'hurt':   [('hurt1', 100), ('hurt2', 120)],
       'death':  list(zip([f'death{i}' for i in range(1, 7)], [90, 90, 100, 120, 160, 600])),
     }),
+  # ---- bosses ----
+  'strahd': dict(
+    impact={'attack': 2},
+    rows=[('idle', 4), ('walk', 6), ('windup', 3), ('attack', 5), ('hurt', 2), ('cast', 6)],   # no death row: he never dies
+    cell=(200, 128, 96, 116),   # wider frames: his claw and the bats reach further than 160px cells allow
+    transparent=True, solid=128, min_fig=800, glow=[],
+    stand_h=88,
+    # rows ChatGPT drew at other sizes, judged by eye against idle (the cast row is drawn stockier, so not full height-match)
+    resize={'attack': 1.11, 'hurt': 1.25, 'cast': 1.65},
+    tags={
+      'idle':   [(f'idle{i}', 260) for i in range(1, 5)],
+      'walk':   [(f'walk{i}', 110) for i in range(1, 7)],
+      'windup': [('windup1', 100), ('windup2', 100), ('windup3', 160)],
+      'attack': [('attack1', 40), ('attack2', 140), ('attack3', 80), ('attack4', 70), ('attack5', 70)],
+      'hurt':   [('hurt1', 100), ('hurt2', 120)],
+      # the bats fly 3/4 of the way through the cast: the hands-forward frames (3-4) cover that moment
+      'cast':   [('cast1', 140), ('cast2', 140), ('cast3', 120), ('cast4', 200), ('cast5', 60), ('cast6', 60)],
+    }),
 }
 
 FW, FH, FX, FY = 160, 128, 80, 116   # cell size and where the feet go (matches src/data/sprites.js)
@@ -127,6 +147,8 @@ WHITE = 248.0
 
 def build(hero):
     cfg = HEROES[hero]
+    global FW, FH, FX, FY   # a character can use bigger cells (cell=(width, height, feet x, feet y)); match src/data/sprites.js
+    FW, FH, FX, FY = cfg.get('cell', (160, 128, 80, 116))
     rgba = np.array(Image.open(os.path.join(ROOT, 'art-source', f'{hero}-sheet.png')).convert('RGBA')).astype(float)
     im, src_a = rgba[..., :3], rgba[..., 3]
     br = im.mean(-1); sat = im.max(-1) - im.min(-1)
@@ -241,7 +263,7 @@ def finish(hero, cfg, CUT, is_glow):
     def feet(name, a):
         # line frames up by the solid figure only (spell glow can reach the floor)
         al = a[..., 3] > (254 if cfg.get('transparent') else 128); bot = np.where(al.any(1))[0].max()
-        if name in cfg['lying']:
+        if name in cfg.get('lying', []):
             return np.where(al.any(0))[0].max() - cfg.get('lying_off', 22), bot
         xs = np.where(al[bot - 8: bot + 1].any(0))[0]
         return (xs.min() + xs.max()) / 2, bot

@@ -63,7 +63,7 @@ and `meta.frameTags` in Aseprite's format.
 `jump`, `hurt`, `death`, `cast` (spell), and optionally `heal` (the once-per-act heal; heroes without it use `cast`).
 
 **Enemies:** `idle`, `walk`, `windup` (the warning pose before a hit), `attack`, `hurt`, `death`,
-plus `cast` for the Blood Cultist, Barrow Wight and Strahd (whose sprite file is still named `count-vaszlo`).
+plus `cast` for the Blood Cultist, Barrow Wight and Strahd (`strahd`, which has no `death`: he dissolves in his ending).
 
 Attacks, wind-ups and spells are **stretched to fit the move's game timing** (e.g. Ulrick's swing
 takes 20 ticks = ⅓ second). Your frame durations still set the rhythm *within* the move. The hit
@@ -86,7 +86,7 @@ Idle and walk play at your exact timing.
 | `blood-knight` | 184×144 | 92, 131 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6) |
 | `owlbear` | 280×224 | 140, 203 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6) |
 | `barrow-wight` | 240×192 | 120, 174 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6), cast(6) |
-| `count-vaszlo` | 216×176 | 108, 160 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6), cast(6). This is Strahd |
+| `strahd` | 200×128 | 96, 116 | idle(4), walk(6), windup(3), attack(5), hurt(2), cast(6). **Final art**, made from `art-source/strahd-sheet.png` (no death: he vanishes instead) |
 | `vampire-spawn` | 160×128 | 80, 116 | idle(4), walk(8), windup(3), attack(5), hurt(2), death(6), cast(6). Placeholder (Vallaki) |
 | `revenant` | 184×144 | 92, 131 | same tags. Placeholder (Argynvostholt; all four revenants share it, tinted differently) |
 | `the-abbot` | 216×176 | 108, 160 | same tags. Placeholder (Krezk) |

@@ -37,7 +37,7 @@ export const FOES = {
   wight:    { name: 'The Barrow Wight', boss: true, sprite: 'barrow-wight', height: 93, shadow: 26, hp: 360, spd: 1.6, dmg: { n: 2, s: 8, b: 1 }, reach: 118, wind: 30, cd: 60, gold: 180, poise: 3,
               moves: ['cast'], every: [260, 340], proj: 'shade',
               summon: { below: 0.55, foes: ['skeleton', 'skeleton'], line: 'Rise, my children', col: '#7fe0ff' } },
-  vampire:  { name: 'Strahd von Zarovich', boss: true, sprite: 'count-vaszlo', height: 86, shadow: 23, hp: 480, spd: 2.2, dmg: { n: 2, s: 8, b: 3 }, reach: 70, wind: 20, cd: 45, gold: 300, poise: 4,
+  vampire:  { name: 'Strahd von Zarovich', boss: true, sprite: 'strahd', height: 86, shadow: 23, hp: 480, spd: 2.2, dmg: { n: 2, s: 8, b: 3 }, reach: 70, wind: 20, cd: 45, gold: 300, poise: 4,
               moves: ['vanish', 'cast'], every: [170, 250], proj: 'bat', drain: 10,
               finale: 'strahd',   // at 0 HP he vanishes into mist and speaks instead of dying (data/dialogue.js)
               summon: { below: 0.45, foes: ['cultist', 'cultist'], line: 'Servants, to me!', col: '#ff6a7a' } },

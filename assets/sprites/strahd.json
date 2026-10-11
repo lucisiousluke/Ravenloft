@@ -1,0 +1,624 @@
+{
+ "frames": [
+  {
+   "filename": "strahd 0",
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 260
+  },
+  {
+   "filename": "strahd 1",
+   "frame": {
+    "x": 200,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 260
+  },
+  {
+   "filename": "strahd 2",
+   "frame": {
+    "x": 400,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 260
+  },
+  {
+   "filename": "strahd 3",
+   "frame": {
+    "x": 600,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 260
+  },
+  {
+   "filename": "strahd 4",
+   "frame": {
+    "x": 800,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 110
+  },
+  {
+   "filename": "strahd 5",
+   "frame": {
+    "x": 1000,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 110
+  },
+  {
+   "filename": "strahd 6",
+   "frame": {
+    "x": 1200,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 110
+  },
+  {
+   "filename": "strahd 7",
+   "frame": {
+    "x": 1400,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 110
+  },
+  {
+   "filename": "strahd 8",
+   "frame": {
+    "x": 0,
+    "y": 128,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 110
+  },
+  {
+   "filename": "strahd 9",
+   "frame": {
+    "x": 200,
+    "y": 128,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 110
+  },
+  {
+   "filename": "strahd 10",
+   "frame": {
+    "x": 400,
+    "y": 128,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 100
+  },
+  {
+   "filename": "strahd 11",
+   "frame": {
+    "x": 600,
+    "y": 128,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 100
+  },
+  {
+   "filename": "strahd 12",
+   "frame": {
+    "x": 800,
+    "y": 128,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 160
+  },
+  {
+   "filename": "strahd 13",
+   "frame": {
+    "x": 1000,
+    "y": 128,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 40
+  },
+  {
+   "filename": "strahd 14",
+   "frame": {
+    "x": 1200,
+    "y": 128,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 140
+  },
+  {
+   "filename": "strahd 15",
+   "frame": {
+    "x": 1400,
+    "y": 128,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 80
+  },
+  {
+   "filename": "strahd 16",
+   "frame": {
+    "x": 0,
+    "y": 256,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 70
+  },
+  {
+   "filename": "strahd 17",
+   "frame": {
+    "x": 200,
+    "y": 256,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 70
+  },
+  {
+   "filename": "strahd 18",
+   "frame": {
+    "x": 400,
+    "y": 256,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 100
+  },
+  {
+   "filename": "strahd 19",
+   "frame": {
+    "x": 600,
+    "y": 256,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 120
+  },
+  {
+   "filename": "strahd 20",
+   "frame": {
+    "x": 800,
+    "y": 256,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 140
+  },
+  {
+   "filename": "strahd 21",
+   "frame": {
+    "x": 1000,
+    "y": 256,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 140
+  },
+  {
+   "filename": "strahd 22",
+   "frame": {
+    "x": 1200,
+    "y": 256,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 120
+  },
+  {
+   "filename": "strahd 23",
+   "frame": {
+    "x": 1400,
+    "y": 256,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 200
+  },
+  {
+   "filename": "strahd 24",
+   "frame": {
+    "x": 0,
+    "y": 384,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 60
+  },
+  {
+   "filename": "strahd 25",
+   "frame": {
+    "x": 200,
+    "y": 384,
+    "w": 200,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 128
+   },
+   "duration": 60
+  }
+ ],
+ "meta": {
+  "app": "ravenmoor tools/sprite-from-concept/make_sheet.py",
+  "image": "strahd.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1600,
+   "h": 512
+  },
+  "scale": "1",
+  "frameTags": [
+   {
+    "name": "idle",
+    "from": 0,
+    "to": 3,
+    "direction": "forward"
+   },
+   {
+    "name": "walk",
+    "from": 4,
+    "to": 9,
+    "direction": "forward"
+   },
+   {
+    "name": "windup",
+    "from": 10,
+    "to": 12,
+    "direction": "forward"
+   },
+   {
+    "name": "attack",
+    "from": 13,
+    "to": 17,
+    "direction": "forward"
+   },
+   {
+    "name": "hurt",
+    "from": 18,
+    "to": 19,
+    "direction": "forward"
+   },
+   {
+    "name": "cast",
+    "from": 20,
+    "to": 25,
+    "direction": "forward"
+   }
+  ]
+ }
+}
